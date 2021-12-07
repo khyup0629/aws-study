@@ -241,12 +241,51 @@ Android, iOS에 대한 앱 테스트 수행 기능을 제공합니다.
 
 ## AWS 클라우드 디자인 패턴
 
+> <h3>멀티 서버 패턴</h3>
 
+![image](https://user-images.githubusercontent.com/43658658/144990083-a03ebb4b-95ec-4781-a9a7-990a935ded1c.png)   
+EC2 인스턴스를 여러 개 나란히 늘어 놓고 ELB를 통해 부하에 대한 처리를 분산시키는 구성입니다.   
+시스템의 가용성을 향상시키는 구성입니다.
 
+> <h3>스케일 업 패턴</h3>
 
+![image](https://user-images.githubusercontent.com/43658658/144990167-375b38e6-9d89-44f3-bce5-7bea2da5384c.png)   
+리퀘스트의 많고 적음에 따라 서버의 스펙을 자유롭게 확장/축소하는 구성입니다.   
+시스템의 가용성을 향상시키는 구성입니다.
 
+> <h3>DB Replication 패턴</h3>
 
+![image](https://user-images.githubusercontent.com/43658658/144990370-ad1f6e0f-b2e4-4f87-a7ca-1fbf4d0a44c7.png)   
+시스템 장애나 재해로 중요한 데이터가 소실되지 않도록 데이터베이스 내용을 복제하는 구성입니다.   
+RDS를 서로 다른 AZ(Availability Zone)에 배치하고 데이터를 복제합니다.
 
+> <h3>Functional Firewall 패턴</h3>
 
+![image](https://user-images.githubusercontent.com/43658658/144990753-55690f0a-248f-45b5-b291-1065f710b094.png)   
+서버의 역할에 따라 접속을 제한하는 구성입니다.   
+EC2 인스턴스와 RDS 인스턴스에 보안 그룹을 설정하고 필요한 통신만 허가합니다.   
+이때, 서버 1대마다 설정하면 설정 오류가 발생하기 쉬워서, 클러스터를 구성하고 클러스터 단위로 보안 그룹을 설정하는 것이 일반적입니다.
 
+## AWS 데이터센터
+
+> <h3>리전(Region)</h3>
+
+![image](https://user-images.githubusercontent.com/43658658/144990880-4039e98f-1a37-4e46-bbae-4956fc58918a.png)   
+AWS의 데이터 센터군이 설치되고 있는 지역을 의미합니다.   
+
+AWS 리전이 떨어져 있을 때에는 `네트워크 지연도 발생`하므로 이용자와 가까운 리전을 고르는 것이 맞습니다.
+
+AWS에서 제공되는 `서비스와 이용 요금`은 리전마다 다릅니다.
+
+> <h3>가용 영역(Availability Zone - AZ)</h3>
+
+![image](https://user-images.githubusercontent.com/43658658/144991857-d5ddf8ea-2281-46c5-bb90-ca8f9c0ec4ab.png)   
+리전 내에는 복수의 `가용 영역`이 있습니다. 각 가용 영역은 물리적으로 독립된 장소에 있습니다.
+
+동일 가용 영역 안에서는 `개인 IP 주소`로 통신하고, 접속 비용이 들지 않습니다.   
+동일 리전 내에 다른 가용 영역 간 통신은 인터넷을 경유하진 않지만 `글로벌 IP 주소`를 사용하여 접속하고, 접속 비용이 발생합니다.   
+
+![image](https://user-images.githubusercontent.com/43658658/144992116-18a0fb0c-1bbb-40b7-95d5-c2b519d5acf9.png)   
+재해 복구 계획 시스템을 구성할 때는 다른 가용 영역에서 운용하는 것이 좋습니다. 이러한 구성을 `멀티 AZ 구성`이라고 부릅니다.   
+멀티 AZ 구성을 하면 시스템 전체의 `가용성이 향상`합니다.
 
