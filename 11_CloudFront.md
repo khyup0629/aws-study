@@ -72,7 +72,7 @@ CloudFront 콘솔로 접속해서 [배포] > [배포 생성]
 * `캐시 정책` : 캐시 정책을 통해 오리진의 객체가 얼마동안 캐싱되는지를 설정할 수 있습니다.
 
 `CachingOptimized` 캐시 정책은 아래와 같습니다.   
-![image](https://user-images.githubusercontent.com/43658658/145981789-054892da-ca1c-4447-80fa-b6de5f9ac3e2.png)   
+![image](https://user-images.githubusercontent.com/43658658/145986759-789f8ce0-ac82-41e6-9cc2-40423b2a381e.png)   
 * `TTL` : 캐시에 데이터가 얼마나 머무를지 시간을 설정합니다.
 * `Gzip`, `Brotli` : 최종 사용자가 지원할 때 CloudFront에서 `Gzip` 또는 `Brotli` 압축 형식으로 압축된 객체를 요청하고 캐시할 수 있습니다.
 
