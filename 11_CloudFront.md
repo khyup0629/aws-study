@@ -67,6 +67,8 @@ CloudFront 콘솔로 접속해서 [배포] > [배포 생성]
   - CloudFront가 콘텐츠를 압축하면 파일 크기가 더 작아지므로 `다운로드 속도가 빨라`지고 웹 페이지는 사용자에게 `더 빨리 렌더링`됩니다.
 * `뷰어 프로토콜 정책` : 뷰어가 CloudFront 에지 로케이션의 콘텐츠에 액세스하는데 사용하는 `프로토콜 정책`을 선택합니다.
 * `허용된 HTTP 메서드` : CloudFront에서 오리진을 처리하고 전달하기 위한 `HTTP 메서드`를 지정합니다.
+  - `GET, HEAD` : 파일을 읽기만 할 때 사용.
+  - `GET, HEAD< OPTIONS, PUT, POST, PATCH, DELETE` : 동적 컨텐츠 전송을 위해 사용.. 
 
 ![image](https://user-images.githubusercontent.com/43658658/145981588-85a8ffe3-029b-4ef4-9aea-87880b4dcd16.png)   
 * `캐시 정책` : 캐시 정책을 통해 오리진의 객체가 얼마동안 캐싱되는지를 설정할 수 있습니다.
@@ -96,6 +98,9 @@ CloudFront 콘솔로 접속해서 [배포] > [배포 생성]
 ![image](https://user-images.githubusercontent.com/43658658/145984605-40163fa6-8710-4038-9e11-5f51c61659a3.png)   
 * `표준 로깅` : S3 버킷에 CloudFront에서의 객체 요청에 대한 로그를 기록할 것인지 여부입니다.
 * `IPv6` : CloudFront에서 `IPv6`의 요청에 응답하도록 하고 싶다면 `켜기`를 선택합니다.
+
+생성을 하면 [마지막 수정]에 `배포`라고 뜨는데 이 문구가 사라지고 날짜가 나오면 배포가 완료되었다는 의미입니다.   
+![image](https://user-images.githubusercontent.com/43658658/146128558-dfe92ed2-ea99-47c2-bcf0-67de004c4d40.png)
 
 > <h3>배포 테스트</h3>
 
@@ -148,5 +153,21 @@ node.js와 npm을 패키지 설치합니다.
 
 정상적으로 `app.js` 파일의 내용이 나타나는 것을 확인할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146116469-721e74d1-2b4a-4d2d-86ae-35819a89ac87.png)
+
+이제 `CloudFront 배포`를 생성합니다.   
+
+도메인은 인스턴스의 `퍼블릭 DNS 이름`를 사용합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146130270-f0f29b9a-a5f4-4048-b006-4ef6da749da5.png)   
+* 프로토콜은 오리진과 통신할 때 사용하는 프로토콜을 설정합니다. SSL 인증서를 사용하지 않을 것이기 때문에 `HTTP만 해당`을 체크합니다.
+* [최소 원본 SSL 프로토콜](https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#:~:text=%EC%84%A0%ED%83%9D%20%EB%8B%A8%EC%9B%90%EC%9D%84%20%EC%B0%B8%EC%A1%B0%ED%95%98%EC%84%B8%EC%9A%94.-,%EB%B3%B4%EC%95%88%20%EC%A0%95%EC%B1%85,-CloudFront%EA%B0%80%20%EC%B5%9C%EC%A2%85) : SSL 인증서를 사용할 때 프로토콜을 지정합니다.
+* S3와 연동할 때와 다른 점은 이 부분입니다.
+
+나머지는 앞서 설명한대로 진행해서 `CloudFront 배포`를 생성합니다.   
+
+몇 분 기다린 후 생성한 배포의 도메인 이름으로 접속하면 `app.js`의 내용이 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/146127537-85aedb78-11f9-4b48-9f51-e0c7c674e7f0.png)   
+![image](https://user-images.githubusercontent.com/43658658/146130374-0087ffcd-a47d-429a-a942-0c5fa4134b6a.png)
+
+(주의!) EC2 인스턴스와 연동할 때는 반드시 `EIP를 지정`해야 합니다. 인스턴스를 종료했다가 시작할 경우 IP 주소가 바껴 앞서 설정한 퍼블릭 도메인이 무용지물이 됩니다.
 
 
