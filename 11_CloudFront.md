@@ -184,4 +184,103 @@ CloudFront의 도메인 이름으로 접속하면 부트스트랩 홈페이지�
 
 ## Signed URL
 
+![image](https://user-images.githubusercontent.com/43658658/146138391-638843a6-6f94-470d-ac74-f6e19cbd33b7.png)
+
 Signed URL : CloudFront로 배포되는 파일의 사용을 제한하는 기능입니다.
+
+Signed URL에는 2가지 유형이 있습니다.   
+* `Canned Policy`를 사용한 Signed URL: 파일 `1개`의 사용을 제한합니다. 또한, `특정 날짜가 지나면 파일을 받지 못하게` 하는 기능만 사용할 수 있습니다. 
+* `Custom Policy`를 사용한 Signed URL: 파일 `여러 개`의 사용을 제한합니다. `특정 날짜가 지나면 파일을 받지 못하게` 하는 기능, `특정 날짜 이후에 파일을 받을 수 있도록` 하는 기능, `특정 IP 혹은 IP대역에서만` 파일을 받을 수 있도록 하는 기능을 사용할 수 있습니다. 
+
+> <h3>Signed URL 사전 설정</h3>
+
+먼저 S3 버킷을 생성하고 CloudFront와 연동시킵니다.
+
+연동된 CloudFront 배포의 [동작] > [동작 선택] > [편집]   
+![image](https://user-images.githubusercontent.com/43658658/146133882-2272fbbe-2213-41eb-8fc2-f81624cdcb74.png)
+
+뷰어 액세스 제한에서 `Yes`를 선택하여 `Signed URL`을 사용합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146133998-c3716980-8140-4208-ad6e-a8107835a8da.png)   
+* Trusted Signers: Signed URL에서 서명(Signature)할 계정을 설정합니다.
+  - 셀프 : 현재 접속한 AWS 계정입니다.
+  - 추가 AWS 계정 : 서명할 AWS 계정을 추가할 수 있습니다. `AWS 계정 번호`를 입력해야 합니다. 
+
+변경 사항을 저장하면 배포가 다시 시작됩니다.
+
+배포가 완료된 후 CloudFront 도메인 이름으로 접속하면 접속이 되지 않습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146134661-fb33c760-f493-4764-9de1-1a0628001bf7.png)
+
+이제 Signed URL에 알맞는 파라미터가 있어야 정상적으로 접속할 수 있게 되었습니다.
+
+> <h3>CloudFront 퍼블릭 키 생성</h3>
+
+Signed URL을 생성하기 이전에 `CloudFront 키 페어`와 `액세스 키`가 필요합니다.   
+키 페어의 `퍼블릭 키`를 이용해 정책에 서명하는 과정을 거쳐야 합니다.   
+
+`서명` : 현재 정책 내용과 서명 데이터의 내용이 일치하는지를 확인하는 과정입니다.
+
+리눅스 인스턴스를 열고 `openssl`로 2048비트인 RSA 키 페어를 생성하고 private_key.pem이라는 파일에 저장합니다.
+![image](https://user-images.githubusercontent.com/43658658/146145999-676c9fe6-7766-469d-8364-f63f0e5a1966.png)
+
+`private_key.pem`에서 퍼블릭 키를 추출합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146146159-cabe136f-7319-488f-a4b2-185b4f3f2988.png)
+
+CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]   
+![image](https://user-images.githubusercontent.com/43658658/146146569-81e1456c-b2fe-4d05-9e73-c71c17712f2b.png)
+
+리눅스에서 `public_key.pem`의 내용을 확인합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146147096-f632d1f6-c0f0-4660-bc16-10fab30ef5fa.png)
+
+`퍼블릭 키 값`을 복사·붙여넣기하고 퍼블릭 키를 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146147036-8b8d0d77-f481-4a9e-aee5-858d2829651f.png)
+
+> <h3>Canned Policy 용 Signed URL 생성</h3>
+
+`Canned Policy`는 미리 준비된 정책이라는 뜻으로, CloudFront 배포 서버에서 이미 정책 내용을 알고 있기 때문에 Signed URL에 정책 내용을 포함하지 않습니다.
+
+리눅스를 열고 `canned_policy.json`이라는 이름으로 아래 내용의 파일을 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146148492-05585f5c-e798-43db-b98c-fef0c9443a95.png)   
+* `Resource` : CloudFront의 도메인 주소를 `http://`와 `/index.html`까지 붙여서 입력합니다.
+* `DateLessThan` : 파일의 만료 날짜를 EpochTime으로 입력합니다. 미래 시간으로 입력합니다. [EpochTime Converter 사이트](https://www.epochconverter.com/)
+
+모든 공백을 지우고 한 줄의 코드로 변경합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146149168-d7972d97-1f98-4a04-964f-0020344e341e.png)   
+
+서명 값을 만듭니다.   
+![image](https://user-images.githubusercontent.com/43658658/146150425-2c36a539-b61b-489b-acf2-20293b5d3080.png)   
+* `openssl sha1 -sign private_key.pem` : 개인 키 파일과 `canned_policy.json`에 적힌 정책을 `서명 값`으로 만듭니다.
+* `openssl base64` : 서명 값(Signature)를 `BASE64로 인코딩`합니다.
+* `tr ‘+=/’ ‘-_~’` : BASE64로 인코딩 된 값 중에서 `URL로 인식될 수 있는 문자를 다른 것으로` 바꿉니다.
+
+이제 서명 값을 가지고 메모장을 켜고 Signed URL을 직접 작성합니다.   
+`http://d9osq4ysitm33.cloudfront.net/index.html?Expires=1639642230&Signature=deiH7KsAvXxrRazZIclhNx2YGbtX5aThsgb4jBRY7TUnOctdGSsh54w719pqIIoaAiCbnhyV13Mv7Wgb4xNmu8ol4Y1QqjTluzU7YZBRfd1673zKXTQ5xnHg8u5f9ob~5JPwtBFHqnwvu~lWTKDwxnq5WRaZAD2bZ2nHTfavaFuXf3QvAwQ85LSO~Z3KHZ--aPKflGQ7-N0GbzPi5VHbfCpBxPaMZHwwDuL3TO59XsbmZq37--Dc8T53xjTKlhrCC3owt1UXK0k4zTaO6mnAwHrvBQE7gY1ZwhV2LBRuw5CjscVYo0bv4x34KTg9W50-bj34QELlSknkVVQ20Vt6wA__&Key-Pair-Id=K243WX9D7Q4MIO`   
+* `Expires=` : `canned_policy.json`에 작성한 만료 시간과 동일하게 입력합니다.
+* `Signature=` : 생성한 서명값과 동일하게 입력합니다.
+* `Key-Pair-Id=` : CloudFront 콘솔에서 생성한 퍼블릭 키의 ID를 입력합니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
