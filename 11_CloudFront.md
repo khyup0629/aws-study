@@ -170,4 +170,18 @@ node.js와 npm을 패키지 설치합니다.
 
 (주의!) EC2 인스턴스와 연동할 때는 반드시 `EIP를 지정`해야 합니다. 인스턴스를 종료했다가 시작할 경우 IP 주소가 바껴 앞서 설정한 퍼블릭 도메인이 무용지물이 됩니다.
 
+> <h3>외부 서버와 CloudFront 연동</h3>
 
+이번엔 부트스트랩 사이트(http://getbootstrap.com)와 CloudFront를 연동해보겠습니다.
+
+원본 도메인에 부트스트랩 URL을 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146131505-39736ee9-6bd4-41fd-83f8-c104dea34fb1.png)
+
+나머지 설정은 앞서 CloudFront 배포 생성과 동일하게 설정하고 배포를 생성합니다.
+
+CloudFront의 도메인 이름으로 접속하면 부트스트랩 홈페이지가 나타나는 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146132150-419c09dd-479e-4479-82f3-2aeaefb64685.png)
+
+## Signed URL
+
+Signed URL : CloudFront로 배포되는 파일의 사용을 제한하는 기능입니다.
