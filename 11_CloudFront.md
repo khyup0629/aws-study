@@ -254,9 +254,15 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 
 이제 서명 값을 가지고 메모장을 켜고 Signed URL을 직접 작성합니다.   
 `http://d9osq4ysitm33.cloudfront.net/index.html?Expires=1639642230&Signature=deiH7KsAvXxrRazZIclhNx2YGbtX5aThsgb4jBRY7TUnOctdGSsh54w719pqIIoaAiCbnhyV13Mv7Wgb4xNmu8ol4Y1QqjTluzU7YZBRfd1673zKXTQ5xnHg8u5f9ob~5JPwtBFHqnwvu~lWTKDwxnq5WRaZAD2bZ2nHTfavaFuXf3QvAwQ85LSO~Z3KHZ--aPKflGQ7-N0GbzPi5VHbfCpBxPaMZHwwDuL3TO59XsbmZq37--Dc8T53xjTKlhrCC3owt1UXK0k4zTaO6mnAwHrvBQE7gY1ZwhV2LBRuw5CjscVYo0bv4x34KTg9W50-bj34QELlSknkVVQ20Vt6wA__&Key-Pair-Id=K243WX9D7Q4MIO`   
-* `Expires=` : `canned_policy.json`에 작성한 만료 시간과 동일하게 입력합니다.
-* `Signature=` : 생성한 서명값과 동일하게 입력합니다.
-* `Key-Pair-Id=` : CloudFront 콘솔에서 생성한 퍼블릭 키의 ID를 입력합니다.
+* `Expires=` : `canned_policy.json`에 작성한 만료 시간과 동일하게 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146151438-5d6ef9d1-eaf4-4cb3-b10e-46c3a7769734.png)   
+* `Signature=` : 생성한 서명값과 동일하게 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146151499-a701725d-79fd-43bf-81a4-877252551c76.png)   
+* `Key-Pair-Id=` : CloudFront 콘솔에서 생성한 퍼블릭 키의 ID를 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146151359-57f2bde9-9d52-4591-98ee-90df938ba10c.png)
+
+이제 웹 브라우저에서 이 URL을 통해서 접속을 시도해봅니다.
+
 
 
 
