@@ -192,27 +192,9 @@ Signed URL에는 2가지 유형이 있습니다.
 * `Canned Policy`를 사용한 Signed URL: 파일 `1개`의 사용을 제한합니다. 또한, `특정 날짜가 지나면 파일을 받지 못하게` 하는 기능만 사용할 수 있습니다. 
 * `Custom Policy`를 사용한 Signed URL: 파일 `여러 개`의 사용을 제한합니다. `특정 날짜가 지나면 파일을 받지 못하게` 하는 기능, `특정 날짜 이후에 파일을 받을 수 있도록` 하는 기능, `특정 IP 혹은 IP대역에서만` 파일을 받을 수 있도록 하는 기능을 사용할 수 있습니다. 
 
-> <h3>Signed URL 사전 설정</h3>
+> <h3>CloudFront 퍼블릭 키 생성</h3>
 
 먼저 S3 버킷을 생성하고 CloudFront와 연동시킵니다.
-
-연동된 CloudFront 배포의 [동작] > [동작 선택] > [편집]   
-![image](https://user-images.githubusercontent.com/43658658/146133882-2272fbbe-2213-41eb-8fc2-f81624cdcb74.png)
-
-뷰어 액세스 제한에서 `Yes`를 선택하여 `Signed URL`을 사용합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146133998-c3716980-8140-4208-ad6e-a8107835a8da.png)   
-* Trusted Signers: Signed URL에서 서명(Signature)할 계정을 설정합니다.
-  - 셀프 : 현재 접속한 AWS 계정입니다.
-  - 추가 AWS 계정 : 서명할 AWS 계정을 추가할 수 있습니다. `AWS 계정 번호`를 입력해야 합니다. 
-
-변경 사항을 저장하면 배포가 다시 시작됩니다.
-
-배포가 완료된 후 CloudFront 도메인 이름으로 접속하면 접속이 되지 않습니다.   
-![image](https://user-images.githubusercontent.com/43658658/146134661-fb33c760-f493-4764-9de1-1a0628001bf7.png)
-
-이제 Signed URL에 알맞는 파라미터가 있어야 정상적으로 접속할 수 있게 되었습니다.
-
-> <h3>CloudFront 퍼블릭 키 생성</h3>
 
 Signed URL을 생성하기 이전에 `CloudFront 키 페어`와 `액세스 키`가 필요합니다.   
 키 페어의 `퍼블릭 키`를 이용해 정책에 서명하는 과정을 거쳐야 합니다.   
@@ -233,6 +215,17 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 
 `퍼블릭 키 값`을 복사·붙여넣기하고 퍼블릭 키를 생성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146147036-8b8d0d77-f481-4a9e-aee5-858d2829651f.png)
+
+> <h3>키 그룹 생성</h3>
+
+[키 그룹] > [키 그룹 생성]   
+![image](https://user-images.githubusercontent.com/43658658/146153143-5ae90f56-46c3-4f34-8a9e-8996fbb76010.png)
+
+이전에 생성한 퍼블릭 키를 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146153293-3d15a5f9-8395-4350-857e-bc9c9c0f83b9.png)
+
+키 그룹이 생성되었습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146153339-8c034182-41c7-44ac-9701-ae564ab8d09f.png)
 
 > <h3>Canned Policy 용 Signed URL 생성</h3>
 
@@ -261,7 +254,23 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 * `Key-Pair-Id=` : CloudFront 콘솔에서 생성한 퍼블릭 키의 ID를 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146151359-57f2bde9-9d52-4591-98ee-90df938ba10c.png)
 
-이제 웹 브라우저에서 이 URL을 통해서 접속을 시도해봅니다.
+> <h3>Signed URL 동작 설정</h3>
+
+연동된 CloudFront 배포의 [동작] > [동작 선택] > [편집]   
+![image](https://user-images.githubusercontent.com/43658658/146133882-2272fbbe-2213-41eb-8fc2-f81624cdcb74.png)
+
+뷰어 액세스 제한에서 `Yes`를 선택하여 `Signed URL`을 사용합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146153447-c4f24774-5beb-4a7e-b741-57b8489156a7.png)   
+* `Trusted key groups` : Signed URL에서 서명(Signature) 값과 대조할 `키 그룹`을 설정합니다.
+
+변경 사항을 저장하면 배포가 다시 시작됩니다.
+
+> <h3>Signed URL 테스트</h3>
+
+배포가 완료된 후 CloudFront 도메인 이름으로 접속하면 접속이 되지 않습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146134661-fb33c760-f493-4764-9de1-1a0628001bf7.png)
+
+이제 Signed URL을 통해서 접속을 시도해봅니다.
 
 
 
