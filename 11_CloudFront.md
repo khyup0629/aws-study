@@ -74,6 +74,11 @@ CloudFront 콘솔로 접속해서 [배포] > [배포 생성]
 `CachingOptimized` 캐시 정책은 아래와 같습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/145986759-789f8ce0-ac82-41e6-9cc2-40423b2a381e.png)   
 * `TTL` : 캐시에 데이터가 얼마나 머무를지 시간을 설정합니다.
+* `캐시 키` : 캐시에 있는 객체를 구별하는 고유 식별자입니다. CloudFront가 오리진으로 보내는 요청에 대한 정보(헤더, 쿠키, 쿼리)를 포함합니다.
+* [캐시 키 설정](https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#:~:text=%EA%B4%80%EB%A6%AC%20%EB%8B%A8%EC%9B%90%EC%9D%84%20%EC%B0%B8%EC%A1%B0%ED%95%98%EC%84%B8%EC%9A%94.-,%EC%BA%90%EC%8B%9C%20%ED%82%A4%20%EC%84%A4%EC%A0%95,-%EC%BA%90%EC%8B%9C%20%ED%82%A4%20%EC%84%A4%EC%A0%95%EC%9D%80)
+  - `헤더` : [HTTP 헤더](https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/using-cloudfront-headers.html)를 지정합니다.
+    - HTTP 헤더 : 최종 사용자에 대한 정보가 포함됩니다. 오리진에서 사용자 지정 코드를 사용해서 최종 사용자에 대해 알아볼 필요가 없습니다.
+  - `쿠키` : 어떠한 웹사이트를 방문할 경우 그 사이트가 사용하고 있는 서버를 통해 인터넷 사용자의 컴퓨터에 설치되는 작은 기록 정보 파일입니다.
 * `Gzip`, `Brotli` : CloudFront에서 `Gzip` 또는 `Brotli` 압축 형식으로 압축된 객체를 요청하고 캐시할 수 있습니다.
 
 ![image](https://user-images.githubusercontent.com/43658658/145982824-052eb743-48aa-4642-8c31-6d5e8232fada.png)   
