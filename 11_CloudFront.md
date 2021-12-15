@@ -237,20 +237,20 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 * `DateLessThan` : 파일의 만료 날짜를 EpochTime으로 입력합니다. 미래 시간으로 입력합니다. [EpochTime Converter 사이트](https://www.epochconverter.com/)
 
 모든 공백을 지우고 한 줄의 코드로 변경합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146149168-d7972d97-1f98-4a04-964f-0020344e341e.png)   
+![image](https://user-images.githubusercontent.com/43658658/146162895-32855447-c1b5-4751-bf85-06a2b27bfcd8.png)
 
 서명 값을 만듭니다.   
-![image](https://user-images.githubusercontent.com/43658658/146150425-2c36a539-b61b-489b-acf2-20293b5d3080.png)   
+![image](https://user-images.githubusercontent.com/43658658/146163173-51d3c9b2-3c23-4d07-8082-31e44e890622.png)   
 * `openssl sha1 -sign private_key.pem` : 개인 키 파일과 `canned_policy.json`에 적힌 정책을 `서명 값`으로 만듭니다.
 * `openssl base64` : 서명 값(Signature)를 `BASE64로 인코딩`합니다.
 * `tr ‘+=/’ ‘-_~’` : BASE64로 인코딩 된 값 중에서 `URL로 인식될 수 있는 문자를 다른 것으로` 바꿉니다.
 
 이제 서명 값을 가지고 메모장을 켜고 Signed URL을 직접 작성합니다.   
-`http://d9osq4ysitm33.cloudfront.net/index.html?Expires=1639642230&Signature=deiH7KsAvXxrRazZIclhNx2YGbtX5aThsgb4jBRY7TUnOctdGSsh54w719pqIIoaAiCbnhyV13Mv7Wgb4xNmu8ol4Y1QqjTluzU7YZBRfd1673zKXTQ5xnHg8u5f9ob~5JPwtBFHqnwvu~lWTKDwxnq5WRaZAD2bZ2nHTfavaFuXf3QvAwQ85LSO~Z3KHZ--aPKflGQ7-N0GbzPi5VHbfCpBxPaMZHwwDuL3TO59XsbmZq37--Dc8T53xjTKlhrCC3owt1UXK0k4zTaO6mnAwHrvBQE7gY1ZwhV2LBRuw5CjscVYo0bv4x34KTg9W50-bj34QELlSknkVVQ20Vt6wA__&Key-Pair-Id=K243WX9D7Q4MIO`   
+`http://d9osq4ysitm33.cloudfront.net/index.html?Expires=1639642230&Signature=XpJaOZOe98Y5n257f6pi9K6hVoxd-1jW8TFfPkVSGay8nTNSBaCXSyosq65sIUSOcOHLwamEuwv-ZH9xY-H8Ha4yDUMSlGmCE2GKUAMspp6r4hQbffXtndoOp~fSl0c~T0zbjAExXIlTHPZllaLLnaa7ZuQtVXmeMtc1BroMGAvVRSLquyotMhVYZa~DIA7nuSDz2Of3CKBHeYDN~iIEC~VStmZeCcVW1iSoyFMhG6q97dI-LAptiYKyoWxT~bX5T-6ssTo~7p9uW7qGgH5yHVdfeglTyHYqpushfeEUJ60rVBhXeku0bzo1hJASopwywhuMSj-l77-l75ZCPtOAYw__&Key-Pair-Id=K243WX9D7Q4MIO`   
 * `Expires=` : `canned_policy.json`에 작성한 만료 시간과 동일하게 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146151438-5d6ef9d1-eaf4-4cb3-b10e-46c3a7769734.png)   
 * `Signature=` : 생성한 서명값과 동일하게 입력합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146151499-a701725d-79fd-43bf-81a4-877252551c76.png)   
+![image](https://user-images.githubusercontent.com/43658658/146163160-01838302-d417-4378-978d-0d557b4187b4.png)   
 * `Key-Pair-Id=` : CloudFront 콘솔에서 생성한 퍼블릭 키의 ID를 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146151359-57f2bde9-9d52-4591-98ee-90df938ba10c.png)
 
@@ -271,6 +271,9 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 ![image](https://user-images.githubusercontent.com/43658658/146134661-fb33c760-f493-4764-9de1-1a0628001bf7.png)
 
 이제 Signed URL을 통해서 접속을 시도해봅니다.
+
+`Access Denied`가 발생했습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146161165-e95a1470-174c-42ed-a6c7-2a20b37c5c2b.png)
 
 
 
