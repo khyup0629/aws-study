@@ -97,6 +97,14 @@ CloudFront 콘솔로 접속해서 [배포] > [배포 생성]
 * `표준 로깅` : S3 버킷에 CloudFront에서의 객체 요청에 대한 로그를 기록할 것인지 여부입니다.
 * `IPv6` : CloudFront에서 `IPv6`의 요청에 응답하도록 하고 싶다면 `켜기`를 선택합니다.
 
+> <h3>배포 테스트</h3>
+
+CloudFront의 도메인 주소로 접속했을 때 S3 버킷에 들어있는 `index.html`이 나타나는지 확인합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146111936-487be815-0aec-4691-bede-85ec634b6c08.png)   
+
+정상적으로 나타나는 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146111908-4a5bbae1-57c2-4116-970b-65594e2c4eaa.png)
+
 ## (참고) 캐시적중률
 
 `최종 사용자의 요청` 대비 `최종 사용자의 요청에 포함된 캐시 키가 에지 로케이션에 캐시된 객체의 캐시와 얼마나 일치하는지`의 비율입니다.
