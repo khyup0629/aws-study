@@ -177,6 +177,9 @@ DB 엔진과 이름을 설정합니다.
 
 `MySQL Workbench`를 이용해 접속 테스트를 진행합니다.   
 
+접속이 원활하게 수행된 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146363558-a38e997d-90f0-4761-a871-7ebbe917e69a.png)
+
 
 
 
