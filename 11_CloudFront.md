@@ -68,7 +68,7 @@ CloudFront 콘솔로 접속해서 [배포] > [배포 생성]
 * `뷰어 프로토콜 정책` : 뷰어가 CloudFront 에지 로케이션의 콘텐츠에 액세스하는데 사용하는 `프로토콜 정책`을 선택합니다.
 * `허용된 HTTP 메서드` : CloudFront에서 오리진을 처리하고 전달하기 위한 `HTTP 메서드`를 지정합니다.
   - `GET, HEAD` : 파일을 읽기만 할 때 사용.
-  - `GET, HEAD< OPTIONS, PUT, POST, PATCH, DELETE` : 동적 컨텐츠 전송을 위해 사용.. 
+  - `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE` : 동적 컨텐츠 전송을 위해 사용. 
 
 ![image](https://user-images.githubusercontent.com/43658658/145981588-85a8ffe3-029b-4ef4-9aea-87880b4dcd16.png)   
 * `캐시 정책` : 캐시 정책을 통해 오리진의 객체가 얼마동안 캐싱되는지를 설정할 수 있습니다.
