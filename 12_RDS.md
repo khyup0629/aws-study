@@ -55,25 +55,26 @@ DB에 접근하는 사용자가 인증하는 방식을 설정합니다.
 ![image](https://user-images.githubusercontent.com/43658658/146324590-a1b135a8-6c04-4121-ab07-fc31aae24608.png)   
 * 초기 데이터베이스 이름 : DB 인스턴스를 생성할 때 RDS가 생성하는 `데이터베이스의 이름`을 지정합니다.
 * DB 파라미터 그룹 : 데이터베이스에 할당할 리소스 양을 지정하는 그룹입니다. 로그와 관련된 설정을 할 때도 사용합니다.
-* 옵션 그룹 : 비슷한 기능을 하는 데이터베이스 끼리 묶습니다.
+* [옵션 그룹](https://docs.aws.amazon.com/ko_kr/ko_kr/AmazonRDS/latest/UserGuide/USER_WorkingWithOptionGroups.html) : 비슷한 기능을 하는 데이터베이스 끼리 묶습니다.
 
 자동 백업을 활성화하면 아래와 같이 백업과 관련된 설정을 할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146322652-a13881ee-9d7c-46ee-b971-6ecb6f1ec5be.png)
 
 `Enhanced 모니터링 활성화`를 체크하면 아래와 같이 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146323407-9d71708b-625f-4342-a7fe-709ef465f901.png)   
-* `Enhanced Monitoring`을 통해 DB 인스턴스의 운영 체제를 실시간으로 모니터링할 수 있습니다.
+* [Enhanced Monitoring](https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.overview.html#USER_Monitoring.OS.cost)을 통해 DB 인스턴스의 운영 체제를 실시간으로 모니터링할 수 있습니다.
 * `역할 모니터링`에서 `IAM 역할`을 선택합니다(`IAM 역할`을 통해 `Enhanced 모니터링`에 `권한을 부여`해야 합니다).
 
 CloudWatch Logs에서 어떤 로그 유형을 받을지 선택합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146324615-664715b5-0621-42c4-bc7e-efac0c87fcd5.png)   
 * 감사 로그 : 시간, 사용자 그리고 객체에 대한 모든 액세스 형태를 로그로 남깁니다.
 * 에러 로그 : 시작, 종료 및 오류 발생 시에만 로그를 남깁니다.
-* 일반 로그 : 
+* 일반 로그 : 쿼리가 실행되면 로그를 남깁니다.
 * 느린 쿼리 로그 : 쿼리가 실행되는게 설정한 시간보다 늦어지면 로그를 남깁니다.
 
-
-
+![image](https://user-images.githubusercontent.com/43658658/146327984-75f618b5-f754-476b-ae5f-0d2e4115c236.png)   
+* `마이너 버전 자동 업그레이드 사용` : 보안 패치나 버그가 수정된 버전을 자동으로 업데이트합니다.
+* [유지 관리 기간](https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#Concepts) : RDS가 DB 리소스를 유지 관리하기 위해서는 기본 하드웨어, OS, DB 엔진 버전에 대한 업데이트가 수반될 수 있는데, 이때 업데이트 이전에 `DB 인스턴스 클래스` 또는 `파라미터 그룹`을 유지 관리 기간 내에 변경하도록 할 수 있습니다.
 
 
 
