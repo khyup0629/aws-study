@@ -275,8 +275,33 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 `Access Denied`가 발생했습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146161165-e95a1470-174c-42ed-a6c7-2a20b37c5c2b.png)
 
+## 무효화
 
+에지 로케이션의 캐시된 객체는 기본 TTL 시간 동안 보관됩니다.   
+캐시를 갱신시키고 싶을 때 무효화를 이용합니다.
 
+먼저 S3와 CloudFront를 연동하고, CloudFront 도메인을 통해 현재 `index.html` 객체로 접속해봅니다.   
+![image](https://user-images.githubusercontent.com/43658658/146314040-e8ba4684-8809-46f3-be00-5b4d060a7665.png)
+
+이제 `index.html`을 아래와 같이 수정하고, 다시 도메인으로 접속해봅니다.   
+![image](https://user-images.githubusercontent.com/43658658/146314166-1198d2ae-3083-4250-bc40-02d392d079d2.png)
+
+변경 내용이 갱신되지 않았습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146314454-565e0943-574d-437e-b357-324832c631f3.png)
+
+오리진의 내용은 갱신 되었지만, 캐시된 객체는 업데이트 되지 않았기 때문입니다.
+
+이럴 때, `무효화` 기능을 이용합니다. [배포] > [무효화] > [무효화 생성]   
+![image](https://user-images.githubusercontent.com/43658658/146314428-1da89409-3b0f-4dcd-8380-9fac19b86f98.png)
+
+`index.html` 파일을 갱신할 것이므로 `/index.html`을 입력하고 생성 버튼을 누릅니다.   
+![image](https://user-images.githubusercontent.com/43658658/146314478-53ccc53e-7441-4095-8ef1-3a9103c297d9.png)
+
+전세계의 에지 로케이션에 무효화를 진행 중입니다.   
+![image](https://user-images.githubusercontent.com/43658658/146314605-ffce30bc-59c1-4d91-a639-a02a08900d77.png)
+
+설정이 완료되고, CloudFront 도메인으로 접속하면 내용이 갱신된 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146314681-ea3d9bde-f25a-4477-a543-f5b89ca7fff3.png)
 
 
 
