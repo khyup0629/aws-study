@@ -68,7 +68,7 @@ AWS 리소스 상태를 모니터링 하는 서비스입니다.
   ![image](https://user-images.githubusercontent.com/43658658/145753306-5beb6b0a-cac1-4615-87fc-d5544b32336d.png)
 
 10. `단계 2`에서 다음을 설정합니다.   
-![image](https://user-images.githubusercontent.com/43658658/145753961-5cf9dc1c-a0d1-457b-a2ba-6f9fc89d810a.png)   
+![image](https://user-images.githubusercontent.com/43658658/146383503-3d25e023-4948-42aa-8311-ccd66b88ac5e.png)   
 * `경보 상태 트리거` : CPU가 정해진 임계값을 벗어나면 알람이 발생.
 * `SNS 주제 선택` : 알람을 수신할 SNS를 선택합니다.
   - `주제 이름`과 `알림을 수신한 이메일`을 작성합니다.   
