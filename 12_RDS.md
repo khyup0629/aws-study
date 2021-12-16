@@ -86,7 +86,7 @@ CloudWatch Logs에서 어떤 로그 유형을 받을지 선택합니다.
 ![image](https://user-images.githubusercontent.com/43658658/146330774-af3a95d3-d678-454d-898b-ddd9857f7ce3.png)
 
 인바운드 규칙에서 `사용자 지정`에 EC2 인스턴스를 만들면서 지정한 보안 그룹을 지정합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146331090-c392c297-f250-430d-98c7-d13a36ab2da6.png)   
+![image](https://user-images.githubusercontent.com/43658658/146333576-d1c3201b-95bb-4bf9-9ac2-9f3ca72ff7f5.png)   
 * 이렇게 보안 그룹을 규칙으로 지정하면, 같은 보안 그룹을 이용하는 인스턴스들 모두에서 접근이 가능하게 됩니다.
 
 [DB 인스턴스] > [수정]   
@@ -99,6 +99,25 @@ CloudWatch Logs에서 어떤 로그 유형을 받을지 선택합니다.
 ![image](https://user-images.githubusercontent.com/43658658/146331897-250528c1-483a-4531-8c36-0cfbc629dae2.png)
 
 ## DB 인스턴스 접근
+
+실제로 외부에서 DB 인스턴스가 제대로 생성되었는지 접근해보겠습니다.   
+
+[MySQL Workbench 다운로드](https://dev.mysql.com/downloads/workbench/)를 이용해 MySQL Workbench를 설치합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146334060-d92aa37f-9539-4d8f-9c31-d60d5802fa62.png)
+
+설치가 완료되면 상단의 [Database] > [Manage Connections]   
+![image](https://user-images.githubusercontent.com/43658658/146334901-54edab64-4182-45ee-82cc-058fd414ce8d.png)
+
+아래의 설정값들을 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146334822-dc3ef873-9f6a-444a-8fe7-64f0b6f2f0c3.png)    
+* `Connection Name` : 연결의 이름을 입력합니다.
+* `Hostname` : RDS의 엔드포인트를 적어줍니다.
+* `Username` : RDS 생성 당시 마스터 사용자를 적어줍니다.
+* `Store in Vault` : 눌러서 마스터 사용자의 비밀번호를 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146335232-9660b9cc-8396-43c8-87de-11ac598e1ea2.png)
+
+
+
 
 
 
