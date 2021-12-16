@@ -76,6 +76,35 @@ CloudWatch Logs에서 어떤 로그 유형을 받을지 선택합니다.
 * `마이너 버전 자동 업그레이드 사용` : 보안 패치나 버그가 수정된 버전을 자동으로 업데이트합니다.
 * [유지 관리 기간](https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#Concepts) : RDS가 DB 리소스를 유지 관리하기 위해서는 기본 하드웨어, OS, DB 엔진 버전에 대한 업데이트가 수반될 수 있는데, 이때 업데이트 이전에 `DB 인스턴스 클래스` 또는 `파라미터 그룹`을 유지 관리 기간 내에 변경하도록 할 수 있습니다.
 
+생성 버튼을 누르면 몇 분 뒤에 `DB 인스턴스` 생성이 완료됩니다.   
+
+> <h3>보안 그룹 생성</h3>
+
+이제 DB 인스턴스용 보안 그룹을 생성하겠습니다.   
+
+[EC2 콘솔] > [보안 그룹] > [보안 그룹 생성]   
+![image](https://user-images.githubusercontent.com/43658658/146330774-af3a95d3-d678-454d-898b-ddd9857f7ce3.png)
+
+인바운드 규칙에서 `사용자 지정`에 EC2 인스턴스를 만들면서 지정한 보안 그룹을 지정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146331090-c392c297-f250-430d-98c7-d13a36ab2da6.png)   
+* 이렇게 보안 그룹을 규칙으로 지정하면, 같은 보안 그룹을 이용하는 인스턴스들 모두에서 접근이 가능하게 됩니다.
+
+[DB 인스턴스] > [수정]   
+![image](https://user-images.githubusercontent.com/43658658/146331422-9a33e832-6d58-453d-bb24-4bd65a36713f.png)
+
+기존의 `Default`를 지우고 앞서 생성한 `DB 인스턴스 전용 보안 그룹`을 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146331555-ff0a500b-30ad-4fb5-ad7b-7d05091e8c92.png)
+
+아래에 [계속] 버튼을 누르고 `즉시 적용`을 선택합니다.
+![image](https://user-images.githubusercontent.com/43658658/146331897-250528c1-483a-4531-8c36-0cfbc629dae2.png)
+
+## DB 인스턴스 접근
+
+
+
+
+
+
 
 
 
