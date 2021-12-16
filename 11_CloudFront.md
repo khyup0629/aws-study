@@ -132,13 +132,15 @@ CloudFront 배포의 `캐시 키`에는 기본적으로 아래의 두 정보가 
 먼저 Linux로 인스턴스를 하나 생성하고, 웹 서버를 설치합니다.   
 
 `sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`로 `epel` 리포지토리를 설치합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146114600-40f593d6-a1f3-4ae4-8d4c-032f52a962fe.png)
+![image](https://user-images.githubusercontent.com/43658658/146114600-40f593d6-a1f3-4ae4-8d4c-032f52a962fe.png)   
+* `epel` : 각종 패키지의 최신 버전을 제공하는 community 기반의 저장소.
 
 `yum repolist`로 `epel`이 설치되었는지 확인합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146114642-777353cb-9a36-4999-899f-a997348576f8.png)
 
-node.js와 npm을 패키지 설치합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146114778-6d4cdfa2-0287-41d9-99ee-9329d91599f5.png)
+`node.js`와 `npm`을 패키지 설치합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146114778-6d4cdfa2-0287-41d9-99ee-9329d91599f5.png)   
+* `npm` : 자바스크립트 프로그래밍 언어를 위한 패키지 관리자
 
 `example` 디렉토리를 만들고 디렉토리 안에서 node.js에서 사용할 `express` 모듈을 설치합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146115288-2e69d34a-2cc4-4b25-bf62-15360452c197.png)
