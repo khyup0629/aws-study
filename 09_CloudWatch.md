@@ -49,7 +49,7 @@ AWS 리소스 상태를 모니터링 하는 서비스입니다.
 ![image](https://user-images.githubusercontent.com/43658658/145751667-167b88d7-e2c2-4a73-902d-251081c2fdf2.png)
 
 8. 알람 기준을 설정합니다.   
-![image](https://user-images.githubusercontent.com/43658658/145751800-0370195a-98e1-42d2-82ae-63e4d4d5f16f.png)   
+![image](https://user-images.githubusercontent.com/43658658/146382585-148ba912-5402-45d8-8ae7-8658c693ddb6.png)
 
 (참고) `임계값 유형`을 `이상 탐지`로 선택하면 임계값으로 표준 편차를 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/145752061-e07d4e1b-d8fd-441e-b5c0-08d4af121fa1.png)   
