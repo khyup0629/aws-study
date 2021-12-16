@@ -237,7 +237,7 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 * `DateLessThan` : 파일의 만료 날짜를 EpochTime으로 입력합니다. 미래 시간으로 입력합니다. [EpochTime Converter 사이트](https://www.epochconverter.com/)
 
 모든 공백을 지우고 한 줄의 코드로 변경합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146162895-32855447-c1b5-4751-bf85-06a2b27bfcd8.png)
+![image](https://user-images.githubusercontent.com/43658658/146289729-eb22f70e-275d-4cf0-8cbd-75d71b09c9af.png)
 
 서명 값을 만듭니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146163173-51d3c9b2-3c23-4d07-8082-31e44e890622.png)   
