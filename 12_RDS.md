@@ -108,6 +108,9 @@ CloudWatch Logs에서 어떤 로그 유형을 받을지 선택합니다.
 설치가 완료되면 상단의 [Database] > [Manage Connections]   
 ![image](https://user-images.githubusercontent.com/43658658/146334901-54edab64-4182-45ee-82cc-058fd414ce8d.png)
 
+좌측 하단에 `New`를 누릅니다.   
+![image](https://user-images.githubusercontent.com/43658658/146339150-ee6b2245-13b9-4c48-b5ee-370d3ef37e56.png)
+
 아래의 설정값들을 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146334822-dc3ef873-9f6a-444a-8fe7-64f0b6f2f0c3.png)    
 * `Connection Name` : 연결의 이름을 입력합니다.
@@ -115,6 +118,14 @@ CloudWatch Logs에서 어떤 로그 유형을 받을지 선택합니다.
 * `Username` : RDS 생성 당시 마스터 사용자를 적어줍니다.
 * `Store in Vault` : 눌러서 마스터 사용자의 비밀번호를 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146335232-9660b9cc-8396-43c8-87de-11ac598e1ea2.png)
+
+[Test Connection]을 눌렀을 때 아래의 화면이 뜨면 성공적으로 연결이 되는 것입니다.   
+![image](https://user-images.githubusercontent.com/43658658/146339241-bcb0e65b-d6a3-431a-aa27-9c1cda92bde0.png)
+
+이제 [Database] > [Connect to Database]로 가서 방금 생성한 `Connection`을 선택하고 RDS 내에 있는 MySQL과 연결합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146339397-f2b42c6b-5528-44f0-a09e-d0ef45c8f1be.png)   
+![image](https://user-images.githubusercontent.com/43658658/146339486-0327b42d-d74e-4fd5-a785-624f034e9a68.png)
+
 
 
 
