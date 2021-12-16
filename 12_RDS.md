@@ -146,8 +146,36 @@ RDS를 생성할 때 초기 DB로 생성한 DB가 있습니다. [Table] > [Creat
 레코드를 입력하고 적용하기 위해 `Apply`를 클릭합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146341245-d85e1523-7b87-4939-99b0-7831c510bab7.png)
 
+## 스냅샷
 
+> <h3>스냅샷 생성</h3>
 
+DB 인스턴스를 클릭하고 [작업] > [스냅샷 생성]   
+![image](https://user-images.githubusercontent.com/43658658/146343551-c741a1b7-7e98-42a1-a410-52ecec9aa85e.png)
+
+이름을 지정해주고 스냅샷을 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146343694-479507ca-cfbb-4d4c-af9a-c8fe5e0c88df.png)
+
+생성하기까지 시간이 약간 소요됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/146343824-05f0e3ad-a2a1-4a7e-bec0-d373b71bd4cb.png)
+
+스냅샷과 백업의 가장 큰 차이점은 DB 인스턴스를 삭제할 때, 백업 파일은 같이 지워지지만, 스냅샷은 지워지지 않는다는 것입니다.   
+스냅샷으로 다른 RDS DB 인스턴스를 만들 수 있습니다.
+
+> <h3>스냅샷으로 RDS DB 인스턴스 생성</h3>
+
+생성한 스냅샷을 클릭하고 [스냅샷 복원]을 클릭합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146344672-683ef2e3-d7e6-489f-ac99-a132067239b6.png)
+
+DB 엔진과 이름을 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146345139-802f07ef-8150-4f91-b3a9-625b638fb197.png)
+
+퍼블릭 액세스를 허용해주고, 보안 그룹을 이전에 생성했던 DB 보안 그룹을 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146345363-47b89946-5d87-4eaf-8c83-9d4d3ebdefe1.png)
+
+나머지 구성은 앞선 RDS 생성 설정과 동일하게 선택합니다.   
+
+`MySQL Workbench`를 이용해 접속 테스트를 진행합니다.   
 
 
 
