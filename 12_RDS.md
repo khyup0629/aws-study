@@ -126,7 +126,25 @@ CloudWatch Logs에서 어떤 로그 유형을 받을지 선택합니다.
 ![image](https://user-images.githubusercontent.com/43658658/146339397-f2b42c6b-5528-44f0-a09e-d0ef45c8f1be.png)   
 ![image](https://user-images.githubusercontent.com/43658658/146339486-0327b42d-d74e-4fd5-a785-624f034e9a68.png)
 
+> <h3>새 테이블 생성</h3>
 
+RDS를 생성할 때 초기 DB로 생성한 DB가 있습니다. [Table] > [Create Table]   
+![image](https://user-images.githubusercontent.com/43658658/146340095-0fabeda9-e6ad-4206-840e-1324425de91d.png)
+
+![image](https://user-images.githubusercontent.com/43658658/146340598-127205c6-6f1e-4c1e-8932-dc456bb89cd7.png)   
+* Table Name: 테이블 이름입니다. ExampleTable을 입력합니다.
+* Column Name: id, DataType: INT, PK 체크, NN 체크, AI 체크
+* Column Name: name, DataType: VARCHAR(45)
+* Column Name: address, DataType: VARCHAR(45)
+
+`Apply`를 클릭해서 RDS에 반영합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146340742-990ae7da-bb66-495c-99a2-2d0b83b9819b.png)
+
+`ExampleTable`이 생성되었습니다. [우클릭] > [Select Rows - Limit 1000]   
+![image](https://user-images.githubusercontent.com/43658658/146341071-dbfa3b0c-6adc-4b1d-9c16-7e8837db94e2.png)
+
+레코드를 입력하고 적용하기 위해 `Apply`를 클릭합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146341245-d85e1523-7b87-4939-99b0-7831c510bab7.png)
 
 
 
