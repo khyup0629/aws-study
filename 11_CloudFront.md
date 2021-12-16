@@ -232,7 +232,7 @@ CloudFront 콘솔의 [퍼블릭 키] > [퍼블릭 키 생성]
 `Canned Policy`는 미리 준비된 정책이라는 뜻으로, CloudFront 배포 서버에서 이미 정책 내용을 알고 있기 때문에 Signed URL에 정책 내용을 포함하지 않습니다.
 
 리눅스를 열고 `canned_policy.json`이라는 이름으로 아래 내용의 파일을 생성합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146148492-05585f5c-e798-43db-b98c-fef0c9443a95.png)   
+![image](https://user-images.githubusercontent.com/43658658/146289655-9c7c689c-a8a7-4b3e-b478-e4a3afeddd17.png)   
 * `Resource` : CloudFront의 도메인 주소를 `http://`와 `/index.html`까지 붙여서 입력합니다.
 * `DateLessThan` : 파일의 만료 날짜를 EpochTime으로 입력합니다. 미래 시간으로 입력합니다. [EpochTime Converter 사이트](https://www.epochconverter.com/)
 
