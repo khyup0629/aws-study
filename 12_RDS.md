@@ -54,8 +54,8 @@ DB에 접근하는 사용자가 인증하는 방식을 설정합니다.
 `추가 구성` 화살표를 눌러 아래 옵션을 확인합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146324590-a1b135a8-6c04-4121-ab07-fc31aae24608.png)   
 * 초기 데이터베이스 이름 : DB 인스턴스를 생성할 때 RDS가 생성하는 `데이터베이스의 이름`을 지정합니다.
-* DB 파라미터 그룹 : 데이터베이스에 할당할 리소스 양을 지정하는 그룹입니다. 로그와 관련된 설정을 할 때도 사용합니다.
-* [옵션 그룹](https://docs.aws.amazon.com/ko_kr/ko_kr/AmazonRDS/latest/UserGuide/USER_WorkingWithOptionGroups.html) : 비슷한 기능을 하는 데이터베이스 끼리 묶습니다.
+* `DB 파라미터 그룹` : DB의 세부적인 설정(컴퓨팅 리소스) 관련 파라미터들이 모인 그룹입니다. 로그와 관련된 설정을 할 때도 사용합니다.
+* [옵션 그룹](https://docs.aws.amazon.com/ko_kr/ko_kr/AmazonRDS/latest/UserGuide/USER_WorkingWithOptionGroups.html) : DB를 관리하는데 필요한 추가 옵션을 설정한 그룹입니다.
 
 자동 백업을 활성화하면 아래와 같이 백업과 관련된 설정을 할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146322652-a13881ee-9d7c-46ee-b971-6ecb6f1ec5be.png)
@@ -175,14 +175,76 @@ DB 엔진과 이름을 설정합니다.
 
 나머지 구성은 앞선 RDS 생성 설정과 동일하게 선택합니다.   
 
+스냅샷을 통해 DB 인스턴스가 생성되었습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146365993-2eb21592-2dfe-45bf-813e-7f36790e1e49.png)
+
 `MySQL Workbench`를 이용해 접속 테스트를 진행합니다.   
 
 접속이 원활하게 수행된 것을 확인할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146363558-a38e997d-90f0-4761-a871-7ebbe917e69a.png)
 
+> <h3>다른 리전으로 복사</h3>
 
+DB 인스턴스는 다른 리전으로 복사할 수 없기 때문에 `스냅샷을 통해` 복사합니다.
 
+DB 인스턴스 스냅샷을 선택하고 [작업] > [스냅샷 복사]   
+![image](https://user-images.githubusercontent.com/43658658/146364541-279f6608-8f8c-4440-981e-432baa3cb06d.png)
 
+대상 리전과 식별자를 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146364945-410ae542-ddf6-4a2e-b0ad-04a7e14fcdc4.png)
+
+다른 리전에 스냅샷이 복사되었습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146365730-c3e431da-08a6-49ef-81b1-faab0a4cd8f2.png)
+
+이제 이 스냅샷을 가지고 같은 DB 인스턴스를 생성할 수 있습니다.
+
+## 자동 백업 활용
+
+DB 인스턴스를 생성할 때 `자동 백업 설정`을 했다면 DB의 `특정 시점`을 `인스턴스로 생성`할 수 있습니다.   
+이미 있는 DB 인스턴스의 내용을 되돌리는 것이 아니라 특정 시점의 내용을 DB 인스턴스로 `새롭게 생성`하는 방식입니다.
+
+기존에 생성했던 DB 인스턴스에 레코드를 한 줄 더 추가합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146366537-f9d1dc7c-1822-4cd8-a490-4b49cbcd5564.png)
+
+[RDS 콘솔] > [자동 백업] > [작업] > [특정 시점으로 복원]   
+![image](https://user-images.githubusercontent.com/43658658/146366613-196d4a09-005a-4fc3-acc8-058dab558e14.png)
+
+`복원 시점`과 `인스턴스 식별자`, 그리고 나머지 RDS 생성 당시 설정과 동일하게 진행합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146367682-bb917bd2-9f56-4754-a944-d8cd8e213d41.png)
+
+생성을 진행합니다. 10~15분 정도 소요됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/146367392-8cf87438-79e4-4ba5-8e72-5a8df550c634.png)
+
+생성이 완료되면 `MySQL Workbench`를 통해 DB로 접속할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146370551-c339342a-793b-4e86-b824-e357c434ea4f.png)
+
+3번째 레코드를 추가하기 이전 상태로 돌아가서 DB 인스턴스가 생성된 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146370447-e55029c0-5fbe-478b-9adf-09ce545d1f2e.png)
+
+## 읽기 전용(Read Replica) 복제본 생성
+
+서비스에서 읽기 위주의 작업이 많을 경우 DB 인스턴스는 `읽기 전용 복제본`을 생성해서 부하를 분산할 수 있습니다.
+
+원본 DB 인스턴스(`마스터`)는 `쓰기` 작업만 처리하고, 읽기 전용 복제본(`슬레이브`)에서 `읽기` 작업을 담당해서 원본 DB 인스턴스(마스터)의 부하를 줄일 수 있습니다.
+
+마스터에 쓰기를 하면 자동으로 슬레이브로 데이터가 복제됩니다.   
+단 쓰기 작업을 실시한 즉시 복제되는 것은 아니며 `약간의 시간차`가 있습니다.
+
+[RDS 콘솔] > [작업] > [읽기 전용 복제본 생성]   
+![image](https://user-images.githubusercontent.com/43658658/146368885-1141fb36-2bf6-4782-af14-204dc8cf7f95.png)
+
+RDS 생성 설정과 상당히 유사합니다. RDS를 생성할 때처럼 생성해주고 [읽기 전용 복제본 생성]을 눌러줍니다.   
+![image](https://user-images.githubusercontent.com/43658658/146369268-f2758708-4f44-4933-a1b6-abe851fc9428.png)   
+![image](https://user-images.githubusercontent.com/43658658/146369403-9bbc1136-620a-4b10-b17c-161e4748736d.png)   
+![image](https://user-images.githubusercontent.com/43658658/146369314-514963b2-cdfa-4326-8ff5-ab160f5804ad.png)   
+
+마스터 DB 인스턴스도 설정을 해야 하기 때문에 `수정 중`으로 표시가 되고, 읽기 전용 복제본이 생성됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/146369693-0addae45-9cfe-44da-9e88-28e9130a3fa6.png)
+
+복제본의 엔드포인트를 통해 DB에 접속해서 값을 추가한 뒤 `Apply`를 누르면 에러가 발생합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146371082-b01969c6-7b78-497b-b186-74d3b0163083.png)
+
+읽기 전용 복제본으로 생성된 인스턴스는 읽기만 허용되기에 값을 `추가/수정/삭제`할 수 없습니다.
 
 
 
