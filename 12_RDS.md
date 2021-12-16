@@ -40,8 +40,8 @@ RDS 콘솔로 접속해서 [데이터베이스] > [데이터베이스 생성]
 ![image](https://user-images.githubusercontent.com/43658658/146319171-b20f5639-4631-418c-ad75-700f39e61989.png)
 
 네트워크를 설정합니다.   
-![image](https://user-images.githubusercontent.com/43658658/146319406-4ec6f024-f139-4891-aa06-47e5c0094a1f.png)   
-* `퍼블릭 액세스` : VPC 내부에서만 DB 인스턴스에 접속 가능하게 할 것인지 여부.
+![image](https://user-images.githubusercontent.com/43658658/146338404-9b7f3118-cc97-4cef-b8c0-8a9aecce99bb.png)   
+* `퍼블릭 액세스` : VPC 내부에서만 DB 인스턴스에 접속 가능하게 할 것인지 여부. 이후 실습에서 외부에서 접속하게 해줘야 하므로 `YES`를 선택합니다.
 * `VPC 보안 그룹` : DB 인스턴스 전용 보안 그룹을 설정해야 합니다. 일단 디폴트로 두고 나중에 생성합니다.
 * `가용 영역` : EC2 인스턴스에서 DB에 접속한다면 같은 가용 영역에 있는 것이 좋습니다.
 
