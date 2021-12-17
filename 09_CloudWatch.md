@@ -30,7 +30,8 @@ AWS 리소스 상태를 모니터링 하는 서비스입니다.
 ![image](https://user-images.githubusercontent.com/43658658/145750688-e7105956-cedd-443d-b153-6cecd15a6ec3.png)
 
 2. 세부 모니터링을 활성화 해줍니다.   
-![image](https://user-images.githubusercontent.com/43658658/145750747-7f758d50-bc29-47f7-a738-a3aba300d49c.png)
+![image](https://user-images.githubusercontent.com/43658658/145750747-7f758d50-bc29-47f7-a738-a3aba300d49c.png)   
+* 세부 모니터링 활성화 : 기본 5분 간격에서 1분 간격으로 모니터링을 할 수 있습니다.
 
 3. 콘솔에서 `Cloudwatch`를 검색합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/145750808-c6a9817d-5d80-4a98-8345-516828ea41a1.png)
