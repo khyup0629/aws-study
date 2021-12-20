@@ -110,7 +110,7 @@ DynamoDB에서 검색을 하려면 기본 키로 인덱스를 생성해야 합�
 ![image](https://user-images.githubusercontent.com/43658658/146720246-74d919e7-2624-4660-b35b-81c158be1139.png)   
 * `Id`를 `파티션 기본 키`, `Week`를 `정렬 기본 키`로 설정한 `테이블 인덱스`로 `개인 최근 점수 목록`을 조회할 수 있습니다.
   - Week를 9999-12-31,9999-12-31보다 작은 `less than` 조건으로 `내림차순`으로 정렬하면 됩니다.
-* `Id`를 `파티션 키`, `TopScore`를 `정렬 키`로 설정한 `로컬 보조 인덱스`로 개인 최고기록을 조회할 수 있습니다. 
+* `Id`를 `파티션 키`, `TopScore`를 `정렬 키`로 설정한 `로컬 보조 인덱스`로 `개인 최고기록`을 조회할 수 있습니다. 
   - TopScore를 99999보다 작은 `less then` 조건으로 `내림차순` 정렬하면 됩니다.
 * `Week`를 `파티션 키`, `TopScore`를 `정렬 키`로 설정한 `글로벌 보조 인덱스`로 `주간 전체순위`를 산출할 수 있습니다.
   - Week와 매칭되는 `TopScore`를 내림차순 정렬하면 됩니다. 
@@ -192,6 +192,21 @@ DynamoDB가 AWS KMS 키를 소유하고 관리하도록 해서 비용을 절감�
 ![image](https://user-images.githubusercontent.com/43658658/146723569-4785589c-3e5a-491c-8b75-61285200d1c9.png)
 
 다음으로 두 번째 테이블(FriendsLeaderboard)의 항목을 아래와 같이 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146726344-9d9718ee-e8f5-4e18-a107-eb1c6ecf71bb.png)   
+* 1 - 1, 2
+* 2 - 1, 2, 3
+* 3 - 2, 3
+* 친구 관계는 자기 자신도 친구로 포함합니다.
+
+이제 첫 번째 테이블에서 `글로벌 보조 인덱스`를 통해 `2021-12-13 ~ 2021-12-19` 기간 동안의 `점수 순위`를 `내림 차순`으로 정렬해보겠습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146727138-c893ce21-c6eb-4e35-9b74-da8ba175a5f7.png)
+
+한 유저의 개인 최고 기록 순위를 정렬해보겠습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146727312-dce6a4e9-6d48-4e8d-a276-e1088c052b54.png)
+
+다음으로 두 번째 테이블로 넘어가서 `글로벌 보조 인덱스`를 통해 `Id=3` 유저의 친구 순위를 정렬해보겠습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146727555-ff75b2dc-cd5a-4788-82fb-0adefb72b19a.png)
+
 
 
 
