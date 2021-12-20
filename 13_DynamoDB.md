@@ -84,6 +84,8 @@ DynamoDB에서 검색을 하려면 기본 키로 인덱스를 생성해야 합�
 
 > <h3>데이터 처리량</h3>
 
+사용자가 원하는 수치를 지정하면 DynamoDB가 알아서 지정된 수치만큼 처리량을 제공해주는 것을 말합니다.
+
 * 필요한 읽기 용량 유닛(Read Capacity Units): 초당 읽은 아이템 수 x KB 단위 아이템 크기(근사치 반올림) (Eventually Consistent Read를 사용하는 경우 초당 읽은 아이템 용량은 두 배가됩니다.)
 * 필요한 쓰기 용량 유닛(Write Capacity Units): 초당 쓴 아이템 수 x KB 단위 아이템 크기(근사치 반올림)
 
