@@ -32,8 +32,34 @@ EC2에 대한 모든 접근을 허용해주기 위해 `권한 정책`에서 `EC2
 
 이제 이 그룹에 속한 사용자는 EC2 인스턴스만 제어할 수 있습니다.
 
+## IAM 사용자 생성
 
+[IAM 콘솔] > [사용자] > [사용자 추가]   
+![image](https://user-images.githubusercontent.com/43658658/146903826-3ef884fc-2f1e-4e2d-b1c8-530be566e5fb.png)
 
+사용자 이름과 자격 증명 유형을 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146904341-4c22350c-ab35-4772-8d18-f661cabfc441.png)   
+* 액세스 키 : 액세스 키 ID와 시크릿 액세스 키를 활성화합니다.
+* 암호 : 사용자가 로그인할 수 있도록 하는 비밀번호를 활성화합니다.
+
+이전에 생성한 `EC2Admin` 그룹에 추가합니다.
+![image](https://user-images.githubusercontent.com/43658658/146904879-c22b1bc1-da94-4eb5-be1f-c01a6dd40dbb.png)
+
+태그 단계와 검토 단계를 거쳐서 완료 단계로 오면 액세스 키와 시크릿 키를 다운로드 받을 수 있습니다.   
+(이 과정에서 다운로드 받지 못했다면 이후에 액세스 키를 폐기하고 새로 생성해야 합니다)   
+![image](https://user-images.githubusercontent.com/43658658/146905291-d511553e-cfa8-4afc-b36c-8f612220c957.png)
+
+이제 이 생성한 사용자에게 S3에 접근할 수 있는 권한을 부여해보도록 하겠습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146905483-d5f60797-a1d5-4d87-81a0-cb60e79411fe.png)   
+
+사용자 이름을 클릭해서 `권한 추가`를 클릭합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146905589-a52e16cb-92ce-4f00-ab03-56cc7b3daf8b.png)
+
+`AmazonS3FullAccess` 정책을 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146905809-b19b03a4-8a54-476a-a14e-c560d9d1a5cc.png)
+
+그룹 권한과 사용자 권한이 모두 설정되었습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146905896-e7a8e7ec-d3e6-4aba-bd36-0f04398c8ed9.png)
 
 
 
