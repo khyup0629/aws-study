@@ -53,6 +53,27 @@ Memcached를 이용하면 클러스터를 손쉽게 생성할 수 있고, 클러
 클러스터와 캐시 노드를 생성해도 엔드포인트로 접속하면 접속되지 않습니다.   
 보안 그룹을 지정해서 `11211` 포트를 열어주어야 합니다.
 
+[EC2 콘솔] > [보안 그룹] > [보안 그룹 생성]에서 11211 포트의 인바운드 규칙을 허용하는 정책을 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146873087-1e02d95a-1368-444a-84fa-94075341e172.png)   
+* VPC는 나중에 인스턴스를 통한 텔넷 접속을 위해 인스턴스의 VPC와 같아야합니다.
+
+[ElastiCache 콘솔] > [Memcached] > [클러스터 선택] > [작업] > [수정]에서 보안 그룹을 방금 생성한 것으로 수정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146873251-169a355f-12d2-4d84-83ce-63bf54b6f32e.png)
+
+생성한 클러스터를 클릭해서 들어가면 `캐시 노드`들을 볼 수 있습니다. 여기서 엔드포인트 주소를 알 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146873390-0fb15dbb-62e5-43b7-ae99-86ac12fe0758.png)
+
+`Memcached`는 `같은 VPC`에 있는 인스턴스를 통해 `텔넷`으로 접속할 수 있습니다.   
+
+인스턴스로 접속해서 `sudo yum -y install telnet` 명령으로 텔넷을 설치합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146873960-4b81cb68-159f-4faa-9ddc-1d1395d824b7.png)
+
+인스턴스를 같은 VPC로 생성한 후 `telnet <엔드포인트 주소> 11211`을 명령해서 접속합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146874073-95d902f1-74a6-4dfa-a66b-f3e6a4fc39ab.png)
+
+텔넷 접속 후 `stats`를 명령했을 때 아래와 같이 리스트가 나타나면 성공적으로 접속된 것입니다.   
+![image](https://user-images.githubusercontent.com/43658658/146874155-f6a996f0-d679-4f8f-b871-a7d9566e33af.png)
+
 
 
 
