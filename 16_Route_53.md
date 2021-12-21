@@ -188,7 +188,31 @@ app.listen(80);
   - `표준(30초)` : 2 ~ 3 초에 1회씩 요청
   - `빠름(10초)` : 1초에 1회씩 요청
 
+`Primary`에 대한 상태 검사를 생성한 후 [호스팅 영역] > [도메인 선택] > [레코드 생성]을 통해 `Primary 서버`를 위한 `A 레코드`를 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146857341-3fc50e20-80ae-4faf-9978-879af4652e79.png)   
+* `라우팅 정책` : 장애 조치
+* `장애 조치 레코드 유형` : Primary이므로 `기본` 선택
+* `상태 검사` : 방금 생성한 `상태 검사` 선택
+* `레코드 ID` : 레코드끼리 서로 구분하는 ID 값으로 임의로 입력합니다.
 
+`Secondary` 서버를 위한 `A 레코드`를 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146857637-9e30f674-0e1d-4ef1-97cd-871989fd9e34.png)   
+* `레코드 이름` : 서브 도메인은 Primary의 A 레코드와 동일하게 입력
+* `값` : Secondary 인스턴스의 IP 주소 입력
+* `장애 조치 레코드 유형` : Secondary 레코드 생성이므로 `보조` 선택
+* `상태 검사` : Secondary 유형이므로 상태 검사는 필요 없습니다.
+
+이제 장애 조치 기능을 테스트해보겠습니다. 
+
+설정한 서브 도메인으로 접속합니다. Primary 인스턴스로 접속되는 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146857803-b2aa0429-ba8f-4131-828f-d71938c4691f.png)
+
+이제 Primary 인스턴스를 `중지`하고 `약 1분` 정도 후에 다시 같은 서브 도메인으로 접속해보겠습니다.   
+
+Secondary 인스턴스로 접속되는 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146858370-4bd021b3-0267-4bc9-a2fd-f716358a776d.png)
+
+이로써 `장애 조치` 기능이 정상적으로 잘 작동하는 것을 확인할 수 있습니다.
 
 
 
