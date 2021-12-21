@@ -33,7 +33,7 @@ Memcached를 이용하면 클러스터를 손쉽게 생성할 수 있고, 클러
 
 하지만 Memcached는 스냅샷 생성과 `읽기 전용 복제본`을 지원하지 않습니다.
 
-> <h3>생성 과정</h3>
+> <h3>클러스터 생성</h3>
 
 [ElastiCache 콘솔] > [Memcached] > [생성]   
 ![image](https://user-images.githubusercontent.com/43658658/146865319-fed53fe9-8011-408f-9e7f-6eaf12e623a0.png)
@@ -47,6 +47,11 @@ Memcached를 이용하면 클러스터를 손쉽게 생성할 수 있고, 클러
 
 생성이 완료되면 클러스터의 엔드포인트 주소를 통해 `캐시 노드`로 접속할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146865573-1b4ceb4a-fe21-4406-823d-5382e820c1b7.png)
+
+> <h3>보안 그룹 설정</h3>
+
+클러스터와 캐시 노드를 생성해도 엔드포인트로 접속하면 접속되지 않습니다.   
+보안 그룹을 지정해서 `11211` 포트를 열어주어야 합니다.
 
 
 
