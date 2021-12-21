@@ -143,9 +143,10 @@ CNAME으로 설정해도 접속이 잘 됩니다.
 인스턴스 `2개`를 생성하고 Route 53의 `장애 조치(Failover) 기능`을 이용해 하나를 Primary, 다른 하나를 Secondary로 지정한 후, Primary에 장애가 발생했을 시에 Secondary로 접속되도록 설정해봅시다.
 
 인스턴스를 2개 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146856261-ff16850c-f6bb-4b25-962c-b8b43d4e4da8.png)
 
 첫 번째 인스턴스에 아래와 같은 내용의 `app.js` 파일을 만들고 웹 서버를 시작합니다.   
-[웹 서버 설치 방법](https://github.com/khyup0629/aws-study/blob/main/11_CloudFront.md#ec2%EC%99%80-cloudfront-%EC%97%B0%EB%8F%99)   
+=> [node.js 웹 서버 설치 방법](https://github.com/khyup0629/aws-study/blob/main/11_CloudFront.md#ec2%EC%99%80-cloudfront-%EC%97%B0%EB%8F%99)   
 
 ``` javascript
 var express = require('express');
@@ -158,6 +159,34 @@ app.get(['/', '/index.html'], function (req, res) {
 app.listen(80);
 ```
 
+두 번째 인스턴스에 아래와 같은 내용의 `app.js` 파일을 만들고 웹 서버를 시작합니다.   
+
+``` javascript
+var express = require('express');
+var app = express();
+
+app.get(['/', '/index.html'], function (req, res) {
+  res.send('EC2 Secondary');
+});
+
+app.listen(80);
+```
+
+두 개의 인스턴스에 웹 서버가 정상적으로 설치되었는지 웹 브라우저로 IP 주소로 접속해서 확인합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146856332-fc34ad5b-9c05-41fd-9762-476dc30da7f0.png)   
+![image](https://user-images.githubusercontent.com/43658658/146856352-83a93ef0-3c40-4e8c-bf0c-197dfe6ece7f.png)
+
+이제 Route 53 콘솔로 접속해서 [상태 검사] > [상태 검사 생성]   
+![image](https://user-images.githubusercontent.com/43658658/146856201-6bee437c-b42b-4353-8d6b-d3f4d9849d42.png)
+
+![image](https://user-images.githubusercontent.com/43658658/146856709-29cad1bf-8dea-4ca1-83b7-3e01e4789b69.png)   
+* `모니터링 대상` : EC2 인스턴스의 상태를 체크하기 위해 `엔드포인트`를 선택합니다.
+* `IP 주소` : Primary로 지정할 인스턴스의 IP 주소를 입력합니다.
+
+![image](https://user-images.githubusercontent.com/43658658/146856777-69e14b75-7a7c-4429-b77a-80c67f2ba243.png)   
+* `요청 간격`
+  - `표준(30초)` : 2 ~ 3 초에 1회씩 요청
+  - `빠름(10초)` : 1초에 1회씩 요청
 
 
 
