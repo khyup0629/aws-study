@@ -57,7 +57,7 @@ AWS 리소스들과 연동할 수 있는 것과 더불어 글로벌 서비스에
 ![image](https://user-images.githubusercontent.com/43658658/146734857-6cae3aef-acd1-494c-9855-d50edcc89ae9.png)
 
 아파치 웹 서버를 설치해줍니다.   
-=> [아파치 웹 서버 설치 과정]()   
+=> [아파치 웹 서버 설치 과정](https://ejko0911.medium.com/centos%EC%97%90-%EC%9B%B9%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-227a0fd6e30c)   
 ![image](https://user-images.githubusercontent.com/43658658/146737430-cc7288fd-a777-47a2-8296-70c331bdd865.png)
 
 다시 [Route 53 콘솔] > [호스팅 영역] > [원하는 도메인] > [도메인 생성]   
@@ -124,7 +124,7 @@ CNAME으로 설정해도 접속이 잘 됩니다.
 `CNAME`과 `SSL 인증서`를 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146853270-a831f7fc-9119-45c0-bcec-b0ddae0f6531.png)
 
-나머지 설정은 앞서 배운 [CloudFront 배포 생성]()을 참고해서 생성합니다.
+나머지 설정은 앞서 배운 [CloudFront 배포 생성](https://github.com/khyup0629/aws-study/blob/main/11_CloudFront.md#s3%EC%99%80-cloudfront-%EC%97%B0%EB%8F%99)을 참고해서 생성합니다.
 
 배포 생성을 마치고 배포가 완료될 때까지 대기합니다.
 ![image](https://user-images.githubusercontent.com/43658658/146854516-f268f5a9-2e47-4e35-9a18-cb261eba1c83.png)
