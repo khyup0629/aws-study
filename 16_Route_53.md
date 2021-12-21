@@ -124,7 +124,7 @@ CNAME으로 설정해도 접속이 잘 됩니다.
 `CNAME`과 `SSL 인증서`를 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146853270-a831f7fc-9119-45c0-bcec-b0ddae0f6531.png)
 
-나머지 설정은 앞서 배운 [CloudFront 배포 생성]을 참고해서 생성합니다.
+나머지 설정은 앞서 배운 [CloudFront 배포 생성]()을 참고해서 생성합니다.
 
 배포 생성을 마치고 배포가 완료될 때까지 대기합니다.
 ![image](https://user-images.githubusercontent.com/43658658/146854516-f268f5a9-2e47-4e35-9a18-cb261eba1c83.png)
@@ -145,7 +145,7 @@ CNAME으로 설정해도 접속이 잘 됩니다.
 인스턴스를 2개 생성합니다.   
 
 첫 번째 인스턴스에 아래와 같은 내용의 `app.js` 파일을 만들고 웹 서버를 시작합니다.   
-[웹 서버 설치 방법]()   
+[웹 서버 설치 방법](https://github.com/khyup0629/aws-study/blob/main/11_CloudFront.md#ec2%EC%99%80-cloudfront-%EC%97%B0%EB%8F%99)   
 
 ``` javascript
 var express = require('express');
