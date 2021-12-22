@@ -24,8 +24,16 @@
 * 서지 큐 길이(Surge Queue Length) : ELB 로드 밸런서에서 EC2 인스턴스로 전달되지 못하고 큐에 남아있는 요청의 개수입니다.
 * Spillover Count : `서지 큐`가 꽉 차서 ELB 로드 밸런서가 거부한 요청의 개수입니다.
 
+## ELB 생성
 
+ELB를 이용하기 위해선 서로 다른 가용영역에 있는 EC2 인스턴스 2개 이상이 필요합니다.
 
+[EC2 콘솔] > [로드밸런서] > [로드밸런서 생성]   
+
+![image](https://user-images.githubusercontent.com/43658658/147070904-70285b20-2698-4268-abfc-d321b5fa559d.png)   
+* ALB : Nginx, Apache와 같은 HTTP/HTTPS(L7 계층)의 부하분산을 지원합니다.
+* NLB : L4 계층의 부하분산을 지원합니다.
+* GLB : L3 계층의 부하분산을 지원합니다. 모든 포트에서 모든 IP 패킷을 수신하고 리스너 규칙에 지정된 대상 그룹에 트래픽을 전달합니다.
 
 
 
