@@ -30,7 +30,7 @@ ELB를 이용하기 위해선 서로 다른 가용영역에 있는 EC2 인스턴
 ![image](https://user-images.githubusercontent.com/43658658/147174975-834b6026-3a2a-4874-9ce1-248c144024ab.png)
 
 각 인스턴스에 웹 서버를 설치하고 각 파일에 아래와 같은 내용을 추가합니다.   
-=> [웹 서버 설치 방법]()   
+=> [웹 서버 설치 방법](https://github.com/khyup0629/aws-study/blob/main/11_CloudFront.md#%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%98%A4%EB%A6%AC%EC%A7%84%EA%B3%BC-cloudfront-%EC%97%B0%EB%8F%99)   
 
 ``` javascript
 var express = require('express');
