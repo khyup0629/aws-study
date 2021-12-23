@@ -139,6 +139,7 @@ CloudFront 배포의 `캐시 키`에는 기본적으로 아래의 두 정보가 
 ![image](https://user-images.githubusercontent.com/43658658/146114642-777353cb-9a36-4999-899f-a997348576f8.png)
 
 `node.js`와 `npm`을 패키지 설치합니다.   
+`sudo yum -y install nodejs npm --enablerepo=epel`   
 ![image](https://user-images.githubusercontent.com/43658658/146114778-6d4cdfa2-0287-41d9-99ee-9329d91599f5.png)   
 * `npm` : 자바스크립트 프로그래밍 언어를 위한 패키지 관리자
 
