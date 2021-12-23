@@ -29,6 +29,20 @@
 ELB를 이용하기 위해선 서로 다른 가용영역에 있는 EC2 인스턴스 2개 이상이 필요합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147174975-834b6026-3a2a-4874-9ce1-248c144024ab.png)
 
+각 인스턴스에 웹 서버를 설치하고 각 파일에 아래와 같은 내용을 추가합니다.   
+=> [웹 서버 설치 방법]()   
+
+``` javascript
+var express = require('express');
+var app = express();
+
+app.get(['/', '/index.html'], function (req, res) {
+  res.send('Hello ELB 1'); // 두 번째 EC2 인스턴스에서는 Hello ELB 2
+});
+
+app.listen(80);
+```
+
 [EC2 콘솔] > [로드밸런서] > [로드밸런서 생성] > [Application Load Balancer 생성]   
 
 ![image](https://user-images.githubusercontent.com/43658658/147070904-70285b20-2698-4268-abfc-d321b5fa559d.png)   
@@ -40,13 +54,13 @@ ELB를 이용하기 위해선 서로 다른 가용영역에 있는 EC2 인스턴
 * Internet-facing : 퍼블릭 서브넷을 이용해 요청이 인터넷을 거쳐 타겟으로 가는 스키마입니다.
 * Internal : 프라이빗 네트워크를 이용해 클라이언트의 요청이 바로 타겟으로 가는 스키마입니다.
 
-인스턴스가 속해있는 가용영역을 선택합니다.   
+인스턴스가 속해있는 `가용영역`을 선택합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147174759-43a533b3-dd0e-4925-b003-f56048bd7525.png)   
 
-ELB용 보안 그룹을 생성합니다.   
+`ELB`용 보안 그룹을 생성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147174796-8aff75ed-7251-442d-b070-64b48c59bdb2.png)
 
-HTTP만 인바운드 허용한 보안 그룹을 생성합니다.   
+`HTTP`만 인바운드 허용한 보안 그룹을 생성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147174444-4b39c057-a4e4-4cd7-9332-92c9a50839e3.png)   
 ![image](https://user-images.githubusercontent.com/43658658/147174886-2ee0f859-9f4f-4779-a419-7f23f1ae15dc.png)
 
@@ -58,19 +72,19 @@ HTTP만 인바운드 허용한 보안 그룹을 생성합니다.
 * HTTP 프로토콜로 통신합니다.
 * 인스턴스들이 속한 VPC를 선택합니다.
 
-상태 체크(Health Check)를 할 프로토콜과 경로, 여러 설정값들을 입력합니다.   
+`상태 체크(Health Check)`를 할 프로토콜과 경로, 여러 설정값들을 입력합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147176389-d33a8a6d-09b7-4af0-ae83-155161ee5ccc.png)
 
-다음 페이지로 넘어가서 타겟으로 설정할 인스턴스 2개를 선택하고 아래 목록에 추가합니다.   
+다음 페이지로 넘어가서 타겟으로 설정할 `인스턴스 2개를 선택`하고 아래 목록에 추가합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147176491-c6873b98-d4f9-449a-a38a-e3a9001cc956.png)
 
 `Pending`된 것을 확인하고 타겟 그룹을 생성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147176536-dad94a52-2bda-478b-bbcd-13830019d826.png)
 
-다시 ELB 생성 페이지로 돌아와서 타겟 그룹을 선택합니다.   
+다시 ELB 생성 페이지로 돌아와서 `타겟 그룹`을 선택합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147176581-562cea9f-9783-494b-a842-96ea16f9fa24.png)
 
-ELB를 생성합니다.   
+`ELB`를 생성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147176606-2a702c42-3fc1-4281-84e6-ac47bf0c06aa.png)
 
 
