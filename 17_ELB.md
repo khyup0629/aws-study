@@ -29,7 +29,7 @@
 ELB를 이용하기 위해선 서로 다른 가용영역에 있는 EC2 인스턴스 2개 이상이 필요합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147174975-834b6026-3a2a-4874-9ce1-248c144024ab.png)
 
-각 인스턴스에 웹 서버를 설치하고 각 파일에 아래와 같은 내용을 추가합니다.   
+각 인스턴스에 웹 서버를 설치하고 `app.js` 파일에 아래와 같은 내용을 추가합니다.   
 => [웹 서버 설치 방법](https://github.com/khyup0629/aws-study/blob/main/11_CloudFront.md#%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%98%A4%EB%A6%AC%EC%A7%84%EA%B3%BC-cloudfront-%EC%97%B0%EB%8F%99)   
 
 ``` javascript
@@ -42,6 +42,10 @@ app.get(['/', '/index.html'], function (req, res) {
 
 app.listen(80);
 ```
+
+`sudo node app.js`로 웹 서버를 실행시킵니다.   
+![image](https://user-images.githubusercontent.com/43658658/147177461-941c857e-8aac-40dd-ae51-97962a8d2b02.png)   
+![image](https://user-images.githubusercontent.com/43658658/147177492-5d20a29d-530b-4380-a16b-4563dde35451.png)
 
 [EC2 콘솔] > [로드밸런서] > [로드밸런서 생성] > [Application Load Balancer 생성]   
 
@@ -87,12 +91,38 @@ app.listen(80);
 `ELB`를 생성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147176606-2a702c42-3fc1-4281-84e6-ac47bf0c06aa.png)
 
+## ELB 테스트
 
+이제 ELB의 `DNS 이름`을 통해 2개의 인스턴스에 라운드 로빈 방식으로 접속할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147177664-ca40de37-7723-4c7c-b152-e4aa9b79bf70.png)
 
+한 번은 ELB 1, 새로 고침하면 ELB 2로 접속됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/147177714-f9562a92-63ed-4a67-b80a-b00c8898e888.png)   
+![image](https://user-images.githubusercontent.com/43658658/147177727-a7ef342c-4036-4d13-9d48-34c4a146b7e4.png)
 
+이렇게 ELB가 인스턴스로 들어오는 트래픽을 분산시킵니다.
 
+## Sticky session 설정
 
+: 사용자의 쿠키 세션을 기준으로 트래픽을 분배합니다.
 
+[EC2 콘솔] > [대상 그룹] > [타겟 그룹 선택]   
+![image](https://user-images.githubusercontent.com/43658658/147178303-2bfe10b9-67c0-4889-831b-4e6601c90511.png)
+
+[속성] > [편집]   
+![image](https://user-images.githubusercontent.com/43658658/147178342-91403b41-6839-456d-9be1-cbd1c09fc4d5.png)
+
+`Stickiness`를 활성화합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147178474-815ae38f-3edf-449d-9746-d545d68df878.png)   
+* `Load Balancer generated cookie` : ELB가 생성한 쿠키를 이용합니다.
+* `Application-based cookie` : 서버의 애플리케이션이 생성한 쿠키를 이용합니다.
+* `Stickiness duration` : 쿠키의 만료 시간을 의미합니다. 만료 시간이 되기 전까지 ELB는 같은 인스턴스로 연결합니다.
+
+변경사항을 저장하고 다시 `DNS 이름`을 통해 접속해봅니다.   
+
+`Stickiness duration` 시간이 지나면 쿠키가 만료되면서 다른 인스턴스로 접속되는 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147177714-f9562a92-63ed-4a67-b80a-b00c8898e888.png)   
+![image](https://user-images.githubusercontent.com/43658658/147177727-a7ef342c-4036-4d13-9d48-34c4a146b7e4.png)
 
 
 
