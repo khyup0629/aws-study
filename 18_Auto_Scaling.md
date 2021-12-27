@@ -89,6 +89,8 @@ SNS 주제를 선택합니다.
 ![image](https://user-images.githubusercontent.com/43658658/147440522-1d83f311-38d7-4342-9e86-f02794834ce4.png)
 
 잠시 기다리면 생성되었던 인스턴스가 다시 삭제된 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147443932-89a5c135-723d-4dd5-a3ad-df57092b6dad.png)
+
 
 
 
