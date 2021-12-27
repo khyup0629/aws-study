@@ -45,7 +45,7 @@ Auto Scaling으로 인스턴스를 생성할 때 AMI를 이용해서 편리하�
 node /home/ec2-user/Example/app.js &
 ```
 
-![image](https://user-images.githubusercontent.com/43658658/147438433-cbb1dcd9-f46d-43fc-82d7-7e9f458c51e6.png)   
+![image](https://user-images.githubusercontent.com/43658658/147441992-307968fb-8b09-4981-be0e-e75a0318dc6a.png)   
 * 이 부분은 EC2 인스턴스가 생성되었을 때 실행될 스크립트입니다.
 
 다시 Auto Scaling 그룹 생성 페이지로 돌아옵니다.   
