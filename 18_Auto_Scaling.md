@@ -57,7 +57,8 @@ node /home/ec2-user/Example/app.js &
 ![image](https://user-images.githubusercontent.com/43658658/147438673-64c99d52-b62b-41c6-82e9-b65c776eaecf.png)
 
 4단계에서 Auto Scaling으로 생성 또는 삭제되는 인스턴스의 개수 범위를 설정합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147439455-e7bf50a6-329f-4f7b-a0b1-4ecd7e3703f5.png)
+![image](https://user-images.githubusercontent.com/43658658/147439455-e7bf50a6-329f-4f7b-a0b1-4ecd7e3703f5.png)   
+* 원하는 용량 : 최소~최대 용량 범위 내에서만 설정 가능하며, 용량 범위 내에서 동적으로 자동 조정됩니다. 원하는 용량을 기준으로 인스턴스가 `생성/삭제` 됩니다.
 
 Auto Scaling 그룹 내의 인스턴스들의 상태를 어떤 조건으로 유지할 것인가에 대해 `조정 정책`을 설정합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147439375-f2728ba4-c75b-4a42-8e5b-64533ab8ca37.png)   
