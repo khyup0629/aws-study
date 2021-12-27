@@ -42,10 +42,10 @@ Auto Scaling으로 인스턴스를 생성할 때 AMI를 이용해서 편리하�
 사용자 데이터에 아래와 같이 입력합니다.   
 ``` bash
 #!/bin/bash
-node /home/ec2-user/Example/app.js &
+node /home/ec2-user/example/app.js &
 ```
 
-![image](https://user-images.githubusercontent.com/43658658/147441992-307968fb-8b09-4981-be0e-e75a0318dc6a.png)   
+![image](https://user-images.githubusercontent.com/43658658/147446925-59d4eced-3d0c-4eb1-a140-4f910d2e60d6.png)   
 * 이 부분은 EC2 인스턴스가 생성되었을 때 실행될 스크립트입니다.
 
 다시 Auto Scaling 그룹 생성 페이지로 돌아옵니다.   
@@ -77,8 +77,6 @@ SNS 주제를 선택합니다.
 
 ## Auto Scaling 테스트
 
-기존에 생성했던 인스턴스 2개를 중지합니다.   
-
 이제 Auto Scaling이 생성한 인스턴스에 SSH로 접속해 부하를 걸어줍니다.   
 `yes > /dev/null`   
 ![image](https://user-images.githubusercontent.com/43658658/147440235-e6bb7593-7747-4991-8125-1fad3dbb56fe.png)
@@ -92,6 +90,16 @@ SNS 주제를 선택합니다.
 잠시 기다리면 생성되었던 인스턴스가 다시 삭제된 것을 확인할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147443932-89a5c135-723d-4dd5-a3ad-df57092b6dad.png)
 
+## 접속 테스트
+
+Auto Scaling을 통해 생성된 인스턴스가 정상적으로 접속되는지 살펴봅시다.
+
+ELB `DNS 이름`을 통해서 접속할 수 있습니다.
+
+기존에 있었던 인스턴스 2개와 Auto Scaling을 통해 생성된 인스턴스 1개를 더해 총 3개의 인스턴스에 트래픽이 라운드 로빈 방식으로 분배됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/147446836-682604eb-8f04-42bd-8b93-a195032e7543.png)
+![image](https://user-images.githubusercontent.com/43658658/147446863-e2cbb20d-54da-43c7-9d25-77ab87c63270.png)
+![image](https://user-images.githubusercontent.com/43658658/147446842-53a6527e-5013-43fd-bf0e-957773fe492d.png)
 
 
 
