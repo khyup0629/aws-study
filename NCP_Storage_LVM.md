@@ -22,7 +22,7 @@ EN 노드 서버로 PuTTy를 이용해 SSH 접속합니다.
 
 > <h3>파티션 나누기</h3>
 
-아래의 명령어 순서로 파티션을 나눕니다.   
+3개의 스토리지를 파티션으로 나눕니다.      
 (/dev/xvdb -> /dev/xvdc -> /dev/xvdd)
 
 ```
@@ -76,9 +76,11 @@ vgdisplay // vg들의 정보를 보여줍니다.
 > <h3>Logical Volumn 생성</h3>
 
 ```
-lvcreate -n klaytn-data -l 100%FREE klaytn-data // `lvcreate -n lvm이름 -l 100%FREE vg이름` : [vg이름]의 전체 남은 용량(100%FREE)을 [lvm이름]의 LVM으로 생성합니다.
+lvcreate -l 100%FREE -n klaytn-data klaytn-data // `lvcreate -l 100%FREE -n vg이름 lvm이름` : [vg이름]의 전체 남은 용량(100%FREE)을 [lvm이름]의 LVM으로 생성합니다.
 lvdisplay // lvm들의 정보를 보여줍니다.
 ```
+
+LVM 정보는 `/dev/klaytn-data/klaytn-data`와 `/dev/mapper/klaytn-data/klaytn-data` 두 곳에 생성됩니다.
 
 > <h3>포맷</h3>
 
@@ -102,3 +104,22 @@ mkdir /klay-data  // LVM을 마운트할 klay-data 디렉토리를 만듭니다.
 ```
 mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 ```
+
+## LVM 용량 추가 후 파티션 추가하기
+
+아래와 같이 `/dev/xvdb` 디스크의 용량을 2TB로 확장합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147557714-b345affd-77a9-4743-a7a1-450648e63226.png)
+
+그리고 서버로 접속해 `fdisk -l`를 입력하면 오류가 발생합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147557756-4e8a392d-dfe1-479d-93ea-14e15040f0a3.png)
+
+오류의 해결방법은 아래와 같습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147557802-0840012c-c849-4c0e-b1c9-4f97d5072bcf.png)
+
+그 후에 아래와 같이 파티션을 나눠줍니다.   
+![image](https://user-images.githubusercontent.com/43658658/147557833-bd87fde3-8007-483e-8ba9-d5ca67fac5da.png)
+
+
+
+
+
