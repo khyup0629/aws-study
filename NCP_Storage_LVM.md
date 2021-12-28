@@ -91,7 +91,7 @@ mkfs.ext4 /dev/klaytn-data/klaytn-data // ext4 파일시스템으로 LVM을 포�
 > <h3>마운트</h3>
 
 ```
-lsblk --fs    // UUID를 확인합니다. fstab을 설정할 때, 
+lsblk --fs    // UUID를 확인합니다. fstab을 설정할 때, LVM 디렉토리 경로나 UUID를 사용할 수 있습니다.
 mkdir /klay-data  // LVM을 마운트할 klay-data 디렉토리를 만듭니다.
 ```
 
