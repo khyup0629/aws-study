@@ -85,7 +85,7 @@ LVM 정보는 `/dev/klaytn-data/klaytn-data`와 `/dev/mapper/klaytn--data-klaytn
 > <h3>포맷</h3>
 
 ```
-mkfs.ext4 /dev/klaytn-data/klaytn-data // ex4 파일시스템으로 LVM을 포맷합니다.
+mkfs.ext4 /dev/klaytn-data/klaytn-data // ext4 파일시스템으로 LVM을 포맷합니다.
 ```
 
 > <h3>마운트</h3>
