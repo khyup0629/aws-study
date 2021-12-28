@@ -80,7 +80,7 @@ lvcreate -l 100%FREE -n klaytn-data klaytn-data // `lvcreate -l 100%FREE -n lvm�
 lvdisplay // lvm들의 정보를 보여줍니다.
 ```
 
-LVM 정보는 `/dev/klaytn-data/klaytn-data`와 `/dev/mapper/klaytn-data/klaytn-data` 두 곳에 생성됩니다.
+LVM 정보는 `/dev/klaytn-data/klaytn-data`와 `/dev/mapper/klaytn--data-klaytn--data` 두 곳에 생성됩니다.
 
 > <h3>포맷</h3>
 
