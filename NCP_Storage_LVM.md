@@ -76,7 +76,7 @@ vgdisplay // vg들의 정보를 보여줍니다.
 > <h3>Logical Volumn 생성</h3>
 
 ```
-lvcreate -l 100%FREE -n klaytn-data klaytn-data // `lvcreate -l 100%FREE -n vg이름 lvm이름` : [vg이름]의 전체 남은 용량(100%FREE)을 [lvm이름]의 LVM으로 생성합니다.
+lvcreate -l 100%FREE -n klaytn-data klaytn-data // `lvcreate -l 100%FREE -n lvm이름 vg이름` : [vg이름]의 전체 남은 용량(100%FREE)을 [lvm이름]의 LVM으로 생성합니다.
 lvdisplay // lvm들의 정보를 보여줍니다.
 ```
 
