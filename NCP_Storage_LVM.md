@@ -192,6 +192,8 @@ chmod 755 check.sh
 crontab -e        // crontab에 nmon 명령어와 check.sh 실행 주기를 등록합니다.
 ```
 
+=> [crontab 사용법](https://jdm.kr/blog/2)   
+
 nmon 파일이 월요일을 시작으로 1주일마다 하나씩 만들어지도록 설정합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147640145-fedaafa0-dccb-4d05-aa87-d8031043fe44.png)   
 * 순서대로 `분-시간-일-월-요일` 순입니다. 괄호 안의 숫자 범위 내로 별 대신 입력 할 수 있습니다.
