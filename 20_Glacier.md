@@ -20,16 +20,49 @@ S3에서 `수명 주기 규칙`을 통해 데이터를 Glacier로 이전할 수 
 * 볼트 : 아카이브가 저장되는 최상위 디렉토리입니다. S3의 버킷과 같은 개념입니다.
 * 볼트 인벤토리 : 볼트에 저장된 아카이브 목록, 아카이브 크기, 생성 날짜, 아카이브 설명 등의 정보를 뜻합니다.
 * 검색(Retrieval) : 아카이브를 다운로드 하기 위해 볼트 인벤토리를 가져오는 작업과 다운로드 할 아카이브를 선택하고 다운로드가 가능하도록 준비하는 작업을 뜻합니다. 
- - 검색 작업은 `3 ~ 5시간` 소요되고, 검색 후 다운로드는 `24시간` 동안 가능합니다.
+  - 검색 작업은 `12 ~ 48시간` 소요되고, 검색 후 다운로드는 복원 과정에서 설정한 기간 동안 가능합니다.
 
 ## 아카이브 다운로드 과정
 
-한 번 저장한 파일을 꺼내오려면   
-볼트 인벤토리 검색 요청을 하여 `3 ~ 5시간 뒤`에 아카이브 `목록을 확인`하고,   
-다운로드하고 싶은 아카이브에 대해 검색 요청을 하여 `3 ~ 5시간 뒤`에 아카이브를 `다운로드`해야 합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147622860-1af18027-afcd-4b4a-a0ef-3064a03443af.png)   
+한 번 저장한 아카이브(파일)을 꺼내오려면   
+다운로드하고 싶은 아카이브에 대해 검색 요청을 한 후 완료되면 아카이브를 `다운로드` 할 수 있습니다.   
+
+## S3 버킷을 이용한 Glacier 이용
+
+S3 버킷을 이용해 Glacier를 이용할 수 있습니다.
+
+일반적인 방법으로 `버킷을 생성`합니다.
+
+버킷에 아카이브(파일)을 업로드합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147630568-05413799-fd40-4ee6-8f6f-4cb057e3365c.png)
+
+속성 항목에서 스토리지 클래스를 `Glacier Deep Archive`를 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147630792-baeda97f-630a-4358-8f51-95af12e0f679.png)
+
+이 방법으로 파일을 업로드하면 버킷을 Glacier의 `볼트`로 보고 업로드한 것과 같게 됩니다. 
+
+## 아카이브 복원
+
+아카이브에 액세스해서 다운로드하고 싶다면 `복원`을 진행해야 합니다.
+
+다운로드 할 아카이브를 선택해 들어갑니다.   
+![image](https://user-images.githubusercontent.com/43658658/147630842-7bcfb9da-c792-4ccc-92d0-ddf09e360a88.png)   
+
+[복원 시작]을 눌러 검색 요청을 진행합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147630899-9e7962ad-2635-4f14-b13f-e20ca763a9cf.png)
+
+검색을 완료한 후에 `다운로드 받을 수 있는 기간`과 `검색 방법`에 대해 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147631114-3c469e72-4217-466c-b0d9-cbc2d0e21c3d.png)
+
+`복원 시작`을 누르면 `복원 진행 중`이라는 메시지가 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/147631250-64e874b0-2a2b-4aea-9ffd-988aa8c0634a.png)
+
+약 12시간 정도 기다리면 검색이 완료되고 앞서 설정한 기간만큼 다운로드 받을 수 있는 시간이 주어집니다.   
+
 
 ## 볼트 생성
+
+이번엔 직접 Glacier 콘솔로 접근해 볼트를 생성하는 방법입니다.
 
 [Glacier 콘솔] > [볼트 생성]   
 ![image](https://user-images.githubusercontent.com/43658658/147628719-a1bd71ca-505b-4fca-a721-80a3219a673b.png)
@@ -47,6 +80,18 @@ SNS 주제의 ARN을 입력합니다.
 
 볼트를 생성했습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147629027-ac385420-0e78-4fc7-9746-9da3e41b6df8.png)
+
+## Glacier 클라이언트를 이용한 파일 업로드
+
+Glacier 클라이언트의 대표적 프로그램인 `FastGlacier`를 이용해 파일을 업로드해보겠습니다.
+
+[FastGlacier 설치 사이트](https://fastglacier.com/)로 접속해 다운로드 받습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147629774-07c9b68b-e095-453e-9142-a08816e45439.png)
+
+계정 이름을 하나 설정하고, AWS `액세스 키/시크릿 키`를 입력하고 접속합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147629936-d5f32832-4908-415c-9ebe-9aa43254380e.png)
+
+알맞은 리전을 선택하고 이전에 생성한 볼트로 들어가 파일을 업로드 하면 됩니다.
 
 
 
