@@ -119,6 +119,9 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 그 후에 아래와 같이 파티션을 나눠줍니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147557833-bd87fde3-8007-483e-8ba9-d5ca67fac5da.png)
 
+# nmon 설정
+
+# 프로메테우스 설치
 
 
 
