@@ -192,9 +192,27 @@ chmod 755 check.sh
 crontab -e        // crontab에 nmon 명령어와 check.sh 실행 주기를 등록합니다.
 ```
 
+nmon 파일이 월요일을 시작으로 1주일마다 하나씩 만들어지도록 설정합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147640145-fedaafa0-dccb-4d05-aa87-d8031043fe44.png)
 
-# 프로메테우스 설치
+# 프로메테우스 서버 연결
+
+먼저 아래의 사이트에 접속해 `node_exporter` 압축 파일의 링크를 복사합니다.
+=> [node exporter 압축 파일 링크 복사](https://prometheus.io/download/)   
+![image](https://user-images.githubusercontent.com/43658658/147640815-7a932841-84bc-4fe7-960a-e3955d7bc552.png)
+
+`cd /home` 경로로 들어가서 복사한 링크를 붙여넣기해서 압축 파일을 다운 받습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147640911-f2f3890e-52b2-4950-b168-6b6b8d0d3bf6.png)
+
+압축을 해제합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147640923-fc8c88db-00f0-4e41-8f11-ed636c392720.png)
+
+`/home/node_exporter-1.3.1.linux-amd64` 경로에 `node_exporter`가 생성되어 있음을 확인할 수 있습니다.   
+`./node_exporter`로 node exporter를 실행하면, node_exporter라는 프로메테우스 에이전트가 현재 ENN 서버에서 매트릭 값을 가져옵니다.   
+![image](https://user-images.githubusercontent.com/43658658/147641013-31f4b984-960a-413e-b9e1-b94df70a8e50.png)
+
+하지만 node_exporter를 항상 실행한채로 둘 수는 없기 때문에
+
 
 
 
