@@ -29,14 +29,16 @@ S3에서 `수명 주기 규칙`을 통해 데이터를 Glacier로 이전할 수 
 
 ## S3 버킷을 이용한 Glacier 이용
 
-S3 버킷을 이용해 Glacier를 이용할 수 있습니다.
+=> [S3 버킷을 이용한 Glacier 이용 가이드 메뉴얼](https://aws.amazon.com/ko/getting-started/hands-on/getting-started-using-amazon-s3-glacier-and-s3-glacier-deep-archive/?trk=ha_a134p000007CXMQAA4&trkCampaign=psc_core-infra_storage_s3-glacier-da_get-started_v2&sc_ichannel=ha&sc_icampaign=Adoption_Campaign_psc_core-infra_s3-glacier-da_sm-s3-console&sc_ioutcome=CSI_Digital_Marketing)
 
-일반적인 방법으로 `버킷을 생성`합니다.
+`S3 버킷`을 이용해 `Glacier`를 이용할 수 있습니다.
+
+먼저, 일반적인 방법으로 `버킷을 생성`합니다.
 
 버킷에 아카이브(파일)을 업로드합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147630568-05413799-fd40-4ee6-8f6f-4cb057e3365c.png)
 
-속성 항목에서 스토리지 클래스를 `Glacier Deep Archive`를 선택합니다.   
+이때, 속성 항목에서 스토리지 클래스를 `Glacier Deep Archive`를 선택합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147630792-baeda97f-630a-4358-8f51-95af12e0f679.png)
 
 이 방법으로 파일을 업로드하면 버킷을 Glacier의 `볼트`로 보고 업로드한 것과 같게 됩니다. 
