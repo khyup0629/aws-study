@@ -121,6 +121,73 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 
 # nmon 설정
 
+: 리눅스 기반 시스템의 현재 리소스를 모니터링 할 수 있는 도구입니다.
+
+![image](https://user-images.githubusercontent.com/43658658/147639229-7bbd458e-b0e9-4ba4-bd56-0df645056dec.png)
+
+```
+apt -y install nmon       // nmon 설치
+nmon                      // nmon이 잘 설치되었는지 확인합니다.
+```
+
+`nmon` 명령어로 아래와 같은 화면(대화식)이 나타나면 잘 설치되었다는 의미입니다.   
+![image](https://user-images.githubusercontent.com/43658658/147638477-6af82ce6-8447-4a2b-aad2-35d8f9535b5a.png)
+
+![image](https://user-images.githubusercontent.com/43658658/147639250-7de3c704-ba8c-4d3e-a97b-84a3351f4df7.png)
+
+```
+mkdir /var/log/nmon                         // nmon의 매트릭이 저장될 디렉토리 경로를 생성합니다.
+nmon -f -c 20160 -s 30 -m /var/log/nmon     // 아래 설명 확인
+```
+
+`nmon -f` : 기록 모드로 nmon 실행
+`nmon -c 20160 -s 30` : 매트릭을 생성하는 횟수(-c), 매트릭을 생성하는 간격(-s)을 의미합니다.   
+  - 둘을 곱하면 총 604,800초로 7일(1주일)을 나타냅니다. 즉 1주일 동안 매트릭을 하나의 nmon 파일에 저장합니다.
+`nmon -m /var/log/nmon` : `/var/log/nmon` 경로에 nmon 파일을 저장합니다.
+
+![image](https://user-images.githubusercontent.com/43658658/147639261-39711490-70b5-4547-8dd7-42993a95a8a6.png)
+
+```
+ps aux | grep nmon      // nmon이 백그라운드로 잘 실행되고 있는지 체크합니다.
+cd /var/log/nmon
+ls                      // /var/log/nmon 경로에 nmon 파일이 정상적으로 생성되는지 체크합니다.
+```
+
+(번외)
+
+현재 서버의 디스크 자원을 `웹`에서 편리하게 모니터링 할 수 있도록 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147639311-ac2a8dd8-1382-4a65-a239-bec6991051c0.png)
+
+```
+mkdir /script
+cd script
+vim check.sh
+chmod 755 check.sh
+```
+
+<check. sh>   
+![image](https://user-images.githubusercontent.com/43658658/147639510-1fa02b5c-eadb-4d4b-be9a-dfbe42a930b0.png)
+
+웹 서버를 설치합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147639723-3639a3c9-ad48-4e45-b28e-766950988dc2.png)
+
+웹 서버를 실행합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147639753-0e821362-b516-46be-860a-8c79a0ffc780.png)
+
+`/var/www/html/Share` 경로를 만듭니다.   
+![image](https://user-images.githubusercontent.com/43658658/147639778-0773845e-a81f-44c9-8463-87babb2e3c03.png)
+
+`check.sh` 스크립트 파일을 실행해서 `/var/www/html/Share` 경로에 `checkDisk.txt` 파일이 생성되도록 합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147639639-7e9d4d5b-367f-446e-85b8-e3a8681cc341.png)
+
+`IP주소/Share`로 웹 브라우저를 통해 접속하면 아래와 같이 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/147639896-ad429a8e-90ba-409f-b9cf-dcafb660ba77.png)   
+
+파일을 열어보면 아래와 같이 디스크 정보가 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/147639928-aac4eaa6-c135-4619-9754-88ea2a1bb995.png)
+
+
+
 # 프로메테우스 설치
 
 
