@@ -140,9 +140,11 @@ mkdir /var/log/nmon                         // nmon의 매트릭이 저장될 �
 nmon -f -c 20160 -s 30 -m /var/log/nmon     // 아래 설명 확인
 ```
 
+=> [nmon 명령어 옵션](https://www.ibm.com/docs/ko/aix/7.2?topic=n-nmon-command)   
 `nmon -f` : 기록 모드로 nmon 실행
 `nmon -c 20160 -s 30` : 매트릭을 생성하는 횟수(-c), 매트릭을 생성하는 간격(-s)을 의미합니다.   
   - 둘을 곱하면 총 604,800초로 7일(1주일)을 나타냅니다. 즉 1주일 동안 매트릭을 하나의 nmon 파일에 저장합니다.
+
 `nmon -m /var/log/nmon` : `/var/log/nmon` 경로에 nmon 파일을 저장합니다.
 
 ![image](https://user-images.githubusercontent.com/43658658/147639261-39711490-70b5-4547-8dd7-42993a95a8a6.png)
@@ -191,7 +193,6 @@ crontab -e        // crontab에 nmon 명령어와 check.sh 실행 주기를 등�
 ```
 
 ![image](https://user-images.githubusercontent.com/43658658/147640145-fedaafa0-dccb-4d05-aa87-d8031043fe44.png)
-
 
 # 프로메테우스 설치
 
