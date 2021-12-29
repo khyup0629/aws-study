@@ -186,6 +186,11 @@ chmod 755 check.sh
 파일을 열어보면 아래와 같이 디스크 정보가 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147639928-aac4eaa6-c135-4619-9754-88ea2a1bb995.png)
 
+```
+crontab -e        // crontab에 nmon 명령어와 check.sh 실행 주기를 등록합니다.
+```
+
+![image](https://user-images.githubusercontent.com/43658658/147640145-fedaafa0-dccb-4d05-aa87-d8031043fe44.png)
 
 
 # 프로메테우스 설치
