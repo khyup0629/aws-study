@@ -128,7 +128,28 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 
 # ENN 노드 서버 구축
 
+```
+# mkdir /klay             // Binary 를 위한 Directory 생성
+# mkdir /klay-data        // Klaytn Data 를 위한 Directory 생성
+# cd /klay
+# wget https://packages.klaytn.net/klaytn/v1.7.3/ken-v1.7.3-0-linux-amd64.tar.gz      // https://docs.klaytn.com/node/download/ -> 왼쪽 사이트로 접속해서 가장 최신 버전의 링크를 사용
+# tar zxvf ken-v1.7.3-0-linux-amd64.tar.gz  
+# mv ./ ken-v1.7.3-0-linux-amd64/* ./
+# vi conf/kend.conf
+```
 
+<kend.conf>   
+![image](https://user-images.githubusercontent.com/43658658/147734066-5b72aa03-fe3e-4bee-80f5-e8f942b46625.png)
+
+```
+# cd /klay-data
+// https://packages.klaytn.net/cypress/chaindata/ -> 왼쪽 사이트로 접속해서 가장 최신 버전의 링크를 사용
+# wget https://s3.ap-northeast-2.amazonaws.com/klaytn-chaindata/cypress/klaytn-cypress-chaindata-20211227011211.tar.gz  // NCP 기준 약 2시간 30분 소요
+# tar zxvf  klaytn-cypress-chaindata-20211227011211.tar.gz            // 압축 해제 약 2시간 30분 소요
+# rm  klaytn-cypress-chaindata-20211227011211.tar.gz      // 불필요한 Disk 소비를 제거하기 위해 삭제
+
+# /klay/bin/kend start & // ENN 노드 실행
+```
 
 # nmon 설정
 
