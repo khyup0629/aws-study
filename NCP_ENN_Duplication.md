@@ -279,6 +279,9 @@ systemctl status node_exporter.service  // 서비스 가동 상태 확인
 
 ## Load Balacing 구축
 
+NCP는 로드 밸런서를 구축하기 위해서 사전에 `로드 밸런서 전용 서브넷`을 구성해야합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147736622-1936d8eb-d6d3-431a-988c-392e04d3578a.png)
+
 아래와 같이 TCP 프로토콜로 5개의 포트에 대한 `타겟 그룹`을 구성합니다.   
 타겟은 이전에 생성한 2개의 서버입니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147734713-52cb974f-8f40-4b5e-9187-d66cbe359f03.png)
