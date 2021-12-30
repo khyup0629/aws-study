@@ -1,8 +1,8 @@
 # NCP에서 스토리지 LVM 구성하기
 
-## 서버 구축
+## 서버 생성
 
-Klaytn EN 노드를 위한 서버를 구축합니다.   
+Klaytn EN 노드를 위한 서버를 생성합니다.   
 
 ```
 OS : ubuntu-18.04
@@ -11,6 +11,13 @@ RAM: 32G
 HDD: SSD 3TB
 Network: 1Gbps
 ```
+
+방화벽 인바운드 규칙은 아래와 같습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147733319-d7bd362f-b08b-4155-873f-d4bb2711d2b5.png)
+
+방화벽 아웃바운드 규칙은 아래와 같습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147733363-232439dc-2a2c-4990-a15c-78f660798027.png)
+
 
 ## LVM 구성
 
@@ -118,6 +125,10 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 
 그 후에 아래와 같이 파티션을 나눠줍니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147557833-bd87fde3-8007-483e-8ba9-d5ca67fac5da.png)
+
+# ENN 노드 서버 구축
+
+
 
 # nmon 설정
 
@@ -242,6 +253,8 @@ systemctl status node_exporter.service  // 서비스 가동 상태 확인
 ```
 
 ![image](https://user-images.githubusercontent.com/43658658/147714364-b4982b6f-4577-41d6-b6c7-e9c0faa1d4a8.png)
+
+## Load Balacing 구축
 
 
 
