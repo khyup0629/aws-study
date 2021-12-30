@@ -148,8 +148,11 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 # tar zxvf  klaytn-cypress-chaindata-20211227011211.tar.gz            // 압축 해제 약 2시간 30분 소요
 # rm  klaytn-cypress-chaindata-20211227011211.tar.gz      // 불필요한 Disk 소비를 제거하기 위해 삭제
 
-# /klay/bin/kend start & // ENN 노드 실행
 ```
+
+앞서 구축한 서버의 이미지 파일을 생성하고 LVM, ENN 노드 설정이 구성된 같은 서버를 하나 더 생성합니다.   
+(같은 작업을 반복해도 됩니다)   
+![image](https://user-images.githubusercontent.com/43658658/147734989-4d601ba8-4f74-42aa-87e7-1fcf19438676.png)
 
 # nmon 설정
 
@@ -276,6 +279,28 @@ systemctl status node_exporter.service  // 서비스 가동 상태 확인
 ![image](https://user-images.githubusercontent.com/43658658/147714364-b4982b6f-4577-41d6-b6c7-e9c0faa1d4a8.png)
 
 ## Load Balacing 구축
+
+아래와 같이 TCP 프로토콜로 5개의 포트에 대한 `타겟 그룹`을 구성합니다.   
+타겟은 이전에 생성한 2개의 서버입니다.   
+![image](https://user-images.githubusercontent.com/43658658/147734713-52cb974f-8f40-4b5e-9187-d66cbe359f03.png)
+
+`네트워크 로드 밸런서(NLB)`를 생성합니다. 아래와 같이 리스너를 구성합니다.   
+각 리스너는 포트번호에 맞는 타겟 그룹으로 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147734914-da57acfb-3eff-45f8-998b-bf12433575ea.png)   
+* NCP에서 로드 밸런서를 생성할 시, 1개의 리스너와 1개의 타겟 그룹만 설정이 가능하고, 생성이 완료된 후에 `리스너 설정 변경`을 통해 리스너와 타겟 그룹을 추가해야 합니다. 
+
+NLB를 구성합니다.
+![image](https://user-images.githubusercontent.com/43658658/147734968-a6cefcfb-1a2f-470b-bcd0-2bc4df5e403e.png)
+
+두 개의 서버로 SSH 접속해 ENN 노드를 실행합니다.   
+```
+# /klay/bin/kend start & // ENN 노드 실행
+```
+
+5개의 포트가 정상적으로 열렸는지 확인합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147735136-b25c6b83-0098-4824-ae83-bae3c316dc66.png)
+
+## 부하 테스트 진행
 
 
 
