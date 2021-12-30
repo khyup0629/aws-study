@@ -236,10 +236,12 @@ systemctl daemon-reload
 마지막으로 등록한 `node_exporter.service` 서비스를 실행합니다.
 
 ```
-systemctl enable node_exporter.service
-systemctl start node_exporter.service
+systemctl enable node_exporter.service  // 서비스 상시 가동
+systemctl start node_exporter.service   // 서비스 시작
+systemctl status node_exporter.service  // 서비스 가동 상태 확인
 ```
 
+![image](https://user-images.githubusercontent.com/43658658/147714364-b4982b6f-4577-41d6-b6c7-e9c0faa1d4a8.png)
 
 
 
