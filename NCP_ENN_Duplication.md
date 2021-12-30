@@ -147,7 +147,6 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 # wget https://s3.ap-northeast-2.amazonaws.com/klaytn-chaindata/cypress/klaytn-cypress-chaindata-20211227011211.tar.gz  // NCP 기준 약 2시간 30분 소요
 # tar zxvf  klaytn-cypress-chaindata-20211227011211.tar.gz            // 압축 해제 약 2시간 30분 소요
 # rm  klaytn-cypress-chaindata-20211227011211.tar.gz      // 불필요한 Disk 소비를 제거하기 위해 삭제
-
 ```
 
 앞서 구축한 서버의 이미지 파일을 생성하고 LVM, ENN 노드 설정이 구성된 같은 서버를 하나 더 생성합니다.   
