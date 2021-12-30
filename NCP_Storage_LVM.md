@@ -233,6 +233,14 @@ vim /etc/systemd/system/node_exporter.service                   // node_exporter
 systemctl daemon-reload
 ```
 
+마지막으로 등록한 `node_exporter.service` 서비스를 실행합니다.
+
+```
+systemctl enable node_exporter.service
+systemctl start node_exporter.service
+```
+
+
 
 
 
