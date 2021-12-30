@@ -34,8 +34,6 @@ CloudFormation 템플릿(JSON 형식)은 AWS 리소스 생성 및 설정뿐만 �
 * `cloud-init` : 클라우드 인스턴스의 초기화를 위한 스크립트입니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147716917-9a89bfa8-31b3-46d0-9014-d9ae6d8c9dff.png)
 
-AWS 리소스 조합을 CloudFormation `스택`이라고 합니다. 이 스택을 삭제하면 관련된 AWS 리소스도 모두 삭제됩니다.
-
 ## CloudFormation 템플릿 기본 구조
 
 CloudFormation 템플릿은 `JSON 형태`로 작성합니다. 다음은 CloudFormation 템플릿의 가장 기본적인 형태입니다.
@@ -62,4 +60,17 @@ CloudFormation 템플릿은 `JSON 형태`로 작성합니다. 다음은 CloudFor
 * Resources: AWS 리소스 종류와 옵션, AWS 리소스간의 관계를 정의합니다.
 * Outputs: 스택을 생성한 뒤 출력할 값입니다.
 * AWSTemplateFormatVersion: 현재 템플릿 구조의 버전입니다.
+
+## CloudFormation 스택 생성
+
+AWS 리소스 조합을 CloudFormation `스택`이라고 합니다. 이 스택을 삭제하면 관련된 AWS 리소스도 모두 삭제됩니다.
+
+이제 CloudFormation 스택을 생성해보겠습니다.   
+
+[CloudFormation 콘솔] > [스택] > [스택 생성]   
+![image](https://user-images.githubusercontent.com/43658658/147717615-787f5f11-5a98-45c9-b41b-e039bf65241a.png)
+
+템플릿을 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147717649-7ccb3e77-34f9-4b32-847b-a76bafa9d392.png)   
+* LAMP Stack : Linux, Apache, MySQL, PHP가 EC2 인스턴스에 자동으로 구성되는 샘플 템플릿입니다.
 
