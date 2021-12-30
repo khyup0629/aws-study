@@ -1,4 +1,8 @@
-# NCP에서 스토리지 LVM 구성하기
+# ENN 노드 이중화(with NCP)
+
+## 아키텍쳐
+
+![image](https://user-images.githubusercontent.com/43658658/147739505-74b76000-7ae2-4e41-805a-0dfb1cb0e7fd.png)
 
 ## 서버 생성
 
