@@ -2,7 +2,8 @@
 
 ## 아키텍쳐
 
-![image](https://user-images.githubusercontent.com/43658658/147739505-74b76000-7ae2-4e41-805a-0dfb1cb0e7fd.png)
+=> [AWS 아키텍처 툴 draw.io](https://app.diagrams.net/?splash=0&libs=aws4)   
+![ENN_Duplication_Architecture](https://user-images.githubusercontent.com/43658658/147739874-ba642877-2212-41f7-a01c-a7e671824a1a.png)
 
 ## 서버 생성
 
