@@ -70,7 +70,35 @@ AWS 리소스 조합을 CloudFormation `스택`이라고 합니다. 이 스택�
 [CloudFormation 콘솔] > [스택] > [스택 생성]   
 ![image](https://user-images.githubusercontent.com/43658658/147717615-787f5f11-5a98-45c9-b41b-e039bf65241a.png)
 
-템플릿을 선택합니다.   
+1단계에선 템플릿을 선택합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147717649-7ccb3e77-34f9-4b32-847b-a76bafa9d392.png)   
 * LAMP Stack : Linux, Apache, MySQL, PHP가 EC2 인스턴스에 자동으로 구성되는 샘플 템플릿입니다.
+
+2단계에선 먼저 스택 이름을 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147852166-abde1364-ffa9-4d90-b2e7-5c2493cb2a87.png)
+
+인스턴스에 대한 여러 파라미터들을 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147852143-5ce5a4c9-f4fc-4f79-a54d-183bfc4f27a2.png)   
+* MySQL에 접근하기 위한 파라미터들과 인스턴스의 스펙, 키 파일과 보안규칙을 설정합니다.
+
+3단계로 넘어와서 먼저 IAM 역할을 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147852208-428ed363-e33f-4da1-b5a4-4074ec4eaeea.png)   
+* AWS CloudFormation에서 스택 리소스를 생성, 업데이트 또는 삭제하도록 허용하는 IAM 역할을 지정할 수 있습니다.
+
+스택으로 리소스를 호출할 때 실패한다면 어떻게 할지를 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147852234-ae47d449-a785-4312-8e14-e00ee85ed8d8.png)   
+* `모든 스택 리소스 롤백` : 하나라도 실패하면 모든 리소스를 롤백합니다.
+* `성공적으로 프로비저닝된 리소스 보존` : 성공적으로 호출된 리소스는 보존합니다.
+
+![image](https://user-images.githubusercontent.com/43658658/147852265-f15bfb83-4a87-4012-a545-9c73a7b3b899.png)   
+* `스택 정책` : 특정 리소스가 의도치 않게 업데이트 되는 것을 방지하도록 JSON 형식으로 정책을 설정할 수 있습니다.
+* `롤백 구성` : CloudWatch에 경보가 구성되어 있다면 해당 경보를 이용해서 CloudFormation 리소스를 모니터링 할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/43658658/147852336-44f5aa16-0eeb-4de0-a495-f0e640ebd0a2.png)   
+* `알림 옵션` : SNS 주제를 선택할 수 있습니다.
+* `스택 생성 옵션` : 스택과 관련한 설정을 할 수 있습니다.
+  - `제한 시간` : 스택이 생성되기까지 제한 시간을 설정합니다.
+  - `종료 방지` : 스택이 실수로 지워지지 않게 하고 싶다면 활성화합니다.
+
+4단계에서 설정 사항들을 검토하고 스택을 생성합니다.
 
