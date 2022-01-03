@@ -142,7 +142,7 @@ http.createServer(app).listen(process.env.PORT || 3000);
 ![image](https://user-images.githubusercontent.com/43658658/147896652-07cb145f-2784-4172-8956-716c2ac2bac2.png)
 
 새로 만든 환경의 URL을 기존 환경의 URL로 교체합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147896693-aa7b76a8-38d7-438b-a1ac-2fc43309b5ce.png)
+![image](https://user-images.githubusercontent.com/43658658/147896834-0eb06deb-ad83-44ca-9a7e-ae7204841f79.png)
 
 새로 만든 환경의 URL이 교체된 것을 확인할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147896717-fc75cf85-7deb-4873-bc14-f343db0c4e7a.png)
