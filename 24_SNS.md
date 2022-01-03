@@ -143,12 +143,13 @@ Firebase 웹사이트의 [1단계: Firebase 프로젝트 생성 지침](https://
 
 앱의 패키지 이름을 입력하고 다음 단계로 모두 넘어가서 앱을 생성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147939720-df3a851b-7a7e-45cb-85e0-8511b309ee04.png)   
-* 중간의 과정들은 `개발`의 영역입니다.
+* 중간의 과정들은 `개발`의 영역입니다.   
+=> [참고 자료](https://maejing.tistory.com/entry/Android-FCM%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-Push-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 
-그럼 아래의 화면으로 넘어옵니다. `앱 ID`를 복사해서 애플리케이션 엔드포인트의 `디바이스 토큰`에 붙여넣습니다.   
-![image](https://user-images.githubusercontent.com/43658658/147939517-15cc7981-f957-4204-8807-5a3e4434d23c.png)
+실제로 `앱 개발`을 통해 푸시 알람을 수신하는 서비스를 구현하고, Firebase를 통해 메시지를 게시하여 등록 ID를 알아내야 합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147941493-1e16cf76-7fe1-4f3f-a635-a419553cffef.png)
 
-다시 AWS로 돌아와 `애플리케이션 엔드포인트`를 생성하면 애플리케이션 엔드포인트가 생성됩니다.   
+개발을 완료 했다 치고, `등록 ID`를 알아냈다면, 다시 AWS로 돌아와 `애플리케이션 엔드포인트`를 생성하면 애플리케이션 엔드포인트가 생성됩니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147939583-1477fec4-91e4-40d3-8ba3-b67afaac75fa.png)
 
 이제 `플랫폼 애플리케이션`을 선택하고 엔드포인트를 선택한 뒤, [메시지 게시]를 통해 메시지를 보낼 수 있습니다.
@@ -158,16 +159,15 @@ Firebase 웹사이트의 [1단계: Firebase 프로젝트 생성 지침](https://
 ![image](https://user-images.githubusercontent.com/43658658/147940158-a2aaf28e-1d92-413a-b6c4-cafbc46ea455.png)
 
 실제로 애플리케이션에서 `개발`을 통해 메시지를 수신하는 서비스를 구현해야 확인이 가능합니다.   
-=> [참고 자료](https://maejing.tistory.com/entry/Android-FCM%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-Push-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 
-`플랫폼 애플리케이션`을 통해서는 하나의 엔드포인트에 하나의 메시지만 전달할 수 있습니다.   
-여러 개의 애플리케이션 엔드포인트로 같은 메시지를 보내고 싶다면, 주제에 원하는 갯수 만큼 `애플리케이션 엔드포인트`를 구독해야 합니다.   
+한편, `플랫폼 애플리케이션`을 통해서는 하나의 엔드포인트에 하나의 메시지만 전달할 수 있습니다.   
+
+여러 개의 애플리케이션 엔드포인트로 같은 메시지를 보내고 싶다면, `주제`에 원하는 갯수 만큼 `애플리케이션 엔드포인트`를 `구독`해야 합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147940872-99201801-8fbe-4d86-8728-8c982d9dcbc0.png)
 * `플랫폼 애플리케이션`의 ARN이 아닌 `애플리케이션 엔드포인트`의 ARN을 입력 해야 합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147941128-da14212c-05fe-4571-aee2-006868c9e12d.png)
 
-
-
+(본 설명은 메시지를 수신하는 `개발`이 구현되어 있지 않아 완벽한 실습이 아님을 알려드립니다)
 
 
 
