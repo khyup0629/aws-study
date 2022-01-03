@@ -43,6 +43,9 @@ CloudFormation으로 모든 부분을 구현하기는 부담스럽고, Elastic B
 * 퍼블릭 IP 자동 할당이 활성화되어야 합니다.
 * 보안 그룹, 서비스 역할 및 인스턴스 프로파일이 아직 없으면 AWS OpsWorks에서 해당 항목을 자동으로 생성할 수 있습니다. 
 
+시스템 유지관리 주기와 기간, 백업 주기와 기간을 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147904945-1b914798-fe0e-4b8a-8425-59c2e00eb278.png)
+
 
 
 
