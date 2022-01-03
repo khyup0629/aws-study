@@ -18,22 +18,30 @@ CloudFormation으로 모든 부분을 구현하기는 부담스럽고, Elastic B
 * `Chef 쿡북(Cookbook)` : 레시피, 속성, 템플릿, 라이브러리 등의 묶음입니다.
 * `Chef 레시피(Recipe)` : 애플리케이션 설치 및 업데이트, 소스 배포 방법이 정의된 파일입니다.
 
-## 스택 생성
+## OpsWorks for Chef Automate
 
-[OpsWorks 콘솔] > [스택] > [Add your first stack]   
-![image](https://user-images.githubusercontent.com/43658658/147899444-712fd5f8-f01b-465c-871a-54a5ea3afba5.png)
+: 완전 관리형 Chef 서버와 자동화 도구 세트로 사용자 워크플로에 지속적 배포 자동화, 규정 준수 및 보안 자동 테스트 및 노드와 상태를 볼 수 있는 사용자 인터페이스를 제공합니다.
 
-Chef에 대한 설정을 진행합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147899533-f71eb62a-87d0-4865-8570-2b29994d7444.png)   
-* `Use custom Chef cookbooks` : OpsWorks에서 제공하는 Chef 쿡북 이외에 인터넷에 공개된 Chef 쿡북이나 사용자가 작성한 Chef 쿡북을 사용하는 옵션입니다.
+> <h3>Chef Automate</h3>
 
-OpsWorks용 IAM 역할을 만들어서 지정합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147900124-2685d910-a426-4a89-adb3-9108724bd6d8.png)
+: Chef Software, Inc.에서 제공하는 오픈 소스 프레임워크로서, 코드를 사용하여 애플리케이션이 구성, 배포 및 관리되는 방법을 자동화합니다.
 
-스택을 생성합니다.
+## Chef Automate 서버 생성
 
+![image](https://user-images.githubusercontent.com/43658658/147901747-774bd549-a8e6-4424-bf22-a99366c82cb0.png)
 
+1단계에서 서버 이름, 리전, 인스턴스 타입을 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147901864-849e2816-5ed8-415f-ad8f-7923917be72f.png)
 
+2단계에서 SSH 접근 EC2 키 페어와 서버 엔드포인트를 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147901950-7dbaf6f4-ef25-49ca-b614-d2b775077d49.png)   
+* `Endpoint` : `Use a custom domain`을 선택해서 사용자 지정 도메인을 선택할 수 있습니다.
+
+3단계에서 네트워크를 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147902114-01253d93-3934-4eef-8bdc-315cbf178ffc.png)   
+* VPC에는 하나 이상의 퍼블릭 서브넷이 있어야 합니다.
+* 퍼블릭 IP 자동 할당이 활성화되어야 합니다.
+* 보안 그룹, 서비스 역할 및 인스턴스 프로파일이 아직 없으면 AWS OpsWorks에서 해당 항목을 자동으로 생성할 수 있습니다. 
 
 
 
