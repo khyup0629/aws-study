@@ -48,6 +48,8 @@ CloudFormation으로 모든 부분을 구현하기는 부담스럽고, Elastic B
 시스템 유지관리 주기와 기간, 백업 주기와 기간을 설정합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147904945-1b914798-fe0e-4b8a-8425-59c2e00eb278.png)
 
+4단계에서 전체 옵션을 확인하고 생성합니다.
+
 
 
 
