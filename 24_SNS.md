@@ -147,7 +147,7 @@ Firebase 웹사이트의 [1단계: Firebase 프로젝트 생성 지침](https://
 => [참고 자료](https://maejing.tistory.com/entry/Android-FCM%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-Push-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 
 실제로 `앱 개발`을 통해 푸시 알람을 수신하는 서비스를 구현하고, Firebase를 통해 메시지를 게시하여 등록 ID를 알아내야 합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147941493-1e16cf76-7fe1-4f3f-a635-a419553cffef.png)
+![image](https://user-images.githubusercontent.com/43658658/147942360-496b9a0c-4839-4230-b410-075468b2e66d.png)
 
 개발을 완료 했다 치고, `등록 ID`를 알아냈다면, 다시 AWS로 돌아와 `애플리케이션 엔드포인트`를 생성하면 애플리케이션 엔드포인트가 생성됩니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147939583-1477fec4-91e4-40d3-8ba3-b67afaac75fa.png)
