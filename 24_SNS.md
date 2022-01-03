@@ -140,6 +140,8 @@ Firebase 웹사이트의 [1단계: Firebase 프로젝트 생성 지침](https://
 (주의)여기서부터는 `개발`의 영역입니다.   
 => [참고 메뉴얼](https://maejing.tistory.com/entry/Android-FCM%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-Push-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 
+먼저 안드로이드 스튜디오에서 `새로운 프로젝트`를 하나 만듭니다.
+
 다시 Firebase로 돌아가서 안드로이드 버전으로 `앱 추가하여 시작하기`를 클릭합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147933569-606d4145-1d86-45e6-8efe-342730810d85.png)
 
@@ -162,6 +164,7 @@ json 파일을 `안드로이드 스튜디오`의 해당 경로에 넣습니다.
 이제 FCM을 수신할 수 있는 서비스를 만듭니다.   
 먼저 `앱 모듈` 수준의 `build.gradle`에 Firebase관련 클래스를 사용할 수 있도록 라이브러리를 추가합니다.   
 (꼭 sync now를 눌러줘서 동기화를 시켜줍니다)   
+
 ```
 dependencies {
     ...
@@ -170,6 +173,82 @@ dependencies {
 }
 ```
 
+FirebaseMessagingService를 상속받는 서비스를 하나 만들고, onNewToken()와 onMessageReceived()를 재정의한다.   
+
+``` kotlin
+class MyFirebaseMessagingService : FirebaseMessagingService() {
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        //token을 서버로 전송
+    }
+
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
+        //수신한 메시지를 처리
+    }
+}
+```
+
+* `onNewToken()` : 클라우드 서버에 등록되었을 때 호출되고, 파라미터로 전달된 token이 앱을 구분하기 위한 고유한 키가 됩니다.
+* `onMessageReceived()` : 클라우드 서버에서 메시지를 전송하면 자동으로 호출되고, 해당 메서드안에서 메시지를 처리하여 사용자에게 알림을 보낼 수 있습니다. 
+
+구현한 서비스를 매니페스트(manifest.xml)에 등록하고, 메시지를 수신하기 위한 인텐트 필터를 설정해줍니다.   
+푸시 서비스는 인터넷을 사용하기 때문에 인터넷 퍼미션도 추가합니다.
+
+``` xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.maejin.samplepush">
+    
+    <!--   INTERNET 퍼미션 추가!   -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        ...>
+        <activity android:name=".MainActivity">
+            ...
+        </activity>
+
+        <!--   서비스를 추가하고 인텐트 필터를 설정한다.   -->
+        <service android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
+```
+
+``` kotlin
+@Override
+public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+    super.onMessageReceived(remoteMessage);
+
+    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+
+    NotificationCompat.Builder builder = null;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (notificationManager.getNotificationChannel(CHANNEL_ID) == null) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+        }
+        builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
+    }else {
+        builder = new NotificationCompat.Builder(getApplicationContext());
+    }
+
+    String title = remoteMessage.getNotification().getTitle();
+    String body = remoteMessage.getNotification().getBody();
+        
+    builder.setContentTitle(title)
+           .setContentText(body)
+           .setSmallIcon(R.drawable.ic_launcher_background);
+                    
+    Notification notification = builder.build();
+    notificationManager.notify(1, notification);
+}
+```
 
 
 (주의)`개발`의 영역이 끝났습니다.
