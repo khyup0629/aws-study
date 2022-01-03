@@ -92,6 +92,55 @@ AWS의 여러 리소스에서 푸시 알림을 SNS 주제에 보내면 SNS 주�
 엔드포인트 이메일에 `hello`라는 제목의 이메일이 온 것을 확인할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147911029-ec545162-153e-4f2b-b358-3f5afa211cb0.png)
 
+## 구글 안드로이드에 푸시 알람 보내기
+
+=> [안드로이드에 푸시 알람 보내기 메뉴얼](https://aws.amazon.com/ko/premiumsupport/knowledge-center/create-android-push-messaging-sns/)
+
+SNS에서 Android 플랫폼 애플리케이션을 생성하려면 Firebase Cloud Messaging(FCM)의 자격 증명이 필요합니다.
+
+Firebase 웹사이트의 [1단계: Firebase 프로젝트 생성 지침](https://firebase.google.com/docs/web/setup/#create-firebase-project)을 따릅니다.
+
+먼저 아래의 사이트로 접속해서 프로젝트를 만듭니다.   
+=> https://console.firebase.google.com/u/0/?pli=1   
+![image](https://user-images.githubusercontent.com/43658658/147915412-f44b5a4f-be51-4292-ad83-cf0c38359370.png)
+
+프로젝트 이름을 지정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147915458-6c1f55ca-dc8e-4786-a852-6acf616a8bf3.png)
+
+대한민국으로 위치를 지정하고 프로젝트를 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147915488-129d37a1-36ae-4d2f-80c2-1a265fe00104.png)
+
+생성한 프로젝트에서 [톱니바퀴] > [프로젝트 설정]   
+![image](https://user-images.githubusercontent.com/43658658/147915958-a9393ef6-b8ff-4fe7-928a-7c542235d688.png)
+
+[클라우드 메시징] > [서버 키]에서 서버 키를 얻습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147916000-221971d7-cfad-4c3f-8347-1d32e0d9296e.png)
+
+다시 SNS 콘솔로 돌아와 [푸시 알림] > [플랫폼 애플리케이션 생성]   
+![image](https://user-images.githubusercontent.com/43658658/147913847-8f9765f3-f00d-4714-af40-6efa41030655.png)
+
+애플리케이션 이름, 푸시 알림 플랫폼, API 키, 클라이언트 암호를 입력합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147916086-1b266ee7-9a42-4f26-a384-7b1a01fd467d.png)
+
+아래 4개 이벤트에 대한 메시지를 수신한 SNS 주제를 입력할 수도 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147914063-efea82a2-060f-4b3a-a7fb-77dfc966b054.png)
+
+`플랫폼 애플리케이션`을 생성합니다.
+![image](https://user-images.githubusercontent.com/43658658/147916234-4c86289d-e7b3-4c53-b944-047b472cd84e.png)   
+
+이제 `애플리케이션 엔드포인트`를 생성해야 합니다.
+
+생성한 `플랫폼 애플리케이션`을 선택하고 `애플리케이션 엔드포인트 생성`을 클릭합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147916659-ff64396e-6fbd-4393-a391-4411b0648bd6.png)
+
+디바이스 토큰을 입력합니다. FCM의 경우 등록 ID를 입력합니다.    
+
+등록 ID를 알기 위해서는 임의의 안드로이드 애플리케이션을 만들고, 임의의 메시지를 푸시해서 등록 ID를 알아야 합니다.   
+
+애플리케이션 엔드포인트가 생성되었습니다.
+
+이제 `플랫폼 애플리케이션`을 선택하고 엔드포인트를 선택한 뒤, [메시지 게시]를 통해 메시지를 보낼 수 있습니다.
+
 
 
 
