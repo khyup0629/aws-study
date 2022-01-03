@@ -27,6 +27,9 @@ Chef에 대한 설정을 진행합니다.
 ![image](https://user-images.githubusercontent.com/43658658/147899533-f71eb62a-87d0-4865-8570-2b29994d7444.png)   
 * `Use custom Chef cookbooks` : OpsWorks에서 제공하는 Chef 쿡북 이외에 인터넷에 공개된 Chef 쿡북이나 사용자가 작성한 Chef 쿡북을 사용하는 옵션입니다.
 
+OpsWorks용 IAM 역할을 만들어서 지정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147900124-2685d910-a426-4a89-adb3-9108724bd6d8.png)
+
 스택을 생성합니다.
 
 
