@@ -133,130 +133,35 @@ Firebase 웹사이트의 [1단계: Firebase 프로젝트 생성 지침](https://
 생성한 `플랫폼 애플리케이션`을 선택하고 `애플리케이션 엔드포인트 생성`을 클릭합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147916659-ff64396e-6fbd-4393-a391-4411b0648bd6.png)
 
-디바이스 토큰을 입력합니다. FCM의 경우 등록 ID를 입력합니다.    
+디바이스 토큰을 입력합니다. FCM의 경우 `등록 ID`를 입력합니다.    
+![image](https://user-images.githubusercontent.com/43658658/147939131-9960fd16-a637-4e28-8968-239ee426d6a6.png)   
 
-등록 ID를 알기 위해서는 임의의 안드로이드 애플리케이션을 만들고, 임의의 메시지를 푸시해서 등록 ID를 알아야 합니다.   
+`등록 ID`를 알기 위해서는 임의의 안드로이드 애플리케이션을 만들고, 등록 ID를 알아야 합니다.   
 
-(주의)여기서부터는 `개발`의 영역입니다.   
-=> [참고 메뉴얼](https://maejing.tistory.com/entry/Android-FCM%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-Push-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
-
-먼저 안드로이드 스튜디오에서 `새로운 프로젝트`를 하나 만듭니다.
-
-다시 Firebase로 돌아가서 안드로이드 버전으로 `앱 추가하여 시작하기`를 클릭합니다.   
+다시 `Firebase`로 돌아가서 안드로이드 버전으로 `앱 추가하여 시작하기`를 클릭합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147933569-606d4145-1d86-45e6-8efe-342730810d85.png)
 
-앱의 패키지 이름을 입력하고 다음 단계로 넘어갑니다.   
-![image](https://user-images.githubusercontent.com/43658658/147933645-163d6ccc-2803-4855-82b9-3cca3266d505.png)
+앱의 패키지 이름을 입력하고 다음 단계로 모두 넘어가서 앱을 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147939720-df3a851b-7a7e-45cb-85e0-8511b309ee04.png)   
+* 중간의 과정들은 `개발`의 영역입니다.
 
-json 파일을 `안드로이드 스튜디오`의 해당 경로에 넣습니다.   
-![image](https://user-images.githubusercontent.com/43658658/147933708-33810b15-0f86-4b9a-929a-3770c2ef2f6a.png)   
-![image](https://user-images.githubusercontent.com/43658658/147933810-97ce5204-188f-47e7-a664-cab4da2e27d5.png)
+그럼 아래의 화면으로 넘어옵니다. `앱 ID`를 복사해서 애플리케이션 엔드포인트의 `디바이스 토큰`에 붙여넣습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147939517-15cc7981-f957-4204-8807-5a3e4434d23c.png)
 
-`프로젝트` 수준의 `build.gradle`에 해당 라인을 추가합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147934006-20258ada-9797-4b23-999c-34827e67ed5c.png)   
-![image](https://user-images.githubusercontent.com/43658658/147934067-c66e5a86-9428-4fa6-917b-01d0ad14e8f3.png)   
-
-`앱 모듈` 수준의 `build.gradle`에 해당 라인을 추가합니다.   
-(가장 아래에 추가합니다)   
-![image](https://user-images.githubusercontent.com/43658658/147934142-75e39b7c-16fa-44bc-89bc-8327874d9d21.png)   
-![image](https://user-images.githubusercontent.com/43658658/147934221-0fe58d17-6deb-486e-9831-3e9b6d4d7135.png)
-
-이제 FCM을 수신할 수 있는 서비스를 만듭니다.   
-먼저 `앱 모듈` 수준의 `build.gradle`에 Firebase관련 클래스를 사용할 수 있도록 라이브러리를 추가합니다.   
-(꼭 sync now를 눌러줘서 동기화를 시켜줍니다)   
-
-```
-dependencies {
-    ...
-    
-    implementation 'com.google.firebase:firebase-messaging:21.1.0'
-}
-```
-
-FirebaseMessagingService를 상속받는 서비스를 하나 만들고, onNewToken()와 onMessageReceived()를 재정의한다.   
-
-``` kotlin
-class MyFirebaseMessagingService : FirebaseMessagingService() {
-    override fun onNewToken(token: String) {
-        super.onNewToken(token)
-        //token을 서버로 전송
-    }
-
-    override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        super.onMessageReceived(remoteMessage)
-        //수신한 메시지를 처리
-    }
-}
-```
-
-* `onNewToken()` : 클라우드 서버에 등록되었을 때 호출되고, 파라미터로 전달된 token이 앱을 구분하기 위한 고유한 키가 됩니다.
-* `onMessageReceived()` : 클라우드 서버에서 메시지를 전송하면 자동으로 호출되고, 해당 메서드안에서 메시지를 처리하여 사용자에게 알림을 보낼 수 있습니다. 
-
-구현한 서비스를 매니페스트(manifest.xml)에 등록하고, 메시지를 수신하기 위한 인텐트 필터를 설정해줍니다.   
-푸시 서비스는 인터넷을 사용하기 때문에 인터넷 퍼미션도 추가합니다.
-
-``` xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.maejin.samplepush">
-    
-    <!--   INTERNET 퍼미션 추가!   -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <application
-        ...>
-        <activity android:name=".MainActivity">
-            ...
-        </activity>
-
-        <!--   서비스를 추가하고 인텐트 필터를 설정한다.   -->
-        <service android:name=".MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-    </application>
-
-</manifest>
-```
-
-``` kotlin
-@Override
-public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-    super.onMessageReceived(remoteMessage);
-
-    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-
-    NotificationCompat.Builder builder = null;
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        if (notificationManager.getNotificationChannel(CHANNEL_ID) == null) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(channel);
-        }
-        builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
-    }else {
-        builder = new NotificationCompat.Builder(getApplicationContext());
-    }
-
-    String title = remoteMessage.getNotification().getTitle();
-    String body = remoteMessage.getNotification().getBody();
-        
-    builder.setContentTitle(title)
-           .setContentText(body)
-           .setSmallIcon(R.drawable.ic_launcher_background);
-                    
-    Notification notification = builder.build();
-    notificationManager.notify(1, notification);
-}
-```
-
-
-(주의)`개발`의 영역이 끝났습니다.
-
-애플리케이션 엔드포인트가 생성되었습니다.
+다시 AWS로 돌아와 `애플리케이션 엔드포인트`를 생성하면 애플리케이션 엔드포인트가 생성됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/147939583-1477fec4-91e4-40d3-8ba3-b67afaac75fa.png)
 
 이제 `플랫폼 애플리케이션`을 선택하고 엔드포인트를 선택한 뒤, [메시지 게시]를 통해 메시지를 보낼 수 있습니다.
+![image](https://user-images.githubusercontent.com/43658658/147939891-a9552be1-a9c8-4315-b308-6e95af5d58b2.png)
 
+메시지 내용을 입력하고 게시합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147940158-a2aaf28e-1d92-413a-b6c4-cafbc46ea455.png)
+
+실제로 애플리케이션에서 `개발`을 통해 메시지를 수신하는 서비스를 구현해야 확인이 가능합니다.   
+=> [참고 자료](https://maejing.tistory.com/entry/Android-FCM%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-Push-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+
+`플랫폼 애플리케이션`을 통해서는 하나의 엔드포인트에 하나의 메시지만 전달할 수 있습니다.   
+여러 개의 애플리케이션 엔드포인트로 같은 메시지를 보내고 싶다면, 주제에 `플랫폼 애플리케이션`을 구독해야 합니다.
 
 
 
