@@ -95,52 +95,60 @@ app.js 파일과 package.json 파일을 `exampleapp.zip`으로 `압축`합니다
 다시 Elastic Beanstalk URL로 접속하면 새로 배포한 웹 페이지가 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147894959-d4a89177-3338-4f3a-b2ba-f6ac502e052c.png)
 
-## Git으로 Elastic Beanstalk에 배포
+## URL 교체 기능
 
-먼저 Git(http://git-scm.com)을 설치합니다.   
-Windows와 Mac OS X에서는 아래 주소에서 설치 파일을 다운로드하여 설치하면 됩니다. 
+Elastic Beanstalk의 애플리케이션에는 여러 개의 환경을 만들 수 있습니다.   
 
-=> Windows : http://msysgit.github.com   
-=> Mac OS X : http://sourceforge.net/projects/git-osx-installer
+하나의 애플리케이션에 여러 개의 환경을 만들고,   
+`환경 URL 교체(Swap Environment URLs)` 기능을 사용하면 서비스를 중단하지 않고도 애플리케이션을 최신 버전으로 업데이트할 수 있습니다.
 
-다음으로 Elastic Beanstalk 명령행 도구가 필요합니다.   
-=> http://aws.amazon.com/code/6752709412171743에 접속하여 Download 버튼을 클릭합니다.
+`Gettingstartedapp-env-2`라는 이름의 환경을 하나 더 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147896505-17d022e5-6f74-46f4-97cb-a5ac5875924b.png)   
+* 같은 애플리케이션에 생성합니다.
 
-Elastic Beanstalk 명령행 도구를 실행하려면 Python이 필요합니다.   
-=> http://www.python.org/downloads에서 최신 버전의 파이썬을 다운로드 받습니다.
+새로 만든 환경(`Gettingstartedapp-env-2`)에 아래의 두 소스 코드(app.js, package.json)를 압축(`exampleapp2.zip`)해서 배포합니다.   
+``` javascript
+// app.js
+var express = require('express')
+  , http = require('http')
+  , app = express();
 
-Elastic Beanstalk CLI 압축을 푼 폴더에서 `Git Bash`를 실행합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147895311-0d9e7553-550b-4f0c-98f4-f207bdca825c.png)
+app.get(['/', '/index.html'], function (req, res){
+    res.send('Hello Elastic Beanstalk - Env2');
+});
 
-Elastic Beanstalk 명령행 도구를 실행하려면 boto(https://github.com/boto/boto)가 필요합니다.   
-
-Git Bash 창에서 아래의 명령어를 입력합니다.   
-```
-# git clone https://github.com/boto/boto.git
-# cd boto
-# ~boto$ sudo python setup.py install      // Windows에서는 sudo를 제외하고 입력합니다.
-# cd ..
+http.createServer(app).listen(process.env.PORT || 3000);
 ```
 
-애플리케이션 디렉터리를 생성하고, Git 저장소를 초기화합니다.
-경로 : AWSDevTools > Windows > AWSDevTools-RepositorySetup 실행
-
+``` json
+// package.json
+{
+  "name": "hello",
+  "description": "Hello Elastic Beanstalk",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.4.x"
+  }
+}
 ```
-# mkdir exampleapp
-# cd exampleapp
-# ~exampleapp$ git init
-```
 
-방금 생성한 Git 저장소에 aws.push 명령을 설치합니다.
+![image](https://user-images.githubusercontent.com/43658658/147896526-fae0d7e3-a3b3-4e07-a5bf-c60f304908b5.png)
 
-```
+기존 환경과 새로 만든 환경에는 각각 다른 애플리케이션 버전이 배포되어 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147894959-d4a89177-3338-4f3a-b2ba-f6ac502e052c.png)   
+![image](https://user-images.githubusercontent.com/43658658/147896662-700e55aa-1766-418b-9c6a-39e0a084ca2e.png)
 
+새로 만든 환경에서 [작업] > [환경 URL 교체]   
+![image](https://user-images.githubusercontent.com/43658658/147896652-07cb145f-2784-4172-8956-716c2ac2bac2.png)
 
+새로 만든 환경의 URL을 기존 환경의 URL로 교체합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147896693-aa7b76a8-38d7-438b-a1ac-2fc43309b5ce.png)
 
+새로 만든 환경의 URL이 교체된 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147896717-fc75cf85-7deb-4873-bc14-f343db0c4e7a.png)
 
-
-
-
+결과적으로 사용자는 기존 환경의 URL로 접속하지만, 새로 만든 환경으로 접속됩니다.
+![image](https://user-images.githubusercontent.com/43658658/147896762-f2bf641a-df96-4ed3-8c73-d251788fa356.png)
 
 
 
