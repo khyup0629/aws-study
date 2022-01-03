@@ -18,6 +18,8 @@ CloudFormation으로 모든 부분을 구현하기는 부담스럽고, Elastic B
 * `Chef 쿡북(Cookbook)` : 레시피, 속성, 템플릿, 라이브러리 등의 묶음입니다.
 * `Chef 레시피(Recipe)` : 애플리케이션 설치 및 업데이트, 소스 배포 방법이 정의된 파일입니다.
 
+현재는 OpsWorks보다 더 좋은 코드형 인프라(IaC) 툴인 `Ansible`, `terraform`이 있기 때문에 잘 쓰이지 않습니다.
+
 ## OpsWorks for Chef Automate
 
 : 완전 관리형 Chef 서버와 자동화 도구 세트로 사용자 워크플로에 지속적 배포 자동화, 규정 준수 및 보안 자동 테스트 및 노드와 상태를 볼 수 있는 사용자 인터페이스를 제공합니다.
