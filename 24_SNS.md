@@ -137,6 +137,43 @@ Firebase 웹사이트의 [1단계: Firebase 프로젝트 생성 지침](https://
 
 등록 ID를 알기 위해서는 임의의 안드로이드 애플리케이션을 만들고, 임의의 메시지를 푸시해서 등록 ID를 알아야 합니다.   
 
+(주의)여기서부터는 `개발`의 영역입니다.   
+=> [참고 메뉴얼](https://maejing.tistory.com/entry/Android-FCM%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-Push-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+
+다시 Firebase로 돌아가서 안드로이드 버전으로 `앱 추가하여 시작하기`를 클릭합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147933569-606d4145-1d86-45e6-8efe-342730810d85.png)
+
+앱의 패키지 이름을 입력하고 다음 단계로 넘어갑니다.   
+![image](https://user-images.githubusercontent.com/43658658/147933645-163d6ccc-2803-4855-82b9-3cca3266d505.png)
+
+json 파일을 `안드로이드 스튜디오`의 해당 경로에 넣습니다.   
+![image](https://user-images.githubusercontent.com/43658658/147933708-33810b15-0f86-4b9a-929a-3770c2ef2f6a.png)   
+![image](https://user-images.githubusercontent.com/43658658/147933810-97ce5204-188f-47e7-a664-cab4da2e27d5.png)
+
+`프로젝트` 수준의 `build.gradle`에 해당 라인을 추가합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147934006-20258ada-9797-4b23-999c-34827e67ed5c.png)   
+![image](https://user-images.githubusercontent.com/43658658/147934067-c66e5a86-9428-4fa6-917b-01d0ad14e8f3.png)   
+
+`앱 모듈` 수준의 `build.gradle`에 해당 라인을 추가합니다.   
+(가장 아래에 추가합니다)   
+![image](https://user-images.githubusercontent.com/43658658/147934142-75e39b7c-16fa-44bc-89bc-8327874d9d21.png)   
+![image](https://user-images.githubusercontent.com/43658658/147934221-0fe58d17-6deb-486e-9831-3e9b6d4d7135.png)
+
+이제 FCM을 수신할 수 있는 서비스를 만듭니다.   
+먼저 `앱 모듈` 수준의 `build.gradle`에 Firebase관련 클래스를 사용할 수 있도록 라이브러리를 추가합니다.   
+(꼭 sync now를 눌러줘서 동기화를 시켜줍니다)   
+```
+dependencies {
+    ...
+    
+    implementation 'com.google.firebase:firebase-messaging:21.1.0'
+}
+```
+
+
+
+(주의)`개발`의 영역이 끝났습니다.
+
 애플리케이션 엔드포인트가 생성되었습니다.
 
 이제 `플랫폼 애플리케이션`을 선택하고 엔드포인트를 선택한 뒤, [메시지 게시]를 통해 메시지를 보낼 수 있습니다.
