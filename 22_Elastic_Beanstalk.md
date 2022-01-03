@@ -52,6 +52,91 @@ Elastic Beanstalk 콘솔에서 사용자가 애플리케이션을 업로드하�
 웹 브라우저에서 `Elastic Beanstalk URL`로 접속하면 아래와 같은 화면이 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147894668-815462d7-5a9f-4d74-89bf-16461ad66dc5.png)
 
+## Node.js 애플리케이션 배포
+
+AWS 콘솔에서 Elastic Beanstalk node.js 애플리케이션을 Elastic Beanstalk 환경에 배포해보겠습니다.
+
+간단한 웹 페이지를 작성합니다. 메모장을 열고 아래의 코드들을 입력하고 각각 `app.js`, `package.json`으로 저장합니다.
+
+``` javascript
+// app.js
+var express = require('express')
+  , http = require('http')
+  , app = express();
+
+app.get(['/', '/index.html'], function (req, res){
+    res.send('Hello Elastic Beanstalk');
+});
+
+http.createServer(app).listen(process.env.PORT || 3000);
+```
+
+``` json
+// package.json
+{
+  "name": "hello",
+  "description": "Hello Elastic Beanstalk",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.4.x"
+  }
+}
+```
+
+app.js 파일과 package.json 파일을 `exampleapp.zip`으로 `압축`합니다.
+
+압축파일을 Elastic Beanstalk 환경에 업로드합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147894872-0fab07f1-ba57-4ab5-8a0d-ae1799a54c9e.png)   
+![image](https://user-images.githubusercontent.com/43658658/147894883-19f53037-3fde-4b9f-bd82-1745b3903945.png)
+
+약 1분 정도 기다리면 배포가 완료됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/147894954-9ec0c041-6e94-42b7-ab32-5bc901a44908.png)
+
+다시 Elastic Beanstalk URL로 접속하면 새로 배포한 웹 페이지가 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/147894959-d4a89177-3338-4f3a-b2ba-f6ac502e052c.png)
+
+## Git으로 Elastic Beanstalk에 배포
+
+먼저 Git(http://git-scm.com)을 설치합니다.   
+Windows와 Mac OS X에서는 아래 주소에서 설치 파일을 다운로드하여 설치하면 됩니다. 
+
+=> Windows : http://msysgit.github.com   
+=> Mac OS X : http://sourceforge.net/projects/git-osx-installer
+
+다음으로 Elastic Beanstalk 명령행 도구가 필요합니다.   
+=> http://aws.amazon.com/code/6752709412171743에 접속하여 Download 버튼을 클릭합니다.
+
+Elastic Beanstalk 명령행 도구를 실행하려면 Python이 필요합니다.   
+=> http://www.python.org/downloads에서 최신 버전의 파이썬을 다운로드 받습니다.
+
+Elastic Beanstalk CLI 압축을 푼 폴더에서 `Git Bash`를 실행합니다.   
+![image](https://user-images.githubusercontent.com/43658658/147895311-0d9e7553-550b-4f0c-98f4-f207bdca825c.png)
+
+Elastic Beanstalk 명령행 도구를 실행하려면 boto(https://github.com/boto/boto)가 필요합니다.   
+
+Git Bash 창에서 아래의 명령어를 입력합니다.   
+```
+# git clone https://github.com/boto/boto.git
+# cd boto
+# ~boto$ sudo python setup.py install      // Windows에서는 sudo를 제외하고 입력합니다.
+# cd ..
+```
+
+애플리케이션 디렉터리를 생성하고, Git 저장소를 초기화합니다.
+경로 : AWSDevTools > Windows > AWSDevTools-RepositorySetup 실행
+
+```
+# mkdir exampleapp
+# cd exampleapp
+# ~exampleapp$ git init
+```
+
+방금 생성한 Git 저장소에 aws.push 명령을 설치합니다.
+
+```
+
+
+
 
 
 
