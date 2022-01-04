@@ -79,6 +79,11 @@ Route 53에 해당 도메인의 레코드를 보면 DKIM과 관련된 CNAME이 3
 
 승인이 되면 이메일로 메일이 수신됩니다.   
 
+프로덕션 액세스 권한을 얻으면, SES 계정이 하루에 보낼 수 있는 메일 개수가 늘어납니다.   
+(이전)   
+![image](https://user-images.githubusercontent.com/43658658/148009012-1f998ae7-f27c-46af-9943-48678a057d0d.png)   
+(이후)   
+
 
 
 
