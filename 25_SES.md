@@ -68,8 +68,16 @@ Route 53에 해당 도메인의 레코드를 보면 DKIM과 관련된 CNAME이 3
 
 ## 프로덕션 액세스 권한 얻기
 
+[SES 콘솔] > [Account Dashboard] > [Request production access]   
+![image](https://user-images.githubusercontent.com/43658658/148008212-31cc5a18-5589-4703-94cf-cff926fb31c9.png)
 
+프로덕션 액세스 권한을 얻기 위해 이메일을 보낼 계획을 작성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/148008702-38e81712-b7ba-424f-8147-5a6479df1377.png)
 
+요청을 제출하면, 24시간 내에 수락 여부를 알려줍니다. 대부분 1 ~ 2시간 후에 승인 판정이 납니다.   
+![image](https://user-images.githubusercontent.com/43658658/148008794-e73e31b1-5458-4258-8baf-f35c31697e30.png)
+
+승인이 되면 이메일로 메일이 수신됩니다.   
 
 
 
