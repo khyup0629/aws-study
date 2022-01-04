@@ -66,6 +66,8 @@ Route 53에 해당 도메인의 레코드를 보면 DKIM과 관련된 CNAME이 3
 잠시 기다리면 도메인이 인증 완료된 것을 확인할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/148002426-3763b8b8-5188-4df2-9a1e-629250985eef.png)
 
+## 프로덕션 액세스 권한 얻기
+
 
 
 
