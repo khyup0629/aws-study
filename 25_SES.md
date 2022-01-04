@@ -84,6 +84,19 @@ Route 53에 해당 도메인의 레코드를 보면 DKIM과 관련된 CNAME이 3
 ![image](https://user-images.githubusercontent.com/43658658/148009012-1f998ae7-f27c-46af-9943-48678a057d0d.png)   
 (이후)   
 
+## SES로 테스트 메일 보내기
+
+## SES SMTP로 테스트 메일 보내기
+
+먼저 SMTP 자격 증명(SMTP 접속에 필요한 IAM 사용자와 비밀번호를 생성)을 생성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/148010108-f1d9d231-c9df-4420-8007-14c3297b102b.png)
+
+IAM 사용자 이름을 확인하고 `생성` 버튼을 누릅니다.   
+![image](https://user-images.githubusercontent.com/43658658/148010283-54232e72-1ad3-430d-8481-c044ebd34da8.png)   
+* IAM 사용자는 아래 JSON 형식의 IAM 정책을 따릅니다.
+
+SES SMTP용 IAM 사용자 생성이 완료되었습니다. 아래의 `자격 증명 다운로드`를 통해 액세스 키, 시크릿 키 파일을 다운로드 받습니다.      
+![image](https://user-images.githubusercontent.com/43658658/148010518-637e8504-7ee1-41d0-b328-b5c0988f4916.png)
 
 
 
