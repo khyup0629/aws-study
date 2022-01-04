@@ -78,6 +78,7 @@ Route 53에 해당 도메인의 레코드를 보면 DKIM과 관련된 CNAME이 3
 ![image](https://user-images.githubusercontent.com/43658658/148008794-e73e31b1-5458-4258-8baf-f35c31697e30.png)
 
 승인이 되면 이메일로 메일이 수신됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/148012891-75b25c24-9284-4c02-a6de-7cd9e2b9540e.png)
 
 프로덕션 액세스 권한을 얻으면, SES 계정이 하루에 보낼 수 있는 메일 개수가 늘어납니다.   
 (이전)   
@@ -86,17 +87,11 @@ Route 53에 해당 도메인의 레코드를 보면 DKIM과 관련된 CNAME이 3
 
 ## SES로 테스트 메일 보내기
 
-## SES SMTP로 테스트 메일 보내기
+[verified identity] > [이메일 선택] > [테스트 이메일 보내기]   
+![image](https://user-images.githubusercontent.com/43658658/148013831-b69f1178-57c0-4a0e-bfff-a36d09927211.png)
 
-먼저 SMTP 자격 증명(SMTP 접속에 필요한 IAM 사용자와 비밀번호를 생성)을 생성합니다.   
-![image](https://user-images.githubusercontent.com/43658658/148010108-f1d9d231-c9df-4420-8007-14c3297b102b.png)
-
-IAM 사용자 이름을 확인하고 `생성` 버튼을 누릅니다.   
-![image](https://user-images.githubusercontent.com/43658658/148010283-54232e72-1ad3-430d-8481-c044ebd34da8.png)   
-* IAM 사용자는 아래 JSON 형식의 IAM 정책을 따릅니다.
-
-SES SMTP용 IAM 사용자 생성이 완료되었습니다. 아래의 `자격 증명 다운로드`를 통해 액세스 키, 시크릿 키 파일을 다운로드 받습니다.      
-![image](https://user-images.githubusercontent.com/43658658/148010518-637e8504-7ee1-41d0-b328-b5c0988f4916.png)
+이메일을 보내는 방식에 대해 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/148013672-3a9d52c3-d185-49c9-a157-49ef275a7865.png)
 
 
 
