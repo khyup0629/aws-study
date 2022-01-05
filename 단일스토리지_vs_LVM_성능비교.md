@@ -80,6 +80,6 @@ sudo fio disktest
 
 ![image](https://user-images.githubusercontent.com/43658658/148198813-df3b0bbe-15f0-4545-8db5-e888b672785e.png)
 
-LVM을 사용하는 가장 큰 이유는 확장성 때문입니다.
+LVM을 사용하는 가장 큰 이유는 확장성 때문입니다.   
 하지만 안정성이 상당히 떨어지기 때문에(디스크 손상 시 복구가 상당히 어렵습니다) 잘 사용하지 않습니다.
 
