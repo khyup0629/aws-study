@@ -65,7 +65,7 @@ sudo fio disktest
 ```
 
 `disktest`에서 설정한 `runtime` 시간(초) 뒤에 결과가 나타납니다.   
-![image](https://user-images.githubusercontent.com/43658658/148196815-7ebd4488-1c70-4a6b-a736-af46b1ba333c.png)   
+![image](https://user-images.githubusercontent.com/43658658/148199256-3069b7e6-7dab-4fcf-b9a5-f671b7473202.png)   
 * group 0 : Read / group 1 : Write 를 의미합니다.
 
 LVM을 구성해줍니다.   
