@@ -65,8 +65,8 @@ sudo fio disktest
 ```
 
 `disktest`에서 설정한 `runtime` 시간(초) 뒤에 결과가 나타납니다.   
-![image](https://user-images.githubusercontent.com/43658658/148196815-7ebd4488-1c70-4a6b-a736-af46b1ba333c.png)
-
+![image](https://user-images.githubusercontent.com/43658658/148196815-7ebd4488-1c70-4a6b-a736-af46b1ba333c.png)   
+* group 0 : Read / group 1 : Write 를 의미합니다.
 
 LVM을 구성해줍니다.   
 => [LVM 구성 방법](https://github.com/khyup0629/aws-study/blob/main/NCP_ENN_Duplication.md#lvm-%EA%B5%AC%EC%84%B1)
@@ -78,18 +78,8 @@ LVM을 구성해줍니다.
 sudo fio disktest
 ```
 
-
-
-
-
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/43658658/148198813-df3b0bbe-15f0-4545-8db5-e888b672785e.png)
 
 LVM을 사용하는 가장 큰 이유는 확장성 때문입니다.
 하지만 안정성이 상당히 떨어지기 때문에(디스크 손상 시 복구가 상당히 어렵습니다) 잘 사용하지 않습니다.
-
 
