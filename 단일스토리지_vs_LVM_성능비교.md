@@ -65,11 +65,11 @@ sudo fio disktest
 ```
 
 `disktest`에서 설정한 `runtime` 시간(초) 뒤에 결과가 나타납니다.   
-![image](https://user-images.githubusercontent.com/43658658/148195610-3e089042-769d-4a8f-bf17-15704f9330f3.png)
+![image](https://user-images.githubusercontent.com/43658658/148196815-7ebd4488-1c70-4a6b-a736-af46b1ba333c.png)
 
 
 LVM을 구성해줍니다.   
-=> [LVM 구성 방법]()
+=> [LVM 구성 방법](https://github.com/khyup0629/aws-study/blob/main/NCP_ENN_Duplication.md#lvm-%EA%B5%AC%EC%84%B1)
 
 마찬가지로 `disktest`의 `filename`의 경로를 수정해주고 `fio` 명령을 실행합니다.   
 (`filename=/dev/mapper/vg이름-lv이름`)   
