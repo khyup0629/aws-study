@@ -140,12 +140,11 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 
 (별도의 환경에 테스트 서버를 구축해서 테스트했습니다)
 
-먼저 1TB + 1TB의 LVM을 구성하고 hello가 적힌 `test.txt`라는 파일을 저장합니다.
+먼저 1TB + 1TB의 LVM을 구성하고 마운트된 폴더에 hello가 적힌 `test.txt`라는 파일을 저장합니다.   
+![image](https://user-images.githubusercontent.com/43658658/148314934-fa83ccaa-4ca7-4aad-9961-0d0dd9a65c7a.png)
 
-볼륨 하나의 용량을 2TB로 확장합니다.
-
-아래와 같이 `/dev/xvdb` 디스크의 용량을 2TB로 확장합니다.   
-![image](https://user-images.githubusercontent.com/43658658/147557714-b345affd-77a9-4743-a7a1-450648e63226.png)
+볼륨 하나의 용량을 2TB로 확장합니다.   
+![image](https://user-images.githubusercontent.com/43658658/148314990-c7770b4f-53a3-430e-9f12-951639a4cbb9.png)
 
 그리고 서버로 접속해 `fdisk -l`를 입력하면 오류가 발생합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147557756-4e8a392d-dfe1-479d-93ea-14e15040f0a3.png)
