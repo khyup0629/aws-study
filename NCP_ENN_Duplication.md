@@ -155,6 +155,34 @@ mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 그 후에 아래와 같이 파티션을 나눠줍니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147557833-bd87fde3-8007-483e-8ba9-d5ca67fac5da.png)
 
+새로 생성된 파티션을 PV로 초기화합니다.   
+![image](https://user-images.githubusercontent.com/43658658/148316411-9f918517-17ff-4225-95cf-96cf5797a022.png)
+
+PV를 기존 VG에 추가합니다.   
+
+```
+vgextend VG이름 파티션이름
+```
+
+`vgdisplay` 명령어로 확장된 용량과 사용 가능한 PE/Size를 확인합니다.
+![image](https://user-images.githubusercontent.com/43658658/148316707-a3fe8f87-12f7-479d-a3f6-ffca5b12a6fc.png)   
+* Free PE / Size 항목을 보고 이후 `lvextend -l 남은PE개수` 또는 `lvextend -L 남은용량`로 기존 LV에 추가합니다.
+
+기존 LV에 새로 생성된 용량을 추가합니다.
+
+```
+lvextend -l +남은PE개수 LV경로
+또는
+lvextend -L +남은용량 LV경로
+```
+
+![image](https://user-images.githubusercontent.com/43658658/148317065-db54a273-50b8-4d1c-945d-9e3db88e4a6f.png)
+
+`vgdisplay`로 남은 PE/용량이 `0/0`인지 확인합니다.   
+![image](https://user-images.githubusercontent.com/43658658/148317137-6408ca8a-2911-42d6-a22a-a9b4eb7661e8.png)
+
+이렇게 기존 LV에 추가 용량을 추가하는 방법을 알아보았습니다.
+
 # ENN 노드 서버 구축
 
 ```
