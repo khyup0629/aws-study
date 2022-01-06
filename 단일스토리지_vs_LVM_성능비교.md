@@ -2,7 +2,8 @@
 
 ## 디스크 성능 테스트 시 고려할 항목
 
-
+* IOPS : 컴퓨터 저장 장치를 벤치마크(일반적으로 컴퓨터, 스마트폰 등 전자기기의 연산성능을 시험하여 수치화하는 것을 말하는 단어)하는데 사용되는 초당 입출력 측정 단위로 `디스크의 속도`와 관련됩니다.
+* BandWidth(bw) : 대역폭으로 주어진 시간 내에 얼마나 많은 정보가 데이터 연결을 통과할 수 있는지를 나타냅니다.
 
 ## 성능 차이 실험
 
@@ -59,7 +60,49 @@ iodepth=4
 numjobs=4
 ```
 
-=> [각 항목의 의미](https://jcil.co.kr/29#:~:text=%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A5%BC%20%EC%B0%B8%EA%B3%A0%ED%95%98%EC%8B%9C%EA%B2%8C%20%ED%8E%B8%ED%95%A9%EB%8B%88%EB%8B%A4.-,fio%20menual,-linux.die.net)
+=> [각 항목의 의미](https://linux.die.net/man/1/fio)
+
+```
+[global]
+# 테스트에서 사용할 IO엔진 : libaio - 리눅스용 엔진
+ioengine=libaio
+# 테스트할 디스크
+filename=/dev/디스크이름
+# job별 리포팅/그룹별 리포팅
+group_reporting=1
+# direct I/O | buffered I/O
+direct=1
+verify=0
+norandommap=1
+# 디스크 전체 파일 생성
+size=100%
+time_based=1
+runtime=300s
+ramp_time=10
+randrepeat=0
+refill_buffers
+log_avg_msec=1000
+log_max_value=1
+unified_rw_reporting=1
+percentile_list=50:99:99.9:99.99:99.999
+
+[4k_randwrite_qd16_4w]
+# 그룹 구분
+stonewall
+# 블럭 사이즈
+bs=4k
+rw=randwrite
+iodepth=4
+# 4번의 테스트 진행
+numjobs=4
+
+[4k_randread_qd16_4w]
+stonewall
+bs=4k
+rw=randread
+iodepth=4
+numjobs=4
+```
 
 `filename`에 작성된 경로를 통해 디스크 성능 테스트를 실시하므로 `테스트를 실시할 디스크경로`로 바꿔줍니다.   
 (이때 마운트한 경로가 아닌 원래의 경로를 작성해주어야 합니다)
