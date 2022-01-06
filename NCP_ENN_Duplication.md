@@ -26,6 +26,8 @@ Network: 1Gbps
 
 ## LVM 구성
 
+`LVM(Logical Volumn Manager)` : 물리 디스크를 볼륨 그룹으로 묶고 이것을 논리 볼륨으로 분할하여 관리하는 기술입니다.
+
 먼저 1TB 스토리지 `3개`를 생성하고 EN 노드 서버와 연결합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147555586-ca63398f-b716-4c9e-975e-501c79a04ffa.png)
 
@@ -41,7 +43,7 @@ EN 노드 서버로 PuTTy를 이용해 SSH 접속합니다.
 parted /dev/xvdb                // `parted /디스크이름`
 (parted) mklabel gpt            // 파티션을 GPT 방식(2TB 이상으로 나눌 때 사용)으로 설정합니다.
 (parted) mkpart primary 0 100%  // 디스크 전체를 하나의 파티션으로 만듭니다.
-(parted) set 1 lvm on           // 방금 생성한 첫 번째 파티션(1)을 LVM 사용 가능하도록 설정합니다.
+(parted) set 1 lvm on           // 방금 생성한 첫 번째 파티션(1)을 LVM에서 사용 가능하도록 설정합니다.
 (parted) p                      // p(print)로 파티션 설정을 확인합니다.
 (parted) quit
 partprobe /dev/xvdb1            // 파티션 설정을 갱신합니다.
@@ -51,7 +53,7 @@ partprobe /dev/xvdb1            // 파티션 설정을 갱신합니다.
 parted /dev/xvdc                // `parted /디스크이름`
 (parted) mklabel gpt            // 파티션을 GPT 방식(2TB 이상으로 나눌 때 사용)으로 설정합니다.
 (parted) mkpart primary 0 100%  // 디스크 전체를 하나의 파티션으로 만듭니다.
-(parted) set 1 lvm on           // 방금 생성한 첫 번째 파티션(1)을 LVM 사용 가능하도록 설정합니다.
+(parted) set 1 lvm on           // 방금 생성한 첫 번째 파티션(1)을 LVM에서 사용 가능하도록 설정합니다.
 (parted) p                      // p(print)로 파티션 설정을 확인합니다.
 (parted) quit
 partprobe /dev/xvdc1            // 파티션 설정을 갱신합니다.
@@ -61,7 +63,7 @@ partprobe /dev/xvdc1            // 파티션 설정을 갱신합니다.
 parted /dev/xvdd                // `parted /디스크이름`
 (parted) mklabel gpt            // 파티션을 GPT 방식(2TB 이상으로 나눌 때 사용)으로 설정합니다.
 (parted) mkpart primary 0 100%  // 디스크 전체를 하나의 파티션으로 만듭니다.
-(parted) set 1 lvm on           // 방금 생성한 첫 번째 파티션(1)을 LVM 사용 가능하도록 설정합니다.
+(parted) set 1 lvm on           // 방금 생성한 첫 번째 파티션(1)을 LVM에서 사용 가능하도록 설정합니다.
 (parted) p                      // p(print)로 파티션 설정을 확인합니다.
 (parted) quit
 partprobe /dev/xvdd1            // 파티션 설정을 갱신합니다.
@@ -69,7 +71,13 @@ partprobe /dev/xvdd1            // 파티션 설정을 갱신합니다.
 
 `fdisk -l` 명령을 통해 파티션이 정상적으로 나누어졌는지 확인합니다.
 
-> <h3>Physical Volumn 생성</h3>
+> <h3>Physical Volumn(PV) 생성</h3>
+
+각 파타션을 `LVM에서 사용할 수 있도록` 하기 위해서 PV로 만들어주어야 합니다.
+
+PV는 일정한 크기의 PE(Physical Extent)들로 구성됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/148312332-3bb01238-f077-4928-a10d-7288b812935b.png)   
+PV를 구성하는 일정한 크기의 블록으로 LV(Logical Volume)의 `LE`(Logical Extent)들과 1:1로 대응됩니다.
 
 ```
 pvcreate /dev/xvdb1   // `pvcreate /파티션이름` : 파티션을 pv(Physical Volumn)로 생성합니다.
@@ -80,12 +88,23 @@ pvdisplay             // pv들의 정보를 보여줍니다.
 
 > <h3>Volumn Group 생성</h3>
 
+다음으로 PV들로 초기화된 장치들을 `VG`로 통합합니다.
+
+VG는 `PV들의 집합`으로 `LV를 할당할 수 있는 공간`입니다.   
+사용자는 VG안에서 원하는대로 공간을 쪼개서 LV로 만들 수 있습니다.
+
 ```
 vgcreate klaytn-data /dev/xvdb1 /dev/xvdc1 /dev/xvdd1 // `vgcreate vg이름 /파티션이름1, /파티션이름2, ...` : [vg이름]으로 [파티션]들을 모두 vg으로 묶습니다.
 vgdisplay // vg들의 정보를 보여줍니다.
 ```
 
 > <h3>Logical Volumn 생성</h3>
+
+LV는 사용자가 최종적으로 다루게 되는 논리적인 스토리지입니다.
+
+LV는 일정한 크기의 LE(Logical Extent)들로 구성됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/148312664-ccf73d87-11c3-4eee-a7ee-05910a10eecd.png)      
+`LE`(Logical Extent)는 PE들과 1:1로 맵핑됩니다.
 
 ```
 lvcreate -l 100%FREE -n klaytn-data klaytn-data // `lvcreate -l 100%FREE -n lvm이름 vg이름` : [vg이름]의 전체 남은 용량(100%FREE)을 [lvm이름]의 LVM으로 생성합니다.
@@ -117,7 +136,13 @@ mkdir /klay-data  // LVM을 마운트할 klay-data 디렉토리를 만듭니다.
 mount -a // fstab 파일에 설정된대로 마운트를 진행합니다.
 ```
 
-## LVM 용량 추가 후 파티션 추가하기
+## 용량 추가 후 LVM에 추가하기
+
+(별도의 환경에 테스트 서버를 구축해서 테스트했습니다)
+
+먼저 1TB + 1TB의 LVM을 구성하고 hello가 적힌 `test.txt`라는 파일을 저장합니다.
+
+볼륨 하나의 용량을 2TB로 확장합니다.
 
 아래와 같이 `/dev/xvdb` 디스크의 용량을 2TB로 확장합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/147557714-b345affd-77a9-4743-a7a1-450648e63226.png)
