@@ -20,6 +20,8 @@ sudo apt update
 sudo apt install fio -y
 ```
 
+> <h3>단일 스토리지 성능 측정</h3>
+
 먼저 단일 스토리지를 포맷합니다.
 
 ```
@@ -79,6 +81,7 @@ norandommap=1
 # 디스크 전체 파일 생성
 size=100%
 time_based=1
+# runtime 시간동안 실행
 runtime=300s
 ramp_time=10
 randrepeat=0
@@ -115,21 +118,27 @@ numjobs=4
 sudo fio disktest
 ```
 
-`disktest`에서 설정한 `runtime` 시간(초) 뒤에 결과가 나타납니다.   
-![image](https://user-images.githubusercontent.com/43658658/148199256-3069b7e6-7dab-4fcf-b9a5-f671b7473202.png)   
-* group 0 : Read / group 1 : Write 를 의미합니다.
+단일 스토리지의 성능 테스트 결과입니다.   
+![image](https://user-images.githubusercontent.com/43658658/148331493-8fa12bb6-9ce7-4af4-8cc4-41c1b44808d6.png)   
+* group 0 : Write / group 1 : Read 를 의미합니다.
+* group_reporting을 설정해주었기 때문에 job 별이 아닌 그룹별(Read, Write)로 평균값이 출력됩니다(numjobs=4 이므로 총 4번의 테스트 결과의 평균).
+
+> <h3>LVM 성능 측정</h3>
 
 LVM을 구성해줍니다.   
 => [LVM 구성 방법](https://github.com/khyup0629/aws-study/blob/main/NCP_ENN_Duplication.md#lvm-%EA%B5%AC%EC%84%B1)
 
 마찬가지로 `disktest`의 `filename`의 경로를 수정해주고 `fio` 명령을 실행합니다.   
-(`filename=/dev/mapper/vg이름-lv이름`)   
+(`filename=/dev/vg이름/lv이름`)   
 
 ```
 sudo fio disktest
 ```
 
+LV의 성능 테스트 결과입니다.   
 ![image](https://user-images.githubusercontent.com/43658658/148198813-df3b0bbe-15f0-4545-8db5-e888b672785e.png)
+
+> <h3>결과 정리</h3>
 
 위 테스트 결과와 같이 IOPS, BW 상으로 성능에 큰 차이는 없습니다.
 
