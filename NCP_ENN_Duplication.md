@@ -169,7 +169,7 @@ PV를 기존 VG에 추가합니다.
 vgextend VG이름 파티션이름
 ```
 
-`vgdisplay` 명령어로 확장된 용량과 사용 가능한 PE/Size를 확인합니다.
+`vgdisplay` 명령어로 확장된 용량과 사용 가능한 PE/Size를 확인합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/148316707-a3fe8f87-12f7-479d-a3f6-ffca5b12a6fc.png)   
 * Free PE / Size 항목을 보고 이후 `lvextend -l 남은PE개수` 또는 `lvextend -L 남은용량`로 기존 LV에 추가합니다.
 
