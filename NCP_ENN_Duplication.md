@@ -73,7 +73,7 @@ partprobe /dev/xvdd1            // 파티션 설정을 갱신합니다.
 
 > <h3>Physical Volumn(PV) 생성</h3>
 
-각 파타션을 `LVM에서 사용할 수 있도록` 하기 위해서 PV로 만들어주어야 합니다.
+각 파티션을 `LVM에서 사용할 수 있도록` 하기 위해서 PV로 만들어주어야 합니다.
 
 PV는 일정한 크기의 PE(Physical Extent)들로 구성됩니다.   
 ![image](https://user-images.githubusercontent.com/43658658/148312332-3bb01238-f077-4928-a10d-7288b812935b.png)   
