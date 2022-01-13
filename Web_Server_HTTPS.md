@@ -6,14 +6,14 @@
 
 톰캣은 웹 서버와 연동하여 실행할 수 있는 자바 환경을 제공하여 자바서버 페이지(JSP)와 자바 서블릿이 실행할 수 있는 환경을 제공하고 있다.
 
-1. tomcat 압축 파일 다운로드
+> <h3>1. tomcat 압축 파일 다운로드</h3>
 
 아래의 아파치 사이트에 접속 후 8버전 Tomcat의 `.zip(윈도우)` 파일을 다운로드 합니다.   
 => tomcat.apache.org/download-80.cgi
 
 ![image](https://user-images.githubusercontent.com/43658658/149268432-4744ff7d-1af3-4919-aafa-1c46ff4e3215.png)
 
-2. C 드라이브에 압축을 해제합니다.
+> <h3>2. C 드라이브에 압축을 해제합니다.</h3>
 
 ![image](https://user-images.githubusercontent.com/43658658/149268616-0800761e-2cf1-46bc-ad4a-a049a01a207b.png)
 
