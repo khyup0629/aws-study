@@ -255,8 +255,17 @@ openssl pkcs12 -export -in localhost.crt -inkey localhost_private.key -out keyst
            keystoreFile="keystore 파일 경로" keystorePass="keystore 파일 비밀번호"
            clientAuth="false" sslProtocol="TLS" />
 ```   
+![image](https://user-images.githubusercontent.com/43658658/149298609-88e51b71-12d1-40af-9449-353c8d5d9f6e.png)
 
+8443 포트로 접속합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149299531-94c8ecea-976e-473d-a207-a2a0c058b5e5.png)
 
+웹서버로 부터 받은 인증서를 보증 해줄 인증기관의 인증서가 웹브라우저에는 없으므로 신뢰할 수 없다고 나옵니다.
+
+> <h3>7. 사설 root 인증서 설치하기</h3>
+
+웹 브라우저에서 `도구 -> 인터넷 옵션 -> 내용 -> 인증서`를 클릭합니다.
+신뢰할 수 있는 루트 인증기관 탭에서 "가져오기" 를 실행하여 앞에서 만든 `rootca.crt`를 가져옵니다.
 
 
 
