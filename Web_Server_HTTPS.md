@@ -56,6 +56,36 @@ C:\apache-tomcat-8.5.73\bin> startup.bat
 `JDK 파일`을 설치해 주어야 합니다.
 JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다.
 
+아래의 경로로 접속해 JDK 파일을 설치합니다.   
+=> https://www.oracle.com/java/technologies/downloads/#jdk17-windows   
+![image](https://user-images.githubusercontent.com/43658658/149274418-ae020737-f012-4148-98e9-84412599524d.png)
+
+실행 파일을 열고 설치를 진행합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149274625-df256b16-4d9d-4034-bfe1-659db06843ad.png)
+
+기본적으로 경로는 `C:\Program Files\JAVA\jdk-버전`에 설치됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/149274770-ee0eafa7-5822-48db-bdb0-d3b43109ba80.png)
+
+이제 윈도우 환경 변수에 `JAVA_HOME`를 추가합니다.
+
+먼저 `시스템 정보 > 소프트웨어 환경 > 환경 변수`에서 `JAVA_HOME`에 대한 정보를 찾아봅니다.   
+![image](https://user-images.githubusercontent.com/43658658/149275806-4e406a4f-b0a4-4c80-aaa7-e7ff7fcf303c.png)
+
+정보가 없다면, `제어판(Control Panel) > 시스템 및 보안 > 시스템 > 설정 변경 > 고급 > 환경변수`에서 `JAVA_HOME`에 대한 환경 변수를 추가합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149275588-2c717e08-dc90-4f97-8c9e-4166fba0d2e6.png)
+
+
+
+
+```
+JAVA_HOME
+C:\Program Files\Java\jdk1.8.0_91
+```
+
+
+
+6. 오류 해결 2
+
 `Windows 2016 Server`는 설치될 때 `인터넷 익스플로러`만 설치되어 있습니다.   
 
 인터넷 익스플로러를 통해서 `오라클 홈페이지`에 접속하면 호환성 문제로 화면이 제대로 출력되지 않습니다.   
@@ -79,7 +109,6 @@ JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다
 
 크롬을 통해 `오라클 홈페이지`에 접속하면 정상적으로 화면이 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149274000-1304f19e-f61c-46ce-b48f-6aaada6904f0.png)
-
 
 
 
