@@ -99,6 +99,15 @@ JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다
 `JAVA_HOME`이 추가되었습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149278969-ffd7585a-af11-4bfa-b513-54774e79618d.png)
 
+```
+(깨알 팁!)
+
+환경 변수가 적용이 안될 때,
+
+1. 재부팅
+2. cmd에서 `taskkill /f /im /explorer.exe` 후 `explorer.exe`
+```
+
 > <h3>인터넷 익스플로러 호환성 문제 & 크롬 .exe 파일 다운 차단 해결</h3>
 
 `Windows 2016 Server`는 설치될 때 `인터넷 익스플로러`만 설치되어 있습니다.   
@@ -148,10 +157,26 @@ C 드라이브에 압축을 풉니다.
 
 cmd를 `관리자 권한`으로 실행합니다.
 
-먼저, 2048bit 개인키를 생성하는데, 분실에 대비해서 AES256으로 암호화 합니다.
-
 `C:`에 `cert` 폴더를 만들고 안에서 작업합니다.   
 `C:\cert>`
+
+먼저, 2048bit `개인 키`를 생성하는데, 분실에 대비해서 AES256으로 암호화 합니다.   
+```
+openssl genrsa -aes256 -out rootca_private.key 2048
+```   
+![image](https://user-images.githubusercontent.com/43658658/149290044-996c1abf-5413-45a4-b599-60bfcec1caf9.png)
+* 적당한 비밀번호를 입력합니다.
+
+`C:\cert\rootca_private.key`가 생성되었습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149290207-f71292f2-f77e-44ec-baeb-946c027028dd.png)
+
+인증서를 발급받기 위해서는 나의 공개 키와 도메인 정보를 담은 .csr 파일을 만들어서 인증기관에 보냅니다.   
+현재는 자신이 인증기관이 되어 인증서를 발급하므로 인증기관의 공개 키를 `자신의 개인 키`로 서명하여 만들게 됩니다.   
+```
+openssl req -new -key rootca_private.key -out rootca.csr -config C:\openssl-0.9.8k_X64\openssl.cnf
+```   
+![image](https://user-images.githubusercontent.com/43658658/149291112-977f1ef9-d635-4ad3-b311-274051106237.png)
+
 
 
 
