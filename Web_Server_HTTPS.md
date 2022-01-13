@@ -43,17 +43,23 @@ C:\apache-tomcat-8.5.73\bin> service.bat install
 
 4. tomcat 실행
 
-```
-C:\apache-tomcat-8.5.73\bin> startup.bat
-```
+tomcat이 설치된 경로의 `bin` 폴더로 들어가서 `tomcat8w.exe` 파일을 실행합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149280341-e0d4f5e5-b42f-43a3-9be3-14167e9c3378.png)
+
+`start` 버튼을 누르면, `Service Status` 상태가 `Started`로 변경됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/149280795-7d302a84-ee89-4959-ab7c-8069ee952e22.png)   
+![image](https://user-images.githubusercontent.com/43658658/149280769-11472062-272f-4fc0-b919-022e63c5781e.png)
 
 5. 오류 해결
 
-`startup.bat` 명령을 통해 `startup.bat` 파일을 실행하면 tomcat이 실행되어야 하는데, 아래의 메시지가 나오며 실행되지 않는 경우가 있습니다.   
-![image](https://user-images.githubusercontent.com/43658658/149271814-2a7afe63-5330-4a60-9d6b-13ce234c59cb.png)   
-* JAVA_HOME 이 설정 안되서 발생한 문제라는 걸 알 수 있습니다.
+tomcat을 실행시켜도 시작되지 않는 오류가 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149280939-3faa0371-3794-4db3-9051-35a07990251f.png)
 
-`JDK 파일`을 설치해 주어야 합니다.
+cmd를 관리자 권한으로 열고 `startup.bat` 명령을 통해 tomcat을 실행하면 아래의 메시지가 나옵니다.   
+![image](https://user-images.githubusercontent.com/43658658/149271814-2a7afe63-5330-4a60-9d6b-13ce234c59cb.png)   
+* 환경 변수 `JAVA_HOME`이 설정되지 않아 발생한 문제라는 걸 알 수 있습니다.
+
+`JDK 파일`을 설치해 주어야 합니다.   
 JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다.
 
 아래의 경로로 접속해 JDK 파일을 설치합니다.   
@@ -74,15 +80,19 @@ JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다
 정보가 없다면, `제어판(Control Panel) > 시스템 및 보안 > 시스템 > 설정 변경 > 고급 > 환경변수`에서 `JAVA_HOME`에 대한 환경 변수를 추가합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149275588-2c717e08-dc90-4f97-8c9e-4166fba0d2e6.png)
 
+`시스템 변수`를 새로 만듭니다.   
+![image](https://user-images.githubusercontent.com/43658658/149277895-272daa9b-d245-4459-8d76-b8769151e957.png)
 
+환경 변수명과 `디렉터리 찾아보기` 버튼을 클릭해 JDK 파일 경로(PATH)를 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149280150-d4e76b8b-fc7c-44fe-a62b-9e88a99216a8.png)   
 
+![image](https://user-images.githubusercontent.com/43658658/149278112-3091d3de-649c-4c06-b402-d1400e49b5c5.png)
 
-```
-JAVA_HOME
-C:\Program Files\Java\jdk1.8.0_91
-```
+`시스템 변수`의 `Path` 변수를 선택하고 편집합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149278786-574b21e5-1d6d-4e15-8796-35c8c408e701.png)
 
-
+`JAVA_HOME`이 추가되었습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149278969-ffd7585a-af11-4bfa-b513-54774e79618d.png)
 
 6. 오류 해결 2
 
