@@ -17,7 +17,7 @@
 
 ![image](https://user-images.githubusercontent.com/43658658/149268616-0800761e-2cf1-46bc-ad4a-a049a01a207b.png)
 
-3. tomcat 설치
+> <h3>3. tomcat 설치</h3>
 
 `관리자 권한`으로 `cmd`를 실행합니다.   
 tomcat의 압축을 푼 폴더의 `bin` 폴더로 들어가 명령을 실행합니다.
@@ -28,7 +28,7 @@ C:\apache-tomcat-8.5.73\bin> service.bat install
 
 ![image](https://user-images.githubusercontent.com/43658658/149269064-26d6d986-eb0e-4a54-8f47-bd18dee294d5.png)
 
-4. tomcat 실행
+> <h3>4. tomcat 실행</h3>
 
 tomcat이 설치된 경로의 `bin` 폴더로 들어가서 `tomcat8w.exe` 파일을 실행합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149280341-e0d4f5e5-b42f-43a3-9be3-14167e9c3378.png)
@@ -40,7 +40,7 @@ tomcat이 설치된 경로의 `bin` 폴더로 들어가서 `tomcat8w.exe` 파일
 웹 브라우저를 열고 `127.0.0.1:8080`으로 접속하면 아래와 같은 화면이 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149281483-4bb4ca86-efe0-4835-bba9-253031da4764.png)
 
-5. 오류 해결
+> <h3>tomcat이 실행되지 않는 오류</h3>
 
 tomcat을 실행시켜도 시작되지 않는 오류가 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149281535-c1d45176-74aa-466d-9e74-9654a16f82ba.png)
@@ -84,7 +84,7 @@ JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다
 `JAVA_HOME`이 추가되었습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149278969-ffd7585a-af11-4bfa-b513-54774e79618d.png)
 
-6. 오류 해결 2
+> <h3>인터넷 익스플로러 호환성 문제 & 크롬 .exe 파일 다운 차단 해결</h3>
 
 `Windows 2016 Server`는 설치될 때 `인터넷 익스플로러`만 설치되어 있습니다.   
 
