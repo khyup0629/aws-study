@@ -6,19 +6,6 @@
 
 톰캣은 웹 서버와 연동하여 실행할 수 있는 자바 환경을 제공하여 자바서버 페이지(JSP)와 자바 서블릿이 실행할 수 있는 환경을 제공하고 있다.
 
-1. tomcat 실행 파일(.exe) 다운로드
-
-![image](https://user-images.githubusercontent.com/43658658/149269846-d52333f8-82e8-4ac8-8578-444d67e89c0f.png)
-
-2. 다운 받은 실행 파일을 실행해서 설치를 진행합니다.
-
-![image](https://user-images.githubusercontent.com/43658658/149269891-f1385a5b-32df-4499-85b8-75486da6819e.png)
-
-Tomcat 밑의 `Service Startup`, `native`를 체크하여, tomcat을 서비스로 실행할 수 있도록 합니다.   
-![image](https://user-images.githubusercontent.com/43658658/149270038-843b56bd-4335-4fcb-9f44-d15cac0fb05e.png)
-
-
-
 1. tomcat 압축 파일 다운로드
 
 아래의 아파치 사이트에 접속 후 8버전 Tomcat의 `.zip(윈도우)` 파일을 다운로드 합니다.   
@@ -50,12 +37,15 @@ tomcat이 설치된 경로의 `bin` 폴더로 들어가서 `tomcat8w.exe` 파일
 ![image](https://user-images.githubusercontent.com/43658658/149280795-7d302a84-ee89-4959-ab7c-8069ee952e22.png)   
 ![image](https://user-images.githubusercontent.com/43658658/149280769-11472062-272f-4fc0-b919-022e63c5781e.png)
 
+웹 브라우저를 열고 `127.0.0.1:8080`으로 접속하면 아래와 같은 화면이 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/149281483-4bb4ca86-efe0-4835-bba9-253031da4764.png)
+
 5. 오류 해결
 
 tomcat을 실행시켜도 시작되지 않는 오류가 있습니다.   
-![image](https://user-images.githubusercontent.com/43658658/149280939-3faa0371-3794-4db3-9051-35a07990251f.png)
+![image](https://user-images.githubusercontent.com/43658658/149281535-c1d45176-74aa-466d-9e74-9654a16f82ba.png)
 
-cmd를 관리자 권한으로 열고 `startup.bat` 명령을 통해 tomcat을 실행하면 아래의 메시지가 나옵니다.   
+cmd를 `관리자 권한`으로 열고 `startup.bat` 명령을 통해 tomcat을 실행하면 아래의 메시지가 나옵니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149271814-2a7afe63-5330-4a60-9d6b-13ce234c59cb.png)   
 * 환경 변수 `JAVA_HOME`이 설정되지 않아 발생한 문제라는 걸 알 수 있습니다.
 
