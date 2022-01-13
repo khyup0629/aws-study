@@ -279,5 +279,8 @@ tomcat을 `재실행`하고 `8443 포트`로 접속합니다.
 이제 `https://localhost:8443`으로 접속하면 HTTPS 접속이 되는 것을 확인할 수 있습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149309727-eb146cea-8327-40a2-aa95-28473caa1e00.png)
 
+> <h3>IE는 되고 Chrome은 안되는 이유</h3>
+
+킹리적 갓심으로는 `.csr`을 생성할 때 무결성을 입증하는 서명 알고리즘인 `SHA256`를 옵션으로 주지 않아서 인 것 같다.
 
 
