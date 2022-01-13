@@ -231,8 +231,22 @@ openssl x509 -req -days 1825 -extensions v3_user -in localhost.csr -CA rootca.cr
 드디어 웹서버를 HTTPS로 사용할 수 있는 SSL 인증서를 발급 받았습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149294232-832a7e46-693a-4f80-af22-e0c39140bfb4.png)
 
+> <h3>7. tomcat용 인증서 파일(keystore) 생성</h3>
 
+웹 서버용 인증서와 개인 키를 이용해서 `Tomcat`용 인증서 파일인 `keystore`를 생성합니다.   
+```
+openssl pkcs12 -export -in localhost.crt -inkey localhost_private.key -out keystore -name "localhost cert"
+```   
+![image](https://user-images.githubusercontent.com/43658658/149294721-9a83ca9d-2fe1-447d-8b9e-e8ececad8d53.png)   
+- `-name` 옵션은 `keystore`의 `alias`
+- Enter pass phrase for localhost_private.key: 웹 서버용 개인 키 비밀번호를 입력합니다.
+- Enter Export Password: 키스토어 비밀번호를 입력합니다.
+- Verifying - Enter Export Password: 키스토어 비밀번호를 확인합니다.
 
+`keystore` 파일이 생성되었습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149294940-ca595e11-d18f-49f7-aae0-cb1ac9451da2.png)
+
+> <h3>8. Tomcat 설정</h3>
 
 
 
