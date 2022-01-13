@@ -153,7 +153,7 @@ C 드라이브에 압축을 풉니다.
 ![image](https://user-images.githubusercontent.com/43658658/149287155-d265810d-5ee6-4e3b-bcd5-ec6036688597.png)
 * 이 설정을 완료하면 cmd에서 openssl 명령을 사용할 수 있습니다.
 
-> <h3>2. CA가 사용할 RSA 키 페어 만들기</h3>
+> <h3>2. CA가 사용할 RSA 개인 키 만들기</h3>
 
 cmd를 `관리자 권한`으로 실행합니다.
 
@@ -170,12 +170,33 @@ openssl genrsa -aes256 -out rootca_private.key 2048
 `C:\cert\rootca_private.key`가 생성되었습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149290207-f71292f2-f77e-44ec-baeb-946c027028dd.png)
 
-인증서를 발급받기 위해서는 나의 공개 키와 도메인 정보를 담은 .csr 파일을 만들어서 인증기관에 보냅니다.   
+> <h3>3. .csr 파일 만들기</h3>
+
+인증서를 발급받기 위해서는 나의 공개 키와 도메인 정보를 담은 `.csr 파일`을 만들어서 인증기관에 보냅니다.   
+
 현재는 자신이 인증기관이 되어 인증서를 발급하므로 인증기관의 공개 키를 `자신의 개인 키`로 서명하여 만들게 됩니다.   
 ```
 openssl req -new -key rootca_private.key -out rootca.csr -config C:\openssl-0.9.8k_X64\openssl.cnf
 ```   
 ![image](https://user-images.githubusercontent.com/43658658/149291112-977f1ef9-d635-4ad3-b311-274051106237.png)
+* Enter pass phrase for rootca_private.key: 개인키 비밀번호를 입력합니다.
+* 인적 사항들을 입력합니다.
+* Email Address[]:, A challenge password[]:, An optional company name []: 엔터만 치고 넘어갑니다.
+
+rootca.csr 파일이 만들어졌습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149292034-106cabc7-21f1-4264-a388-ab4a20f81ef6.png)
+
+> <h3>4. 10년짜리 self-signed 인증서 만들기</h3>
+
+자신이 인증기관이므로 `.csr 파일`을 자신의 인증기관 `개인 키`로 `서명`합니다.   
+```
+openssl x509 -req -days 3650 -extensions v3_ca -set_serial 1 -in rootca.csr -signkey rootca_private.key -out rootca.crt
+```   
+![image](https://user-images.githubusercontent.com/43658658/149291859-4331200b-6c1a-4d2f-8ac6-7f0971f51f96.png)
+
+rootca 인증서가 만들어졌습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149292088-7b5fe19b-37df-4608-a346-2bf8fa95ed11.png)
+
 
 
 
