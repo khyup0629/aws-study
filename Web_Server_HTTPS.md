@@ -125,6 +125,34 @@ JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다
 크롬을 통해 `오라클 홈페이지`에 접속하면 정상적으로 화면이 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149274000-1304f19e-f61c-46ce-b48f-6aaada6904f0.png)
 
+## 인증서 발급
+
+사이트에 SSL을 적용하려면 인증기관으로부터 인증서를 발급받아 tomcat에 설치해야 합니다.
+
+> <h3>1. openssl 설치</h3>
+
+무료로 인증서를 발급 받을 수 있는 `openssl`을 설치해 보겠습니다.   
+
+아래의 사이트에 접속해서 `openssl-0.9.8k_X64.zip` 파일을 다운로드 받습니다.   
+=> https://code.google.com/archive/p/openssl-for-windows/downloads   
+![image](https://user-images.githubusercontent.com/43658658/149285498-2b9bc134-a4e7-42ed-b391-9dbb2a959cfb.png)
+
+C 드라이브에 압축을 풉니다.   
+![image](https://user-images.githubusercontent.com/43658658/149285711-919f9fbc-d08a-409a-be48-e51a5996532e.png)
+
+[제어판] > [시스템 및 보안] > [시스템] > [설정 변경] > [고급] > [환경 변수] > path를 편집합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149287155-d265810d-5ee6-4e3b-bcd5-ec6036688597.png)
+* 이 설정을 완료하면 cmd에서 openssl 명령을 사용할 수 있습니다.
+
+> <h3>2. CA가 사용할 RSA 키 페어 만들기</h3>
+
+cmd를 `관리자 권한`으로 실행합니다.
+
+먼저, 2048bit 개인키를 생성하는데, 분실에 대비해서 AES256으로 암호화 합니다.
+
+`C:`에 `cert` 폴더를 만들고 안에서 작업합니다.   
+`C:\cert>`
+
 
 
 
