@@ -40,6 +40,21 @@ tomcat이 설치된 경로의 `bin` 폴더로 들어가서 `tomcat8w.exe` 파일
 웹 브라우저를 열고 `127.0.0.1:8080`으로 접속하면 아래와 같은 화면이 나타납니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149281483-4bb4ca86-efe0-4835-bba9-253031da4764.png)
 
+> <h3>5. 웹 루트 디렉토리 확인</h3>
+
+tomcat의 웹 루트 디렉토리는 `tomcat 디렉토리\webapps\ROOT` 내에 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149282368-5981a749-d096-47ed-8993-053424a59e2a.png)
+
+경로 내에 `test.jsp` 파일을 아래와 같은 내용으로 만들고 웹 브라우저로 접속해봅니다.   
+```
+<%
+	out.println("Tomcat Install");
+%>
+```
+
+정상적으로 나타나는 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149282750-41f2d5cf-34ee-4095-9c3e-098995097d69.png)
+
 > <h3>tomcat이 실행되지 않는 오류</h3>
 
 tomcat을 실행시켜도 시작되지 않는 오류가 있습니다.   
