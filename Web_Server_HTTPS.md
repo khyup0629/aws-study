@@ -194,9 +194,42 @@ openssl x509 -req -days 3650 -extensions v3_ca -set_serial 1 -in rootca.csr -sig
 ```   
 ![image](https://user-images.githubusercontent.com/43658658/149291859-4331200b-6c1a-4d2f-8ac6-7f0971f51f96.png)
 
-rootca 인증서가 만들어졌습니다.   
+rootca 인증서(`인증기관의 인증서`)가 만들어졌습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149292088-7b5fe19b-37df-4608-a346-2bf8fa95ed11.png)
 
+`openssl x509 -text -in rootca.crt` 명령으로 인증서 내용 확인 가능.   
+
+> <h3>5. 웹 서버가 사용할 .csr 파일 만들기</h3>
+
+이제 웹서버에 필요한 키와 .csr 파일을 생성합니다.   
+생성 방법은 위에서 작업한 것과 거의 비슷한 과정을 거치게 됩니다.
+
+```
+openssl genrsa -aes256 -out localhost_private.key 2048
+```   
+![image](https://user-images.githubusercontent.com/43658658/149292760-859d49c0-ec9b-4ad2-bf7a-763bf2ead111.png)
+
+`웹 서버 개인 키` 생성.   
+![image](https://user-images.githubusercontent.com/43658658/149292849-b1935caf-530f-4f9f-af13-a5548baa6604.png)
+
+```
+openssl req -new -key localhost_private.key -out localhost.csr -config C:\openssl-0.9.8k_X64\openssl.cnf
+```   
+![image](https://user-images.githubusercontent.com/43658658/149293363-609b3b10-7ce0-48cf-a78d-367161362225.png)
+
+`웹 서버 .csr 파일` 생성.   
+![image](https://user-images.githubusercontent.com/43658658/149293435-14a50398-aaa5-4337-8d31-790ae625f9f8.png)
+
+> <h3>6. 5년짜리 localhost용 SSL 인증서 발급하기(CA 개인키로 서명)</h3>
+
+localhost용 인증서를 발급합니다. 이전에 생성한 인증기관(`rootca`)의 인증서와 개인키로 서명합니다.   
+```
+openssl x509 -req -days 1825 -extensions v3_user -in localhost.csr -CA rootca.crt -CAcreateserial -CAkey rootca_private.key -out localhost.crt
+```   
+![image](https://user-images.githubusercontent.com/43658658/149293899-613da3e2-bd88-4681-bbbd-2d7d1b18796a.png)
+
+드디어 웹서버를 HTTPS로 사용할 수 있는 SSL 인증서를 발급 받았습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149294232-832a7e46-693a-4f80-af22-e0c39140bfb4.png)
 
 
 
