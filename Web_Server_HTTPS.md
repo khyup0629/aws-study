@@ -248,6 +248,13 @@ openssl pkcs12 -export -in localhost.crt -inkey localhost_private.key -out keyst
 
 > <h3>8. Tomcat 설정</h3>
 
+이전에 설치한 tomcat의 디렉토리 경로(`C:\apache-tomcat-8.5.73\conf`) 안의 `server.xml` 파일에 다음 내용을 추가합니다.   
+```
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11Protocol"
+           maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+           keystoreFile="keystore 파일 경로" keystorePass="keystore 파일 비밀번호"
+           clientAuth="false" sslProtocol="TLS" />
+```   
 
 
 
