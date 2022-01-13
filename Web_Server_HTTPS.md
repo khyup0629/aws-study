@@ -260,7 +260,7 @@ openssl pkcs12 -export -in localhost.crt -inkey localhost_private.key -out keyst
 * keystorePass="keystore 파일 비밀번호"
 
 tomcat을 `재실행`하고 `8443 포트`로 접속합니다.   
-![image](https://user-images.githubusercontent.com/43658658/149299531-94c8ecea-976e-473d-a207-a2a0c058b5e5.png)
+![image](https://user-images.githubusercontent.com/43658658/149309882-c60a6a48-bcd5-41f2-85e0-fd2fb87cf0ac.png)
 
 웹서버로 부터 받은 인증서를 보증 해줄 인증기관의 인증서가 웹브라우저에는 없으므로 신뢰할 수 없다고 나옵니다.
 
@@ -276,6 +276,8 @@ tomcat을 `재실행`하고 `8443 포트`로 접속합니다.
 `신뢰할 수 있는 루트 인증기관`에 사설 root 인증서(`rootca`)가 등록되었습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149301409-46c4f98b-50aa-410b-976b-058894e561bd.png)
 
+이제 `https://localhost:8443`으로 접속하면 HTTPS 접속이 되는 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149309727-eb146cea-8327-40a2-aa95-28473caa1e00.png)
 
 
 
