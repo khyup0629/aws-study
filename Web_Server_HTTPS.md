@@ -6,6 +6,19 @@
 
 톰캣은 웹 서버와 연동하여 실행할 수 있는 자바 환경을 제공하여 자바서버 페이지(JSP)와 자바 서블릿이 실행할 수 있는 환경을 제공하고 있다.
 
+1. tomcat 실행 파일(.exe) 다운로드
+
+![image](https://user-images.githubusercontent.com/43658658/149269846-d52333f8-82e8-4ac8-8578-444d67e89c0f.png)
+
+2. 다운 받은 실행 파일을 실행해서 설치를 진행합니다.
+
+![image](https://user-images.githubusercontent.com/43658658/149269891-f1385a5b-32df-4499-85b8-75486da6819e.png)
+
+Tomcat 밑의 `Service Startup`, `native`를 체크하여, tomcat을 서비스로 실행할 수 있도록 합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149270038-843b56bd-4335-4fcb-9f44-d15cac0fb05e.png)
+
+
+
 1. tomcat 압축 파일 다운로드
 
 아래의 아파치 사이트에 접속 후 8버전 Tomcat의 `.zip(윈도우)` 파일을 다운로드 합니다.   
@@ -27,6 +40,45 @@ C:\apache-tomcat-8.5.73\bin> service.bat install
 ```
 
 ![image](https://user-images.githubusercontent.com/43658658/149269064-26d6d986-eb0e-4a54-8f47-bd18dee294d5.png)
+
+4. tomcat 실행
+
+```
+C:\apache-tomcat-8.5.73\bin> startup.bat
+```
+
+5. 오류 해결
+
+`startup.bat` 명령을 통해 `startup.bat` 파일을 실행하면 tomcat이 실행되어야 하는데, 아래의 메시지가 나오며 실행되지 않는 경우가 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149271814-2a7afe63-5330-4a60-9d6b-13ce234c59cb.png)   
+* JAVA_HOME 이 설정 안되서 발생한 문제라는 걸 알 수 있습니다.
+
+`JDK 파일`을 설치해 주어야 합니다.
+JDK 파일은 자바 파일이며, tomcat은 자바 환경으로 실행됩니다.
+
+`Windows 2016 Server`는 설치될 때 `인터넷 익스플로러`만 설치되어 있습니다.   
+
+인터넷 익스플로러를 통해서 `오라클 홈페이지`에 접속하면 호환성 문제로 화면이 제대로 출력되지 않습니다.   
+![image](https://user-images.githubusercontent.com/43658658/149273351-75357ae3-2658-44c2-a890-a2ee1b149763.png)
+
+그래서 `Chrome 브라우저`를 설치합니다.
+
+그런데 다운로드 과정에서 `현재의 보안 설정 때문에 이 파일을 다운로드 할 수 없습니다.`라는 경고가 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/149273608-5c8f3fb1-1a10-49da-af7a-0fd18fd9baf7.png)
+
+해결 과정은 아래와 같습니다.
+
+먼저, 브라우저 우측 상단에 `톱니바퀴 > 인터넷 옵션`을 누릅니다.   
+![image](https://user-images.githubusercontent.com/43658658/149273750-a54b6e72-139c-43e7-99c2-f1dc556b1054.png)   
+![image](https://user-images.githubusercontent.com/43658658/149273799-ad8df85f-1f72-4ac6-bc40-69c4a8244559.png)
+
+[보안] 탭에서 [인터넷] > [사용자 지정 수준] > [파일 다운로드]를 `사용`으로 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/149273924-61072867-a9d1-45ea-b6d5-202419992dc5.png)
+
+이렇게 하면 정상적으로 파일이 다운로드 됩니다.   
+
+크롬을 통해 `오라클 홈페이지`에 접속하면 정상적으로 화면이 나타납니다.   
+![image](https://user-images.githubusercontent.com/43658658/149274000-1304f19e-f61c-46ce-b48f-6aaada6904f0.png)
 
 
 
