@@ -231,7 +231,9 @@ openssl x509 -req -days 1825 -extensions v3_user -in localhost.csr -CA rootca.cr
 드디어 웹서버를 HTTPS로 사용할 수 있는 SSL 인증서를 발급 받았습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149294232-832a7e46-693a-4f80-af22-e0c39140bfb4.png)
 
-> <h3>7. tomcat용 인증서 파일(keystore) 생성</h3>
+## 인증서 적용
+
+> <h3>1. tomcat용 인증서 파일(keystore) 생성</h3>
 
 웹 서버용 인증서와 개인 키를 이용해서 `Tomcat`용 인증서 파일인 `keystore`를 생성합니다.   
 ```
@@ -246,7 +248,7 @@ openssl pkcs12 -export -in localhost.crt -inkey localhost_private.key -out keyst
 `keystore` 파일이 생성되었습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149294940-ca595e11-d18f-49f7-aae0-cb1ac9451da2.png)
 
-> <h3>8. Tomcat 설정</h3>
+> <h3>2. Tomcat 설정</h3>
 
 이전에 설치한 tomcat의 디렉토리 경로(`C:\apache-tomcat-8.5.73\conf`) 안의 `server.xml` 파일에 다음 내용을 추가합니다.   
 ```
@@ -264,7 +266,7 @@ tomcat을 `재실행`하고 `8443 포트`로 접속합니다.
 
 웹서버로 부터 받은 인증서를 보증 해줄 인증기관의 인증서가 웹브라우저에는 없으므로 신뢰할 수 없다고 나옵니다.
 
-> <h3>7. 사설 root 인증서 설치하기</h3>
+> <h3>3. 사설 root 인증서 설치하기</h3>
 
 웹 브라우저에서 `도구 -> 인터넷 옵션 -> 내용 -> 인증서`를 클릭합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/149300992-43207df4-9e15-48eb-9ab0-9befde9326be.png)
@@ -281,8 +283,9 @@ tomcat을 `재실행`하고 `8443 포트`로 접속합니다.
 
 > <h3>IE는 되고 Chrome은 안되는 이유</h3>
 
-킹리적 갓심으로는 `.csr`을 생성할 때 무결성을 입증하는 서명 알고리즘인 `SHA256`를 옵션으로 주지 않아서 인 것 같습니다.
+`.csr`을 생성할 때 무결성을 입증하는 서명 알고리즘인 `SHA256`를 옵션으로 주지 않아서 인 것 같습니다.
 
 => https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=oxcow119&logNo=220449926380   
 위 사이트를 참조해보면, 보안의 취약점이 발견되어 키를 생성할 때는 기존 2048에서 `4096`으로, 무결성 알고리즘은 `SHA2 그룹`을 써야한다고 되어 있습니다.
 
+`크롬`의 경우 IE보다 훨씬 엄격한 보안 준수를 요구하기 때문에, `SHA256` 알고리즘을 적용하지 않고 생성한 인증서에 대해서는 올바른 보안인증서로 취급하지 않습니다.
